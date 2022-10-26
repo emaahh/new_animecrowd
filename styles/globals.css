@@ -15,7 +15,7 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+
   html {
     color-scheme: dark;
   }
@@ -23,4 +23,33 @@ a {
     color: white;
     background: black;
   }
+
+body {
+  background: linear-gradient(49deg, #000000, #4a0fff80, #000000, #000000, #ff00f780, #000000);
+  background-size: 1200% 1200%;
+  -webkit-animation: AnimationName 10s ease infinite;
+  -moz-animation: AnimationName 10s ease infinite;
+  -o-animation: AnimationName 10s ease infinite;
+  animation: AnimationName 10s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:20% 50%}
+    100%{background-position:49% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:20% 50%}
+    100%{background-position:49% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:20% 50%}
+    100%{background-position:49% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:49% 0%}
+    50%{background-position:20% 50%}
+    100%{background-position:49% 0%}
 }

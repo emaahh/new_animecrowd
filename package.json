@@ -9,12 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.3.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@formkit/auto-animate": "^1.0.0-beta.3",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.11",
+    "@mui/styled-engine-sc": "^5.10.6",
+    "@mui/styles": "^5.10.10",
+    "dom-parser": "^0.1.6",
+    "framer-motion": "^7.6.1",
+    "mongodb": "^3.7.3",
+    "next": "^13.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "eslint": "8.26.0",
-    "eslint-config-next": "12.3.1"
+    "eslint-config-next": "^13.0.0"
   }
 }
