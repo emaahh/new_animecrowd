@@ -60,7 +60,7 @@ function AnimePage() {
                 
                 {currentAnimeButton.map((_, index) => (
                 
-                        <button>{_.src}</button>
+                        <button key={index} >{_.src}</button>
                     
                 ))}
 
