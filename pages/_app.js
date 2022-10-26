@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
+import { Analytics } from '@vercel/analytics/react';
+
 import Head from 'next/head'
 import NavBar from '../components/NavBar'
 import '../styles/globals.css'
