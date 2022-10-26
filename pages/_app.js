@@ -38,7 +38,8 @@ function MyApp({ Component, pageProps }) {
         <NavBar />
         <Component {...pageProps}/> 
       </div>
-
+      
+      <Analytics />
       </ThemeProvider>
   )
 }
