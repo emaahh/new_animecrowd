@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/Image'
+import Image from 'next/image'
 import React, { useRef, useState, useEffect } from "react";
 
 import { useAutoAnimate } from '@formkit/auto-animate/react'
