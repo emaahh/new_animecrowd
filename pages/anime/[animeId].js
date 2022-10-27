@@ -15,6 +15,8 @@ function AnimePage() {
     const [currentAnimeButton, setCurrentAnimeButton] = useState([])
     const [isLoading, setLoading] = useState(true)
 
+    const [currentVideo, setCurrentAnimeVideo] = useState('')
+
     useEffect(() => {
         fetch('/api/findAnime/' + animeId)
         .then((res) => res.json())
@@ -32,6 +34,13 @@ function AnimePage() {
         })
         
     }, [animeId])
+
+    const openVideo = async (prop) => {
+        const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdAW+'/'+prop);
+        const newData = await req.json();
+    
+        setCurrentAnimeVideo(newData[0]);
+    };
 
     
 
@@ -60,9 +69,13 @@ function AnimePage() {
                 
                 {currentAnimeButton.map((_, index) => (
                 
-                        <button key={index} >{_.src}</button>
+                    <button key={index} onClick={() => openVideo(_.src)}>{_.src}</button>
                     
                 ))}
+                <br></br>
+                <br></br>
+
+                <video controls src={currentVideo}></video>
 
 
             </center>
