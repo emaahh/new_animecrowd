@@ -22,16 +22,16 @@ export default function Home() {
     }
 
     return (
-        <span ref={animationParent} style={{backgroundColor: 'rgba(0,0,0,0.9)'}}>
+        <span ref={animationParent} style={{backgroundColor: 'rgba(0,0,0,0.9)', zIndex: '99999'}}>
             <nav style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: '5vw', paddingLeft: '5vw'}}>
                 <div>
                     <Link href="/" passHref legacyBehavior>
-                        <h1 style={{fontFamily: 'Work Sans, sans-serif', cursor: 'pointer'}}>ANIME<a style={{color: 'rgb(220 135 255)'}}>CROWD</a></h1>
+                        <h1 style={{fontFamily: 'Work Sans, sans-serif', cursor: 'pointer', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px',}}>ANIME<a style={{color: 'rgb(220 135 255)', textShadow: 'rgba(220, 135, 255, 0.8) 0px 0px 20px',}}>CROWD</a></h1>
                     </Link>
                 </div>
                 
                 <div>
-                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button onClick={openSearch} style={{backgroundColor: 'transparent', borderColor: 'transparent'}}><span className="material-symbols-outlined">search</span></button></h1>
+                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><span className="material-symbols-outlined">search</span></button></h1>
                 </div>
             </nav>
 

@@ -1,15 +1,18 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import React, { useRef, useState, useEffect } from "react";
+import Head from 'next/head';
+import Image from 'next/image';
+import React, { useEffect, useRef, useState } from "react";
 
-import { useAutoAnimate } from '@formkit/auto-animate/react'
-import Box from '@mui/material/Box';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+
+import Carousel from 'react-material-ui-carousel'
+import { Paper, Button } from '@mui/material'
+
 import Grid from '@mui/material/Grid';
 
-import loadingGIF from '/public/loadingGIF.gif'
+import loadingGIF from '/public/loadingGIF.gif';
 
+import CardComponent from '../components/CardComponent';
 import VideoHome from '../components/VideoHome';
-import CardComponent from '../components/CardComponent'
 
 
 export default function Home() {
@@ -40,7 +43,7 @@ export default function Home() {
 
       {isLoading == true ?
 
-        <div style={{flexDirection: 'column-reverse', position: 'absolute', top: '0', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', width: '100%', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
+        <div style={{width: '-webkit-fill-available', flexDirection: 'column-reverse', position: 'absolute', top: '-70px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
           
           <Image src={loadingGIF} style={{width: '100px', height: 'auto'}}/> 
           <br></br>
@@ -48,45 +51,49 @@ export default function Home() {
         
         : null}
 
-      <VideoHome/>
+        <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={true} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative'}}>
+          <Paper>
+            <VideoHome Titolo="Chainsaw Man" OP="https://joy.videvo.net/videvo_files/video/free/2013-08/large_watermarked/hd0983_preview.mp4"/>
+          </Paper>
+          <Paper>
+            <VideoHome Titolo="Tokyo Revengers" OP="https://joy.videvo.net/videvo_files/video/free/2013-08/large_watermarked/hd0983_preview.mp4"/>
+          </Paper>
+        </Carousel>
+      
 
-      <br></br>
-
-      <center>
-        <div style={{width: 'max-content', position: 'relative', justifyContent: 'center', display: 'flex', backgroundColor: 'rgb(220 135 255)', paddingLeft: '25px', paddingRight: '25px', borderRadius: '100px'}}>
-          <h3 style={{margin: '10px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}>NUOVE AGGIUNTE</h3>
-        </div>
-      </center>
-      <br></br>
-
-        <Grid continer columns={{ xs: 100, sm: 100, md: 100 }} style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
-
-          {allAnime.slice(-4).reverse().map((_, index) => (
-            <Grid item key={index} style={{maxWidth: '400px', width: '100%'}}>
-              <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id}/>
-            </Grid>
-          ))}
-          
-        </Grid> 
-
-        <br></br>
+      <div style={{marginTop: '-70px'}}>
         
-        <center>
-          <div style={{width: 'max-content', position: 'relative', justifyContent: 'center', display: 'flex', backgroundColor: '', paddingLeft: '25px', paddingRight: '25px', borderRadius: '100px'}}>
-            <h3 style={{margin: '10px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}>NUOVE AGGIUNTE</h3>
-          </div>
-        </center>
-        <br></br>
+          <strong><h1 style={{paddingLeft: '4.5vw', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+          <br></br>
 
-        <Grid continer columns={{ xs: 100, sm: 100, md: 100 }} style={{display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+          <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
-          {allAnime.slice(-4).reverse().map((_, index) => (
-            <Grid item key={index} style={{maxWidth: '400px', width: '100%'}}>
-              <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id}/>
-            </Grid>
-          ))}
+            {allAnime.slice(-4).reverse().map((_, index) => (
+              <Grid item key={index} style={{maxWidth: '400px', width: '100%'}}>
+                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id}/>
+              </Grid>
+            ))}
+            
+          </Grid> 
+
+          <br></br>
           
-        </Grid>  
+          <strong><h1 style={{paddingLeft: '4.5vw', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+          <br></br>
+
+          <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+
+            {allAnime.slice(-4).reverse().map((_, index) => (
+              <Grid item key={index} style={{maxWidth: '400px', width: '100%'}}>
+                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id}/>
+              </Grid>
+            ))}
+            
+          </Grid> 
+
+          <br></br>
+
+      </div>
 
     </div>
   )

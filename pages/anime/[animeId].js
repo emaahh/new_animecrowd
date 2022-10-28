@@ -4,10 +4,11 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import loadingGIF from '/public/loadingGIF.gif'
 
-import Grid from '@mui/material/Grid';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 
 function AnimePage() {
+    const [animationParent] = useAutoAnimate()
     const router = useRouter()
     const { animeId } = router.query
 
@@ -45,7 +46,7 @@ function AnimePage() {
     
 
     return (
-        <>
+        <div ref={animationParent}>
             <Head>
                 <title>AnimeCrowd</title>
                 <meta name="description" content="Anime in streaming e download SUB ITA e ITA" />
@@ -55,7 +56,7 @@ function AnimePage() {
 
             <br></br>
             {isLoading == true ?
-            <div style={{flexDirection: 'column-reverse', position: 'absolute', top: '0', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', width: '100%', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
+            <div style={{width: '-webkit-fill-available', flexDirection: 'column-reverse', position: 'absolute', top: '-70px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
                 <Image src={loadingGIF} style={{width: '100px', height: 'auto'}}/> 
                 <br></br>
             </div>
@@ -83,7 +84,7 @@ function AnimePage() {
 
             
             
-        </>
+        </div>
     )
 }
 

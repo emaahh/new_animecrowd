@@ -30,11 +30,11 @@ function MyApp({ Component, pageProps }) {
 
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap" rel="stylesheet"></link>
       </Head>
 
-      <div ref={animationParent} style={{backdropFilter: 'blur(100px)', background: "rgba(0,0,0,0.7)",}}>
+      <div ref={animationParent} >
         <NavBar />
         <Component {...pageProps}/> 
       </div>

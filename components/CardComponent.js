@@ -36,8 +36,8 @@ function CardComponent(props) {
 
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1,  pr: 1, pb: 1, justifyContent: 'center', width: '100%' }}>
                         <Link href={'/anime/'+props.Id} passHref legacyBehavior>
-                            <Button variant="contained" color="success" style={{width: '100%', borderRadius: '15px'}}>
-                                <PlayArrowRoundedIcon sx={{ color: 'white', fontSize: 30 }}/>
+                            <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}} style={{width: '100%', borderRadius: '15px'}}>
+                                <PlayArrowRoundedIcon sx={{ color: 'black', fontSize: 30 }}/><strong>Guarda</strong>
                             </Button>
                         </Link>
                     </Box>
@@ -49,7 +49,7 @@ function CardComponent(props) {
                     sx={{ width: 151 }}
                     style={{objectFit: 'cover', height: '200px'}}
                     image={props.Copertina}
-                    alt={'Copertina '+ props.Nome}
+                    alt={'Copertina di '+ props.Nome}
                 />
 
             </Card>
