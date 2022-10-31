@@ -33,7 +33,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div ref={animationParent}>
+    <div ref={animationParent} style={{height: '1px'}}>
       <Head>
         <title>AnimeCrowd</title>
         <meta name="description" content="Anime in streaming e download SUB ITA e ITA" />
@@ -45,13 +45,13 @@ export default function Home() {
 
         <div style={{width: '-webkit-fill-available', flexDirection: 'column-reverse', position: 'absolute', top: '-70px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
           
-          <Image src={loadingGIF} style={{width: '100px', height: 'auto'}}/> 
+          <Image className="heartbeat" src={loadingGIF} style={{width: '100px', height: 'auto'}}/> 
           <br></br>
         </div>
         
         : null}
 
-        <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={true} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative'}}>
+        <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={true} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
           <Paper>
             <VideoHome Titolo="Chainsaw Man" OP="https://joy.videvo.net/videvo_files/video/free/2013-08/large_watermarked/hd0983_preview.mp4"/>
           </Paper>
@@ -63,14 +63,14 @@ export default function Home() {
 
       <div style={{marginTop: '-70px'}}>
         
-          <strong><h1 style={{paddingLeft: '4.5vw', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+          <strong><h1 style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
           <br></br>
 
           <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
             {allAnime.slice(-4).reverse().map((_, index) => (
-              <Grid item key={index} style={{maxWidth: '400px', width: '100%'}}>
-                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id}/>
+              <Grid item key={index} style={{maxWidth: '400px'}}>
+                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
               </Grid>
             ))}
             
@@ -78,14 +78,14 @@ export default function Home() {
 
           <br></br>
           
-          <strong><h1 style={{paddingLeft: '4.5vw', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+          <strong><h1 style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
           <br></br>
 
           <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
             {allAnime.slice(-4).reverse().map((_, index) => (
-              <Grid item key={index} style={{maxWidth: '400px', width: '100%'}}>
-                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id}/>
+              <Grid item key={index} style={{maxWidth: '400px'}}>
+                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
               </Grid>
             ))}
             

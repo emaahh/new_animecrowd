@@ -16,13 +16,13 @@ export default function VideoHome(props) {
                 <br></br>
             </div>
             <div style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'block', zIndex: '300', bottom: '3vh', width: '25%',}}>
-                <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '100%', borderRadius: '15px'}}>
+                <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '100%', borderRadius: '15px', }}>
                     <PlayArrowRoundedIcon sx={{ color: 'black', fontSize: 30 }}/><strong>Guarda</strong>
                 </Button>
             </div>
             
 
-            <video autoPlay loop muted playsInline style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}} src={props.OP}/>
+            <video autoPlay loop muted playsInline style={{opacity: .5, objectFit: 'cover', width: '100%', height: '60vh', position: 'relative', zIndex: '100'}} src={props.OP}/>
             <div variant="contained" className="videoHome"></div>
             <style jsx global>
                 {`
