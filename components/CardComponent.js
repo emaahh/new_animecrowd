@@ -100,6 +100,8 @@ function CardComponent(props) {
 
                         <br></br>
                         <br></br>
+                        <br></br>
+                        <br></br>
 
                         <CardMedia
                             component="img"

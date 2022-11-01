@@ -30,7 +30,7 @@ function AnimePage() {
     const [currentVideo, setCurrentAnimeVideo] = useState('')
 
     useEffect(() => {
-        document.getElementById("serchIco").style.display = "block";
+        document.getElementById("serchIco").style.display = "flex";
         if(isBrowser){
             var vid = document.getElementById("myVideo");
             vid.onplay = function() {
@@ -83,7 +83,7 @@ function AnimePage() {
 
             <br></br>
             {isLoading == true ?
-            <div style={{width: '-webkit-fill-available', flexDirection: 'column-reverse', position: 'absolute', top: '-70px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
+            <div style={{width: '-webkit-fill-available', flexDirection: 'column-reverse', position: 'absolute', top: '0px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
                 <Image className="heartbeat" src={loadingGIF} style={{width: '100px', height: 'auto'}}/> 
                 <br></br>
             </div>
@@ -118,14 +118,14 @@ function AnimePage() {
                     `}
                 </style>
             </div>
-            <Container style={{padding: '50px', marginTop: '-150px', zIndex: '999999'}} maxWidth="lg">
+            <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">
 
                 <center>
 
                     <CardMedia
                         component="img"
-                        sx={{ width: 151, borderRadius: '15px', }}
-                        style={{objectFit: 'cover', height: '200px'}}
+                        sx={{ width: 200, borderRadius: '15px', }}
+                        style={{objectFit: 'cover', height: '270px'}}
                         image={currentAnime.Copertina}
                         alt={'Copertina di '+ currentAnime.Nome}
                     />

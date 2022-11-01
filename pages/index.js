@@ -42,14 +42,11 @@ export default function Home() {
       </Head>
 
       {isLoading == true ?
-
-        <div style={{width: '-webkit-fill-available', flexDirection: 'column-reverse', position: 'absolute', top: '-70px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
-          
-          <Image className="heartbeat" src={loadingGIF} style={{width: '100px', height: 'auto'}}/> 
-          <br></br>
-        </div>
-        
-        : null}
+            <div style={{width: '-webkit-fill-available', flexDirection: 'column-reverse', position: 'absolute', top: '0px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
+                <Image className="heartbeat" src={loadingGIF} style={{width: '100px', height: 'auto'}}/> 
+                <br></br>
+            </div>
+          : null}
 
         <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={true} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
           <Paper>
