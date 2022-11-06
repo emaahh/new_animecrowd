@@ -22,7 +22,7 @@ export default function VideoHome(props) {
             </div>
             
 
-            <video autoPlay loop muted playsInline style={{opacity: .5, objectFit: 'cover', width: '100%', height: '60vh', position: 'relative', zIndex: '100'}} src={props.OP}/>
+            <video autoPlay loop muted playsInline style={{opacity: .5, objectFit: 'cover', width: '100%', height: '70vh', position: 'relative', zIndex: '100'}} src={props.OP}/>
             <div variant="contained" className="videoHome"></div>
             <style jsx global>
                 {`
@@ -33,7 +33,7 @@ export default function VideoHome(props) {
                         top: 0;
                         height: 100%;
 
-                        background: linear-gradient(0deg, rgba(0,0,0,1) 33%, rgba(255,255,255,0) 100%);
+                        background: linear-gradient(0deg, rgba(0,0,0,1) 20vh, rgba(255,255,255,0) 100%);
                         z-index: 200;
                     }
                     .btnPlayCopertina:hover {

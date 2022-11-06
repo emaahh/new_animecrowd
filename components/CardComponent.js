@@ -43,17 +43,34 @@ function CardComponent(props) {
                 <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', overflow: 'auto'}}>
 
                     <CardContent sx={{ flex: '1 0 auto',}}>
-                        <Typography noWrap variant="h6" style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%'}}>
+                        <Typography noWrap variant="h6" style={{whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '220px'}}>
                             {props.Nome}
                             
                         </Typography>
+                        {
+                            !props.EPISODE?
+                                <>
+                                    <Typography variant="p" color="text.secondary" component="div" noWrap>
+                                        <strong>Uscita:</strong> {props.Uscita}
+                                    </Typography>
+                                    <Typography variant="p" color="text.secondary" component="div" noWrap>
+                                        <strong>Stato:</strong> {props.Stato}
+                                    </Typography>
+                                </>
+                            : 
+                                <>
+                                    <Typography variant="p" color="text.secondary" component="div" noWrap>
+                                        <strong>Episodio:</strong> {props.Nome.split('Ep. ').pop()}
+                                    </Typography>
+                                    <Typography variant="p" color="text.secondary" component="div" noWrap>
+                                        <strong>Uscita:</strong> {props.Uscita}
+                                    </Typography>
+                                    <Typography variant="p" color="text.secondary" component="div" noWrap>
+                                        <strong>Stato:</strong> {props.Stato}
+                                    </Typography>
+                                </>
+                        }
                         
-                        <Typography variant="p" color="text.secondary" component="div" noWrap>
-                            <strong>Uscita:</strong> {props.Uscita}
-                        </Typography>
-                        <Typography variant="p" color="text.secondary" component="div" noWrap>
-                            <strong>Stato:</strong> {props.Stato}
-                        </Typography>
                     </CardContent>
 
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1,  pr: 1, pb: 1, justifyContent: 'center', width: '100%' }}>
@@ -89,7 +106,7 @@ function CardComponent(props) {
 
 
             <SwipeableDrawer anchor={'bottom'} open={state['bottom']} onClose={toggleDrawer('bottom', false)} onOpen={toggleDrawer('bottom', true)}>
-                <Container style={{padding: '50px'}} maxWidth="sm">
+                <Container style={{padding: '50px'}} maxWidth="lg">
                     <br></br>
                     <br></br>
                     <center>

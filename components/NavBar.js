@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
 
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -20,8 +21,12 @@ import Container from '@mui/material/Container';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 
+import {UserContext} from '/pages/_app'
 
-export default function Home() {
+
+export default function NavBar() {
+    const value = React.useContext(UserContext);  
+    const router = useRouter();
     const [animationParent] = useAutoAnimate()
 
     const searchInput = useRef(null)
@@ -36,6 +41,7 @@ export default function Home() {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [responceRegister, setResponceRegister] = useState([]);
 
     function checkIfEmail(str) {
         // Regular expression to check if string is email
@@ -43,7 +49,7 @@ export default function Home() {
       
         return regexExp.test(str);
     }
-
+    
     const toggleDrawer = (anchor, open) => (event) => {
         if (
             event &&
@@ -54,6 +60,12 @@ export default function Home() {
         }
     
         setState({ ...state, ['right']: open });
+        setIsSearching(false);
+        setSearchResult([])
+        setUserName('')
+        setEmail('')
+        setPassword('')
+        setResponceRegister([])
 
     };
 
@@ -77,15 +89,21 @@ export default function Home() {
 
     async function LogIn(emailPROPS, passwordPROPS) {
         const res = await fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS);
-        return (setAccountData(await res.json()))
+        return (setAccountData(await res.json()), setState({ ...state, ['right']: false }))
     }
     //check credenziali
     useEffect(() => {
         if(accountData!=[]&&accountData!=''){
             setIsLog(true)
+            value.saveLog('1')
             if(!hasCookie('email') && !hasCookie('password')){
                 setCookie('email', email, {maxAge:new Date().getTime() + (24*60*60*60*1000)});
                 setCookie('password', password, {maxAge:new Date().getTime() + (24*60*60*60*1000)});
+                /*const thispath = router.asPath
+                router.push('/')
+                setTimeout(() => {
+                    router.push(thispath)
+                }, 1000)*/
             }
         }
     }, [accountData])
@@ -97,6 +115,17 @@ export default function Home() {
         }
     }, [])
 
+    async function Register(userNamePROPS, emailPROPS, passwordPROPS) {
+        const res = await fetch('/api/register/'+userNamePROPS+'/'+emailPROPS+'/'+passwordPROPS);
+        return (setResponceRegister(await res.text()))
+    }
+    useEffect(() => {
+        if(responceRegister == 'utente già registato'){
+            
+        }else{
+            LogIn(email,password)
+        }
+    }, [responceRegister])
 
     //logout
     function logOut(){
@@ -107,30 +136,43 @@ export default function Home() {
         setPassword('')
         deleteCookie('email');
         deleteCookie('password');
+        setState({ ...state, ['right']: false });
+
+        value.saveLog('0')
+
+        /*const thispath = router.asPath
+        console.log(thispath)
+        router.push('/')
+        setTimeout(() => {
+            router.push(thispath)
+        }, 1000)
+        */
     }
 
     //serch
     useEffect(() => {
-        if(query.trim().length >= 3){
-            fetch('/api/searchAnimeUser/'+ query)
-                .then((res) => res.json())
-                .then((data) => {
-                    setSearchResult(data)
-                })
-        }else{
-            setSearchResult([])
+        const coolDown = setTimeout(() => {
+            if(query.trim().length >= 3){
+                fetch('/api/searchAnimeUser/'+ query)
+                    .then((res) => res.json())
+                    .then((data) => {
+                        setSearchResult(data)
+                    })
+            }else{
+                setSearchResult([])
+            }
+        }, 500)
+        return () => {
+            clearTimeout(coolDown)
         }
     }, [query])
 
     //focus on serch box
+    //block scroll
     useEffect(() => {
         if(searchInput.current != null){
             searchInput.current.focus()
         }
-    }, [searchInput.current])
-
-    //block scroll
-    useEffect(() => {
         if(isSearching){
             document.getElementsByTagName("body")[0].style.overflowY = "hidden"
         }else{
@@ -142,6 +184,7 @@ export default function Home() {
     const openSearch = () => {
         setIsSearching(current => !current);
         setSearchResult([])
+        
     }
 
     //nav background dynamic
@@ -169,8 +212,8 @@ export default function Home() {
                 
                 
                 <div id="serchIco" style={{marginRight: '-5vw', paddingRight: '5vw', display: 'flex'}}>
-                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isLog ? <NoAccountsIcon/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={'https://i.imgur.com/'+accountData[0].Avatar+'b.jpg'} />}</strong></button></h1>
                     <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isSearching ? <SearchIcon/> : null}</strong></button></h1>
+                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isLog ? <NoAccountsIcon/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
                 </div>
             </nav>
 
@@ -229,21 +272,42 @@ export default function Home() {
                                 {searchResult.length == 0 ? <center><p style={{fontSize: '10px', color: 'rgba(0,0,0,0.5)'}}>Digita almeno 3 caratteri o cambia parola chiave</p></center> : 
                                     
                                     searchResult.map((_, index) => (
-                                        <Link href={'/anime/'+ _._id} passHref onClick={openSearch}>
-                                            <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
-                                                <CardMedia
-                                                    component="img"
-                                                    sx={{ width: 'auto', borderRadius: '10px', }}
-                                                    style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
-                                                    image={_.Copertina}
-                                                    alt={'Copertina di ' + _.Nome}
-                                                />
-                                                <div>
-                                                    <h4 style={{marginBottom: '0px'}}>{_.Nome}</h4>
-                                                    <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>STATO:</strong> {_.Stato} <strong>USCITA:</strong> {_.Uscita}</p>
+                                        _.NomeUtente==undefined ?
+                                            <Link href={'/anime/'+ _._id} passHref onClick={openSearch}>
+                                                <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
+                                                    <CardMedia
+                                                        component="img"
+                                                        sx={{ width: 'auto', borderRadius: '10px', }}
+                                                        style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
+                                                        image={_.Copertina}
+                                                        alt={'Copertina di ' + _.Nome}
+                                                    />
+                                                    <div>
+                                                        <h4 style={{marginBottom: '0px'}}>{_.Nome}</h4>
+                                                        <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>STATO:</strong> {_.Stato} <strong>USCITA:</strong> {_.Uscita}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </Link>
+                                            </Link>
+                                            
+                                            :
+
+                                            <Link href={'/utente/'+ _._id} passHref onClick={openSearch}>
+                                                <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
+                                                    <CardMedia
+                                                        component="img"
+                                                        sx={{ width: 'auto', borderRadius: '50px', }}
+                                                        style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
+                                                        image={_.Avatar!=undefined ?'https://i.imgur.com/'+_.Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg':null}
+                                                        alt={'Foto profilo di ' + _.NomeUtente}
+                                                    />
+                                                    <div>
+                                                        <h4 style={{marginBottom: '0px'}}>{_.NomeUtente}</h4>
+                                                        <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>FOLLOWING:</strong> {JSON.stringify(_.Amici.length-1)} <strong>FOLLOWER:</strong> {_.MiSeguono!=undefined ? JSON.stringify(_.MiSeguono.length-1): '0'}</p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        
+                                        
                                     ))
                                 
                                 }
@@ -257,7 +321,10 @@ export default function Home() {
 
             )}
 
-            {!isLog ? 
+                                
+
+            {!isLog ?
+                //non è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
                     <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
                         <br></br>
@@ -276,7 +343,7 @@ export default function Home() {
                                         <h3>Accedi!</h3>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                             <AlternateEmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                            <TextField id="input-with-sx" label="Email" variant="standard" onChange={handleChangeEmail}/>
+                                            <TextField id="input-with-sx" label="Email" variant="standard" onChange={handleChangeEmail} type={'email'}/>
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                             <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -295,7 +362,7 @@ export default function Home() {
                                         <br></br>
 
                                         <Fab variant="extended" onClick={() => setLogPage(1)}>
-                                            <strong>crea un account</strong>
+                                            <strong>Non ho un account</strong>
                                         </Fab>
                                     </div>
 
@@ -305,11 +372,11 @@ export default function Home() {
                                         <h3>Registrati!</h3>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                            <TextField id="input-with-sx" label="Nome utente" variant="standard" onChange={handleChangeUserName} inputProps={{ maxLength: 11 }}/>
+                                            <TextField id="input-with-sx" label="Nome utente" variant="standard" onChange={handleChangeUserName} inputProps={{ maxLength: 11 }} type={'text'}/>
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                             <AlternateEmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                            <TextField id="input-with-sx" label="Email" variant="standard" onChange={handleChangeEmail} />
+                                            <TextField id="input-with-sx" label="Email" variant="standard" onChange={handleChangeEmail} type={'email'}/>
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                             <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
@@ -317,7 +384,8 @@ export default function Home() {
                                         </Box>
 
                                         <br></br>
-                                        <Fab variant="extended" color={userName!=''&&email!=''&&password!='' ? "success" : "error"} onClick={email!=''&&password!='' ? () => alert('vai') : null}>
+                                        {responceRegister != 'utente già registato' ? null:<h3>Email già registrata</h3>}
+                                        <Fab variant="extended" color={userName!=''&&email!=''&&password!='' ? "success" : "error"} onClick={()=> userName!=''&&email!=''&&password!='' ? Register(userName,email,password) : null}>
                                             <strong>ENTRA</strong>
                                         </Fab>
 
@@ -327,7 +395,7 @@ export default function Home() {
                                         <br></br>
 
                                         <Fab variant="extended" onClick={() => setLogPage(0)}>
-                                            <strong>Accedi</strong>
+                                            <strong>Ho un account</strong>
                                         </Fab>
                                     </div>
                             
@@ -339,13 +407,13 @@ export default function Home() {
                 </SwipeableDrawer>
 
                 : 
-                
+                //è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
                     <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
                         <br></br>
                         <br></br>
                         <center  ref={animationParent}>
-                            <Fab variant="extended" onClick={toggleDrawer('bottom', false)}>
+                            <Fab variant="extended" onClick={toggleDrawer('right', false)}>
                                 <CloseRoundedIcon/>
                                 <strong>CHIUDI</strong>
                             </Fab>

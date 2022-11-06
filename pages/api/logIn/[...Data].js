@@ -1,5 +1,5 @@
 import { MongoClient, ObjectId } from 'mongodb'
-const uri = "mongodb+srv://Emanuele:h297k1fklCm2SMfp@animedata.dsmjr.mongodb.net/test?authSource=admin&replicaSet=atlas-mud1pv-shard-0&readPreference=primary&ssl=true";
+const uri = "mongodb://Emanuele:h297k1fklCm2SMfp@animedata-shard-00-00.dsmjr.mongodb.net:27017,animedata-shard-00-01.dsmjr.mongodb.net:27017,animedata-shard-00-02.dsmjr.mongodb.net:27017/?ssl=true&replicaSet=atlas-mud1pv-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 
 export default function handler(req, res) {
@@ -8,7 +8,7 @@ export default function handler(req, res) {
     var email = Data[0];
     var pass = Data[1];
     
-    MongoClient.connect(uri, function(err, db) {
+    MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function(err, db) {
         if (err) throw err;
         var dbo = db.db("animeDB");
         dbo.collection("Users").find({Email: email, Password: pass}).toArray(function(err, result) {
