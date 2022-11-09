@@ -106,17 +106,12 @@ function CardComponent(props) {
 
 
             <SwipeableDrawer anchor={'bottom'} open={state['bottom']} onClose={toggleDrawer('bottom', false)} onOpen={toggleDrawer('bottom', true)}>
+                <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'fixed', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+                    <CloseRoundedIcon sx={{fontSize: '30px'}}/>
+                </Fab>
                 <Container style={{padding: '50px'}} maxWidth="lg">
-                    <br></br>
-                    <br></br>
                     <center>
-                        <Fab variant="extended" onClick={toggleDrawer('bottom', false)}>
-                            <CloseRoundedIcon/>
-                            <strong>CHIUDI</strong>
-                        </Fab>
 
-                        <br></br>
-                        <br></br>
                         <br></br>
                         <br></br>
 
@@ -157,16 +152,6 @@ function CardComponent(props) {
                             </tr>
                             <tr>
                                 <td>{props.Generi.replace(/ - /g, ' | ')}</td>
-                            </tr>
-                        </table>
-                        <br></br>
-                        <br></br>
-                        <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
-                            <tr>
-                                <th>TRAMA</th>
-                            </tr>
-                            <tr>
-                                <td style={{fontFamily: 'Work Sans, sans-serif', textAlign: 'justify', textAlignLast: 'center'}}>{props.Trama}</td>
                             </tr>
                         </table>
                     </center>

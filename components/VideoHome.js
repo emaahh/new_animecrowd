@@ -1,23 +1,22 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import Button from '@mui/material/Button';
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import InfoIcon from '@mui/icons-material/Info';
 
 
 export default function VideoHome(props) {
-
 
 
     return (
         <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative'}}>
 
             <div style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'block', zIndex: '300', bottom: '3vh', width: 'max-content',}}>
-                <h2 style={{textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}>{props.Titolo}</h2>
+                <h1 style={{textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}>{props.Titolo}</h1>
                 <br></br>
             </div>
             <div style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'block', zIndex: '300', bottom: '3vh', width: '25%',}}>
                 <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '100%', borderRadius: '15px', }}>
-                    <PlayArrowRoundedIcon sx={{ color: 'black', fontSize: 30 }}/><strong>Guarda</strong>
+                    <InfoIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong>ALTRO</strong>
                 </Button>
             </div>
             

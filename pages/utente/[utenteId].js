@@ -83,11 +83,11 @@ function UtentePage() {
     useEffect(() => {
         console.log('eseguito'+ value.isLogStored)
        
-            if(value.isLogStored == '1' && accountData==''){
+            if(value.isLogStored == 1 && accountData==''){
 
                 LogIn(getCookie('email'),getCookie('password'))
 
-            }else if(value.isLogStored == '0'){
+            }else if(value.isLogStored == 0){
                 setAccountData('')
                 setIsLog(false)
             }

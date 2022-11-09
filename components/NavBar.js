@@ -95,7 +95,7 @@ export default function NavBar() {
     useEffect(() => {
         if(accountData!=[]&&accountData!=''){
             setIsLog(true)
-            value.saveLog('1')
+            value.saveLog(1)
             if(!hasCookie('email') && !hasCookie('password')){
                 setCookie('email', email, {maxAge:new Date().getTime() + (24*60*60*60*1000)});
                 setCookie('password', password, {maxAge:new Date().getTime() + (24*60*60*60*1000)});
@@ -138,7 +138,7 @@ export default function NavBar() {
         deleteCookie('password');
         setState({ ...state, ['right']: false });
 
-        value.saveLog('0')
+        value.saveLog(0)
 
         /*const thispath = router.asPath
         console.log(thispath)
@@ -186,19 +186,6 @@ export default function NavBar() {
         setSearchResult([])
         
     }
-
-    //nav background dynamic
-    useEffect(() => {
-        window.onscroll = function() {scrollFunction()};
-        function scrollFunction() {
-            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                document.getElementById("navbar").style.backgroundColor = "black";
-            } else {
-                document.getElementById("navbar").style.backgroundColor = "transparent";
-            }
-        }
-    }, [])
-
 
     return (
         <span id="navbar" ref={animationParent} style={{zIndex: '999999999999999999', position: 'fixed', width: '100%'}}>
@@ -326,14 +313,13 @@ export default function NavBar() {
             {!isLog ?
                 //non è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
+                    <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'absolute', transform: 'translate(-50%, 0%)', bottom: '20px' }}>
+                        <CloseRoundedIcon sx={{fontSize: '30px'}}/>
+                    </Fab>
                     <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
                         <br></br>
                         <br></br>
                         <center  ref={animationParent}>
-                            <Fab variant="extended" onClick={toggleDrawer('bottom', false)}>
-                                <CloseRoundedIcon/>
-                                <strong>CHIUDI</strong>
-                            </Fab>
                             
                             <h1>Benvenuto!</h1>
                             
@@ -409,14 +395,13 @@ export default function NavBar() {
                 : 
                 //è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
+                    <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'absolute', transform: 'translate(-50%, 0%)', bottom: '20px' }}>
+                        <CloseRoundedIcon sx={{fontSize: '30px'}}/>
+                    </Fab>
                     <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
                         <br></br>
                         <br></br>
                         <center  ref={animationParent}>
-                            <Fab variant="extended" onClick={toggleDrawer('right', false)}>
-                                <CloseRoundedIcon/>
-                                <strong>CHIUDI</strong>
-                            </Fab>
                             
                             <h1>Benvenuto! {accountData[0].NomeUtente}</h1>
 

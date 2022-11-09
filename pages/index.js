@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
@@ -15,6 +15,11 @@ import VideoHome from '../components/VideoHome';
 
 
 export default function Home() {
+
+  const nuoviephead = useRef(null);
+  const incorsohead = useRef(null);
+  const nuoveaggiuntehead = useRef(null);
+
   
   const [animationParent] = useAutoAnimate()
 
@@ -41,6 +46,7 @@ export default function Home() {
       })
   }, [])
 
+  
   return (
     <div ref={animationParent} style={{height: '1px'}}>
       <Head>
@@ -54,24 +60,21 @@ export default function Home() {
             <Loading/>
           : null}
 
-        <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={true} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
+        <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
           <Paper>
             <VideoHome Titolo="Chainsaw Man" OP="/CHAINSAWMAN.mp4"/>
-          </Paper>
-          <Paper>
-            <VideoHome Titolo="Tokyo Revengers" OP="https://joy.videvo.net/videvo_files/video/free/2013-08/large_watermarked/hd0983_preview.mp4"/>
           </Paper>
         </Carousel>
       
 
-      <div style={{marginTop: '-70px'}}>
+      <div style={{marginTop: '-90px'}} ref={animationParent}>
 
-        <strong><h1 style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
+        <strong><h1 ref={nuoviephead} id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
         <br></br>
 
         <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
-          {newEpisode.slice(-4).map((_, index) => (
+          {newEpisode.map((_, index) => (
             <Grid item key={index} style={{maxWidth: '400px'}}>
               <CardComponent EPISODE={true} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
             </Grid>
@@ -83,22 +86,24 @@ export default function Home() {
 
 
         
-          <strong><h1 style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+          <strong><h1 ref={incorsohead} id="incorsohead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
           <br></br>
 
           <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
-            {allAnime.slice(-4).reverse().map((_, index) => (
-              <Grid item key={index} style={{maxWidth: '400px'}}>
-                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-              </Grid>
+            {allAnime.reverse().map((_, index) => (
+              _.Stato == 'In corso'?
+                <Grid item key={index} style={{maxWidth: '400px'}}>
+                  <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                </Grid>
+              : null
             ))}
             
           </Grid> 
 
           <br></br>
           
-          <strong><h1 style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+          <strong><h1 ref={nuoveaggiuntehead} id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
           <br></br>
 
           <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
@@ -117,4 +122,6 @@ export default function Home() {
 
     </div>
   )
-}
+};
+
+

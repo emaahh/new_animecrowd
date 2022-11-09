@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-
+import { useRouter } from 'next/router'
 import { Analytics } from '@vercel/analytics/react';
 
 import Head from 'next/head'
@@ -13,6 +13,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 export const UserContext = React.createContext();
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
   const [animationParent] = useAutoAnimate()
 
   const darkTheme = createTheme({
@@ -24,10 +25,36 @@ function MyApp({ Component, pageProps }) {
     },
   });
 
-  const [saveLogState, setSaveLogState] = useState('0')
+  const [saveLogState, setSaveLogState] = useState(0)
   const saveLog = (props) => {
     setSaveLogState(props)
   }
+
+  //nav background dynamic
+  useEffect(() => {
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            document.getElementById("navbar").style.backgroundColor = "black";
+        } else {
+            document.getElementById("navbar").style.backgroundColor = "transparent";
+        }
+        if(document.getElementById("nuoviephead") != null){
+          if (document.body.scrollTop > 450 && document.body.scrollTop < 740 || document.documentElement.scrollTop > 450 && document.documentElement.scrollTop < 740) {
+              document.getElementById("nuoviephead").style = "z-index: 99999; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 15px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(50px);";
+          }else{
+            document.getElementById("nuoviephead").style = "position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: blur(0px);";
+          }
+
+          if (document.body.scrollTop > 760 && document.body.scrollTop < 2050 || document.documentElement.scrollTop > 760 && document.documentElement.scrollTop < 2050) {
+            document.getElementById("incorsohead").style = "z-index: 99999; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 15px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(50px);";
+          }else{
+            document.getElementById("incorsohead").style = "position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: blur(0px);";
+          }
+        }
+    }
+}, [])
 
 
   return (
