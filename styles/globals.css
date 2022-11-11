@@ -145,3 +145,8 @@ a {
     outline: none;
     border-color: transparent;
   }
+
+
+  #nuoviephead, #incorsohead, #nuoveaggiuntehead{
+    backdrop-filter: none;
+  }

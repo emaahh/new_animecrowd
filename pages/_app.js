@@ -41,16 +41,16 @@ function MyApp({ Component, pageProps }) {
             document.getElementById("navbar").style.backgroundColor = "transparent";
         }
         if(document.getElementById("nuoviephead") != null){
-          if (document.body.scrollTop > 450 && document.body.scrollTop < 740 || document.documentElement.scrollTop > 450 && document.documentElement.scrollTop < 740) {
-              document.getElementById("nuoviephead").style = "z-index: 99999; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 15px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(50px);";
+          if (document.body.scrollTop > 470 && document.body.scrollTop < 740 || document.documentElement.scrollTop > 470 && document.documentElement.scrollTop < 780) {
+              document.getElementById("nuoviephead").style = "transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 99999; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
           }else{
-            document.getElementById("nuoviephead").style = "position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: blur(0px);";
+            document.getElementById("nuoviephead").style = "transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
           }
 
-          if (document.body.scrollTop > 760 && document.body.scrollTop < 2050 || document.documentElement.scrollTop > 760 && document.documentElement.scrollTop < 2050) {
-            document.getElementById("incorsohead").style = "z-index: 99999; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 15px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(50px);";
+          if (document.body.scrollTop > 780 && document.body.scrollTop < 2050 || document.documentElement.scrollTop > 780 && document.documentElement.scrollTop < 2050) {
+            document.getElementById("incorsohead").style = "transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 99999; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
           }else{
-            document.getElementById("incorsohead").style = "position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: blur(0px);";
+            document.getElementById("incorsohead").style = "transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
           }
         }
     }

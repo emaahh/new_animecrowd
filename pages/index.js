@@ -15,11 +15,6 @@ import VideoHome from '../components/VideoHome';
 
 
 export default function Home() {
-
-  const nuoviephead = useRef(null);
-  const incorsohead = useRef(null);
-  const nuoveaggiuntehead = useRef(null);
-
   
   const [animationParent] = useAutoAnimate()
 
@@ -61,7 +56,7 @@ export default function Home() {
           : null}
 
         <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
-          <Paper>
+          <Paper style={{backgroundColor: 'black', backgroundImage: 'none',}}>
             <VideoHome Titolo="Chainsaw Man" OP="/CHAINSAWMAN.mp4"/>
           </Paper>
         </Carousel>
@@ -69,7 +64,7 @@ export default function Home() {
 
       <div style={{marginTop: '-90px'}} ref={animationParent}>
 
-        <strong><h1 ref={nuoviephead} id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
+        <strong><h1 id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
         <br></br>
 
         <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
@@ -86,7 +81,7 @@ export default function Home() {
 
 
         
-          <strong><h1 ref={incorsohead} id="incorsohead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
+          <strong><h1 id="incorsohead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
           <br></br>
 
           <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
@@ -103,7 +98,7 @@ export default function Home() {
 
           <br></br>
           
-          <strong><h1 ref={nuoveaggiuntehead} id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+          <strong><h1 id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
           <br></br>
 
           <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>

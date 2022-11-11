@@ -6,7 +6,6 @@ import InfoIcon from '@mui/icons-material/Info';
 
 export default function VideoHome(props) {
 
-
     return (
         <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative'}}>
 
@@ -14,17 +13,21 @@ export default function VideoHome(props) {
                 <h1 style={{textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}>{props.Titolo}</h1>
                 <br></br>
             </div>
-            <div style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'block', zIndex: '300', bottom: '3vh', width: '25%',}}>
-                <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '100%', borderRadius: '15px', }}>
-                    <InfoIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong>ALTRO</strong>
+            <div style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'block', zIndex: '300', bottom: '3vh', width: '25%', minWidth: '120px'}}>
+                <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
+                    <InfoIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>ALTRO</strong>
                 </Button>
             </div>
             
 
-            <video autoPlay loop muted playsInline style={{opacity: .5, objectFit: 'cover', width: '100%', height: '70vh', position: 'relative', zIndex: '100'}} src={props.OP}/>
+            <video className="videobann" autoPlay loop muted playsInline style={{opacity: .5, objectFit: 'cover', width: '100%', height: '70vh', position: 'relative', zIndex: '100'}} src={props.OP}/>
             <div variant="contained" className="videoHome"></div>
             <style jsx global>
                 {`
+                    .videobann{
+                        -webkit-mask-image: linear-gradient(transparent, black 20%, transparent);
+                        mask-image: linear-gradient (transparent, black 20%, transparent);
+                    }
                     .videoHome {
                         left: -1px;
                         width: -webkit-fill-available;
@@ -32,7 +35,7 @@ export default function VideoHome(props) {
                         top: 0;
                         height: 100%;
 
-                        background: linear-gradient(0deg, rgba(0,0,0,1) 20vh, rgba(255,255,255,0) 100%);
+                        
                         z-index: 200;
                     }
                     .btnPlayCopertina:hover {

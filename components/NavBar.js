@@ -12,6 +12,7 @@ import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import EditIcon from '@mui/icons-material/Edit';
 
 import Avatar from '@mui/material/Avatar';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -398,21 +399,116 @@ export default function NavBar() {
                     <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'absolute', transform: 'translate(-50%, 0%)', bottom: '20px' }}>
                         <CloseRoundedIcon sx={{fontSize: '30px'}}/>
                     </Fab>
-                    <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
-                        <br></br>
-                        <br></br>
+                    
                         <center  ref={animationParent}>
-                            
-                            <h1>Benvenuto! {accountData[0].NomeUtente}</h1>
 
-                            <Fab variant="extended" color={'warning'} onClick={() => logOut()}>
-                                <LogoutIcon/>
-                                <strong>LOGOUT</strong>
-                            </Fab>
+
+                            <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
+                            <img className="imagebann" alt={'Banner di '+ accountData[0].NomeUtente} src={accountData[0].Sfondo == '' || accountData[0].Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+accountData[0].Sfondo+'.jpg'} style={{opacity: .8, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                            <div variant="contained" className="videoHome"></div>
+                            <style>
+                                {`
+                                    input[type="text"]
+                                    {
+                                        font-family: Work Sans, sans-serif;
+                                        font-size:30px;
+                                        font-weight: 900!important;
+                                    }
+                                    .MuiInputLabel-animated
+                                    {
+                                        font-family: Work Sans, sans-serif;
+                                        font-size:30px;
+                                        font-weight: 900!important;
+                                    }
+                                    .imagebann{
+                                        -webkit-mask-image: linear-gradient(transparent, black 50%, transparent);
+                                        mask-image: linear-gradient (transparent, black 50%, transparent);
+                                    }
+                                    .videoHome {
+                                        left: -1px;
+                                        width: -webkit-fill-available;
+                                        position: absolute;
+                                        top: 0;
+                                        height: 100%;
+
+                                        -webkit-mask-image: linear-gradient(black, transparent);
+                                        mask-image: linear-gradient (black, transparent);
+                                        z-index: 200;
+                                    }
+                                    .btnPlayCopertina:hover {
+                                            -webkit-text-decoration: none;
+                                            text-decoration: none;
+                                            background-color: rgb(220 135 255);
+                                            box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+                                        }
+                                    }
+                                `}
+                            </style>
+                            </div>
+
+                            <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">
+
+                                <center>
+
+                                    <CardMedia
+                                        component="img"
+                                        sx={{ width: 200, borderRadius: '500px', }}
+                                        style={{objectFit: 'cover', height: '200px'}}
+                                        image={accountData[0].Avatar!=undefined ?'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'.jpg':null}
+                                        alt={'Foto profilo di '+ accountData[0].NomeUtente}
+                                    />
+                                                                        
+                                    <Box sx={{maxWidth: '350px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                                        <EditIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                                        <TextField style={{textTransform: 'uppercase'}} id="input-with-sx" onChange={handleChangeUserName}  label={accountData[0].NomeUtente} variant="standard" inputProps={{ maxLength: 11 }} type={'text'}/>
+
+                                        <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={userName!='' ? "success" : "error"} onClick={()=> userName!='' ? alert('Nuovo nick'+ userName) : null}>
+                                            <strong>SALVA</strong>
+                                        </Fab>
+                                    </Box>
+                    
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+
+                                        <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
+                                            <tbody>
+                                                <tr>
+                                                    <th>FOLLOWING</th>
+                                                    <th>FOLLOWER</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{accountData[0].Amici!=undefined ? JSON.stringify(accountData[0].Amici.length-1):null}</td>
+                                                    <td>{accountData[0].MiSeguono.length-1}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <br></br>
+                                        <br></br>
+
+
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+
+                                    <Fab variant="extended" color={'warning'} onClick={() => logOut()}>
+                                        <LogoutIcon/>
+                                        <strong>LOGOUT</strong>
+                                    </Fab>
+
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+
+
+                                </center>
+
+
+                            </Container>
                             
                             
                         </center>
-                    </Container>
+                    
                 </SwipeableDrawer>
             
             }

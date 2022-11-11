@@ -153,30 +153,47 @@ function UtentePage() {
                 
                 
             <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
-                <img alt={'Banner di '+ currentProfile.NomeUtente} src={currentProfile.Sfondo == '' || currentProfile.Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+currentProfile.Sfondo+'.jpg'} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                <img className="imagebann" alt={'Banner di '+ currentProfile.NomeUtente} src={currentProfile.Sfondo == '' || currentProfile.Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+currentProfile.Sfondo+'.jpg'} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
                 <div variant="contained" className="videoHome"></div>
-                <style jsx global>
-                    {`
-                        .videoHome {
-                            left: -1px;
-                            width: -webkit-fill-available;
-                            position: absolute;
-                            top: 0;
-                            height: 100%;
+                            <style>
+                                {`
+                                    input[type="text"]
+                                    {
+                                        font-family: Work Sans, sans-serif;
+                                        font-size:30px;
+                                        font-weight: 900!important;
+                                    }
+                                    .MuiInputLabel-animated
+                                    {
+                                        font-family: Work Sans, sans-serif;
+                                        font-size:30px;
+                                        font-weight: 900!important;
+                                    }
+                                    .imagebann{
+                                        -webkit-mask-image: linear-gradient(black 50%, transparent);
+                                        mask-image: linear-gradient (black 50%, transparent);
+                                    }
+                                    .videoHome {
+                                        left: -1px;
+                                        width: -webkit-fill-available;
+                                        position: absolute;
+                                        top: 0;
+                                        height: 100%;
 
-                            background: linear-gradient(0deg, rgba(0,0,0,1) 33%, rgba(255,255,255,0) 100%);
-                            z-index: 200;
-                        }
-                        .btnPlayCopertina:hover {
-                                -webkit-text-decoration: none;
-                                text-decoration: none;
-                                background-color: rgb(220 135 255);
-                                box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
-                            }
-                        }
-                    `}
-                </style>
-            </div>
+                                        -webkit-mask-image: linear-gradient(black, transparent);
+                                        mask-image: linear-gradient (black, transparent);
+                                        z-index: 200;
+                                    }
+                                    .btnPlayCopertina:hover {
+                                            -webkit-text-decoration: none;
+                                            text-decoration: none;
+                                            background-color: rgb(220 135 255);
+                                            box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+                                        }
+                                    }
+                                `}
+                            </style>
+                </div>
             <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">
 
                 <center>
