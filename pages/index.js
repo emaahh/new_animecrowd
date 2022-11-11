@@ -52,68 +52,73 @@ export default function Home() {
       </Head>
 
       {isLoading == true ?
-            <Loading/>
-          : null}
-
-        <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
-          <Paper style={{backgroundColor: 'black', backgroundImage: 'none',}}>
-            <VideoHome Titolo="Chainsaw Man" OP="/CHAINSAWMAN.mp4"/>
-          </Paper>
-        </Carousel>
-      
-
-      <div style={{marginTop: '-90px'}} ref={animationParent}>
-
-        <strong><h1 id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
-        <br></br>
-
-        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
-
-          {newEpisode.map((_, index) => (
-            <Grid item key={index} style={{maxWidth: '400px'}}>
-              <CardComponent EPISODE={true} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-            </Grid>
-          ))}
-            
-        </Grid> 
-
-        <br></br>
-
-
+        <Loading/>
+      : 
+  
+        <>
+          <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
+            <Paper style={{backgroundColor: 'black', backgroundImage: 'none',}}>
+              <VideoHome Titolo="Chainsaw Man" OP="/CHAINSAWMAN.mp4"/>
+            </Paper>
+          </Carousel>
         
-          <strong><h1 id="incorsohead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
-          <br></br>
 
-          <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+          <div style={{marginTop: '-90px'}} ref={animationParent}>
 
-            {allAnime.reverse().map((_, index) => (
-              _.Stato == 'In corso'?
+            <strong><h1 id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
+            <br></br>
+
+            <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+
+              {newEpisode.map((_, index) => (
                 <Grid item key={index} style={{maxWidth: '400px'}}>
-                  <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                  <CardComponent EPISODE={true} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
                 </Grid>
-              : null
-            ))}
+              ))}
+                
+            </Grid> 
+
+            <br></br>
+
+
             
-          </Grid> 
+              <strong><h1 id="incorsohead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
+              <br></br>
 
-          <br></br>
-          
-          <strong><h1 id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
-          <br></br>
+              <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
-          <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                {allAnime.reverse().map((_, index) => (
+                  _.Stato == 'In corso'?
+                    <Grid item key={index} style={{maxWidth: '400px'}}>
+                      <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                    </Grid>
+                  : null
+                ))}
+                
+              </Grid> 
 
-            {allAnime.slice(-4).reverse().map((_, index) => (
-              <Grid item key={index} style={{maxWidth: '400px'}}>
-                <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-              </Grid>
-            ))}
-            
-          </Grid> 
+              <br></br>
+              
+              <strong><h1 id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+              <br></br>
 
-          <br></br>
+              <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
-      </div>
+                {allAnime.slice(-4).reverse().map((_, index) => (
+                  <Grid item key={index} style={{maxWidth: '400px'}}>
+                    <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                  </Grid>
+                ))}
+                
+              </Grid> 
+
+              <br></br>
+
+          </div>
+
+        </>
+
+      }
 
     </div>
   )

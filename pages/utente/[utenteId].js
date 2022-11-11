@@ -58,25 +58,26 @@ function UtentePage() {
     }, [])
 */
     useEffect(() => {
-        if(accountData[0]!= undefined){
-            console.log(accountData[0].Amici)
-            accountData[0].Amici.forEach(item => {
-                if(item._id == currentProfile.Tag){
-                    setUtenteSeguito(true)
-                }else{
-                    setUtenteSeguito(false)
-                }
-            })
-            currentProfile.Amici.forEach(item => {
-                if(item._id!=undefined){
-                    if(item._id == accountData[0]._id){
-                        setTiSegue(true)
+        setTimeout(()=>{
+            if(accountData[0]!= undefined){
+                console.log(accountData[0].Amici)
+                accountData[0].Amici.forEach(item => {
+                    if(item._id == currentProfile.Tag){
+                        setUtenteSeguito(true)
+                    }else{
+                        setUtenteSeguito(false)
                     }
-                }
-            })
-            setIsLog(true)
-        }
-        
+                })
+                currentProfile.Amici.forEach(item => {
+                    if(item._id!=undefined){
+                        if(item._id == accountData[0]._id){
+                            setTiSegue(true)
+                        }
+                    }
+                })
+                setIsLog(true)
+            }
+        }, 1000)
     })
 
     
@@ -147,129 +148,134 @@ function UtentePage() {
 
             {isLoading == true ?
                 <Loading/>
-            : null}
+            : 
+                <>
+            
+                    {currentProfile == "nessun risultato" ? <h1>Utente non trovato</h1> : null}
+                        
+                        
+                    <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
+                        <img className="imagebann" alt={'Banner di '+ currentProfile.NomeUtente} src={currentProfile.Sfondo == '' || currentProfile.Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+currentProfile.Sfondo+'.jpg'} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                        <div variant="contained" className="videoHome"></div>
+                                    <style>
+                                        {`
+                                            input[type="text"]
+                                            {
+                                                font-family: Work Sans, sans-serif;
+                                                font-size:30px;
+                                                font-weight: 900!important;
+                                            }
+                                            .MuiInputLabel-animated
+                                            {
+                                                font-family: Work Sans, sans-serif;
+                                                font-size:30px;
+                                                font-weight: 900!important;
+                                            }
+                                            .imagebann{
+                                                -webkit-mask-image: linear-gradient(black 50%, transparent);
+                                                mask-image: linear-gradient (black 50%, transparent);
+                                            }
+                                            .videoHome {
+                                                left: -1px;
+                                                width: -webkit-fill-available;
+                                                position: absolute;
+                                                top: 0;
+                                                height: 100%;
 
-            {currentProfile == "nessun risultato" ? <h1>Utente non trovato</h1> : null}
-                
-                
-            <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
-                <img className="imagebann" alt={'Banner di '+ currentProfile.NomeUtente} src={currentProfile.Sfondo == '' || currentProfile.Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+currentProfile.Sfondo+'.jpg'} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
-                <div variant="contained" className="videoHome"></div>
-                            <style>
-                                {`
-                                    input[type="text"]
-                                    {
-                                        font-family: Work Sans, sans-serif;
-                                        font-size:30px;
-                                        font-weight: 900!important;
-                                    }
-                                    .MuiInputLabel-animated
-                                    {
-                                        font-family: Work Sans, sans-serif;
-                                        font-size:30px;
-                                        font-weight: 900!important;
-                                    }
-                                    .imagebann{
-                                        -webkit-mask-image: linear-gradient(black 50%, transparent);
-                                        mask-image: linear-gradient (black 50%, transparent);
-                                    }
-                                    .videoHome {
-                                        left: -1px;
-                                        width: -webkit-fill-available;
-                                        position: absolute;
-                                        top: 0;
-                                        height: 100%;
+                                                -webkit-mask-image: linear-gradient(black, transparent);
+                                                mask-image: linear-gradient (black, transparent);
+                                                z-index: 200;
+                                            }
+                                            .btnPlayCopertina:hover {
+                                                    -webkit-text-decoration: none;
+                                                    text-decoration: none;
+                                                    background-color: rgb(220 135 255);
+                                                    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+                                                }
+                                            }
+                                        `}
+                                    </style>
+                    </div>
+                    <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">
 
-                                        -webkit-mask-image: linear-gradient(black, transparent);
-                                        mask-image: linear-gradient (black, transparent);
-                                        z-index: 200;
-                                    }
-                                    .btnPlayCopertina:hover {
-                                            -webkit-text-decoration: none;
-                                            text-decoration: none;
-                                            background-color: rgb(220 135 255);
-                                            box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
-                                        }
-                                    }
-                                `}
-                            </style>
-                </div>
-            <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">
+                        <center>
 
-                <center>
+                            <CardMedia
+                                component="img"
+                                sx={{ width: 200, borderRadius: '500px', }}
+                                style={{objectFit: 'cover', height: '200px'}}
+                                image={currentProfile.Avatar!=undefined ?'https://i.imgur.com/'+currentProfile.Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'.jpg':null}
+                                alt={'Foto profilo di '+ currentProfile.NomeUtente}
+                            />
+                            
+                            
+                            <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{currentProfile.NomeUtente}</strong></h1>
 
-                    <CardMedia
-                        component="img"
-                        sx={{ width: 200, borderRadius: '500px', }}
-                        style={{objectFit: 'cover', height: '200px'}}
-                        image={currentProfile.Avatar!=undefined ?'https://i.imgur.com/'+currentProfile.Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'.jpg':null}
-                        alt={'Foto profilo di '+ currentProfile.NomeUtente}
-                    />
-                    
-                    
-                    <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{currentProfile.NomeUtente}</strong></h1>
+            
+                            <br></br>
 
-    
-                    <br></br>
+                                <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
+                                    <tbody>
+                                        <tr>
+                                            <th>FOLLOWING</th>
+                                            <th>FOLLOWER</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{currentProfile.Amici!=undefined ? JSON.stringify(currentProfile.Amici.length-1):null}</td>
+                                            <td>{currFollowerCount}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br></br>
+                                <br></br>
 
-                        <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
-                            <tbody>
-                                <tr>
-                                    <th>FOLLOWING</th>
-                                    <th>FOLLOWER</th>
-                                </tr>
-                                <tr>
-                                    <td>{currentProfile.Amici!=undefined ? JSON.stringify(currentProfile.Amici.length-1):null}</td>
-                                    <td>{currFollowerCount}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                
+                                {isLog?
+                                    accountData[0]._id != currentProfile.Tag? 
+                                        override=='0' ? 
+                                            !utenteSeguito?
+                                                <Button onClick={follow} color={'success'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
+                                                    <PersonAddIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;FOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
+                                                </Button>
+                                            :
+                                                <Button onClick={unfollow} color={'error'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
+                                                    <PersonAddDisabledIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;UNFOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
+                                                </Button>
+                                        :
+                                            override=='2'?
+                                                <Button onClick={follow} color={'success'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
+                                                    <PersonAddIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;FOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
+                                                </Button>
+                                            :
+                                                <Button onClick={unfollow} color={'error'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
+                                                    <PersonAddDisabledIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;UNFOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
+                                                </Button>
+
+                                    
+                                    : null
+                                    
+
+                                : 
+
+                                    <Button onClick={() => document.getElementById("buttAccountNav").click()} sx={{backgroundColor: 'white'}} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
+                                        <LoginIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;ACCEDI PER SEGUIRE</strong>
+                                    </Button>
+                                }
+                                
+                                
+                                
+
+                        </center>
+
                         <br></br>
                         <br></br>
 
-                        
-                        {isLog?
-                            accountData[0]._id != currentProfile.Tag? 
-                                override=='0' ? 
-                                    !utenteSeguito?
-                                        <Button onClick={follow} color={'success'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
-                                            <PersonAddIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;FOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
-                                        </Button>
-                                    :
-                                        <Button onClick={unfollow} color={'error'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
-                                            <PersonAddDisabledIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;UNFOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
-                                        </Button>
-                                :
-                                    override=='2'?
-                                        <Button onClick={follow} color={'success'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
-                                            <PersonAddIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;FOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
-                                        </Button>
-                                    :
-                                        <Button onClick={unfollow} color={'error'} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
-                                            <PersonAddDisabledIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;UNFOLLOW {tiSegue? '- TI SEGUE' : '- NON TI SEGUE'}</strong>
-                                        </Button>
+                    </Container>
 
-                            
-                            : null
-                            
+                </>
+            }
 
-                            : 
-
-                            <Button onClick={() => document.getElementById("buttAccountNav").click()} sx={{backgroundColor: 'white'}} className="btnPlayCopertina" variant="contained" style={{width: '100%', borderRadius: '15px', }}>
-                                <LoginIcon sx={{ color: 'black', fontSize: 27 }}/><strong>&nbsp;ACCEDI PER SEGUIRE</strong>
-                            </Button>
-                        }
-                        
-                        
-                        
-
-                </center>
-
-                <br></br>
-                <br></br>
-
-            </Container>
-
+            
         </div>
     )
 }
