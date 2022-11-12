@@ -31,11 +31,14 @@ function UtentePage() {
     const [isLoading, setLoading] = useState(true)
 
     const [isLog, setIsLog] = useState(false);
-    const [accountData, setAccountData] = useState('');
+    const [accountData, setAccountData] = useState(undefined);
 
     const [utenteSeguito, setUtenteSeguito] = useState(false);
     const [override, setOverride] = useState('0');
     const [tiSegue, setTiSegue] = useState(false);
+
+
+
     async function LogIn(emailPROPS, passwordPROPS) {
         const res = await fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS);
         return (
@@ -59,38 +62,52 @@ function UtentePage() {
 */
     useEffect(() => {
         setTimeout(()=>{
-            if(accountData[0]!= undefined){
-                console.log(accountData[0].Amici)
-                accountData[0].Amici.forEach(item => {
+            if(accountData === undefined){
+
+                console.log( 's>>>>>' + JSON.stringify(accountData[0]))
+
+            }else if(accountData){
+
+                accountData[0].Amici.map(item => {
                     if(item._id == currentProfile.Tag){
                         setUtenteSeguito(true)
                     }else{
                         setUtenteSeguito(false)
                     }
                 })
-                currentProfile.Amici.forEach(item => {
+                currentProfile.Amici.map(item => {
                     if(item._id!=undefined){
                         if(item._id == accountData[0]._id){
                             setTiSegue(true)
                         }
                     }
                 })
-                setIsLog(true)
+
+                setTimeout(() => {
+                    setIsLog(true)
+                },500)
+
             }
         }, 1000)
     })
 
     
     useEffect(() => {
-        console.log('eseguito'+ value.isLogStored)
-       
-            if(value.isLogStored == 1 && accountData==''){
+            console.log('<<<<' + value.isLogStored)
+            if(value.isLogStored == 1 && accountData==undefined){
 
                 LogIn(getCookie('email'),getCookie('password'))
 
             }else if(value.isLogStored == 0){
-                setAccountData('')
-                setIsLog(false)
+                if(accountData===undefined){
+                    setIsLog(false)
+                    console.log('tt')
+                }else{
+                    setAccountData(undefined)
+                    console.log('ss')
+                    setIsLog(false)
+                }
+                
             }
 
     })
