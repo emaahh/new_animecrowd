@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         .then((response) => response.json())
         .then((data) => {
             data.forEach(element => {
-                result += '<h1>'+element.Nome+'</h1><img src="'+element.Copertina+'"/><a href="https://www.animecrowd.it/anime/'+ element._id +'">Guarda</a>'
+                result += '<h1>'+element.Nome+'</h1><img src="'+element.Copertina+'"/><p>https://www.animecrowd.it/anime/'+ element._id +'</p>'
             });
             res.send(result);
         });
