@@ -13,7 +13,6 @@ import Loading from '/components/Loading'
 import CardComponent from '../components/CardComponent';
 import VideoHome from '../components/VideoHome';
 
-
 export default function Home() {
   
   const [animationParent] = useAutoAnimate()
@@ -41,6 +40,7 @@ export default function Home() {
       })
   }, [])
 
+  
   
   return (
     <div ref={animationParent} style={{height: '1px'}}>
