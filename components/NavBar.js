@@ -314,9 +314,6 @@ export default function NavBar() {
             {!isLog ?
                 //non è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
-                    <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'absolute', transform: 'translate(-50%, 0%)', bottom: '20px' }}>
-                        <CloseRoundedIcon sx={{fontSize: '30px'}}/>
-                    </Fab>
                     <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
                         <br></br>
                         <br></br>
@@ -390,16 +387,17 @@ export default function NavBar() {
                             </div>
                             
                         </center>
+                        <br></br>
+                        <br></br>
+                        <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+                            <CloseRoundedIcon sx={{fontSize: '30px'}}/>
+                        </Fab>
                     </Container>
                 </SwipeableDrawer>
 
                 : 
                 //è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
-                    <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'absolute', transform: 'translate(-50%, 0%)', bottom: '20px' }}>
-                        <CloseRoundedIcon sx={{fontSize: '30px'}}/>
-                    </Fab>
-                    
                         <center  ref={animationParent}>
 
 
@@ -505,8 +503,11 @@ export default function NavBar() {
 
 
                             </Container>
-                            
-                            
+                            <br></br>
+                            <br></br>
+                            <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+                                <CloseRoundedIcon sx={{fontSize: '30px'}}/>
+                            </Fab>
                         </center>
                     
                 </SwipeableDrawer>

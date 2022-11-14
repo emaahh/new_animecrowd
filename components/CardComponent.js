@@ -106,9 +106,6 @@ function CardComponent(props) {
 
 
             <SwipeableDrawer anchor={'bottom'} open={state['bottom']} onClose={toggleDrawer('bottom', false)} onOpen={toggleDrawer('bottom', true)}>
-                <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'fixed', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
-                    <CloseRoundedIcon sx={{fontSize: '30px'}}/>
-                </Fab>
                 <Container style={{padding: '50px'}} maxWidth="lg">
                     <center>
 
@@ -130,6 +127,9 @@ function CardComponent(props) {
                                 <PlayArrowRoundedIcon sx={{ color: 'black', fontSize: 30 }}/><strong>Guarda</strong>
                             </Button>
                         </Link>
+                        <br></br>
+                        <br></br>
+                        <br></br>
 
                     </center>
                     <br></br>
@@ -145,6 +145,8 @@ function CardComponent(props) {
                             </tr>
                         </table>
                     </center>
+                    <br></br>
+                    <br></br>
                     <center>
                         <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
                             <tr>
@@ -155,7 +157,11 @@ function CardComponent(props) {
                             </tr>
                         </table>
                     </center>
-                    
+                    <br></br>
+                    <br></br>
+                    <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+                        <CloseRoundedIcon sx={{fontSize: '30px'}}/>
+                    </Fab>
                 </Container>
             </SwipeableDrawer>
             

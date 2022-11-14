@@ -58,7 +58,7 @@ export default function Home() {
         <>
           <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
             <Paper style={{backgroundColor: 'black', backgroundImage: 'none',}}>
-              <VideoHome Titolo="Chainsaw Man" OP="/CHAINSAWMAN.mp4"/>
+              <VideoHome Titolo="Chainsaw Man" OP="/openingCSM.mp4"/>
             </Paper>
           </Carousel>
         

@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+
 import InfoIcon from '@mui/icons-material/Info';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
@@ -26,7 +28,7 @@ export default function VideoHome(props) {
                 <h1 style={{textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}>{props.Titolo}</h1>
                 <br></br>
             </div>
-            <div style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'flex', zIndex: '300', bottom: '3vh', width: '25%', minWidth: '120px'}}>
+            <Container maxWidth="sm" style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'flex', zIndex: '300', bottom: '3vh'}}>
                 <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
                     <InfoIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>ALTRO</strong>
                 </Button>
@@ -44,7 +46,7 @@ export default function VideoHome(props) {
                     </Button>
 
                 }
-            </div>
+            </Container>
             
 
             <video className="videobann" id="videobann" autoPlay loop playsInline style={{opacity: .5, objectFit: 'cover', width: '100%', height: '70vh', position: 'relative', zIndex: '100'}} src={props.OP}/>
