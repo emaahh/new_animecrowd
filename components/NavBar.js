@@ -42,6 +42,7 @@ export default function NavBar() {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [currentName, setCurrentName] = useState(false);
     const [responceRegister, setResponceRegister] = useState([]);
 
     function checkIfEmail(str) {
@@ -186,6 +187,11 @@ export default function NavBar() {
         setIsSearching(current => !current);
         setSearchResult([])
         
+    }
+
+    async function changeName(params) {
+        const res = await fetch('/api/editName/'+getCookie('email')+'/'+getCookie('password')+'/'+params);
+        return (setResponceRegister(await res.text()), setCurrentName(params), document.getElementById('input-with-sx').value = '')
     }
 
     return (
@@ -458,9 +464,9 @@ export default function NavBar() {
                                                                         
                                     <Box sx={{maxWidth: '350px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                         <EditIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                        <TextField style={{textTransform: 'uppercase'}} id="input-with-sx" onChange={handleChangeUserName}  label={accountData[0].NomeUtente} variant="standard" inputProps={{ maxLength: 11 }} type={'text'}/>
+                                        <TextField className="newusernametext" style={{textTransform: 'uppercase'}} id="input-with-sx" onChange={handleChangeUserName}  label={currentName ? currentName : accountData[0].NomeUtente} variant="standard" inputProps={{ maxLength: 11 }} type={'text'}/>
 
-                                        <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={userName!='' ? "success" : "error"} onClick={()=> userName!='' ? alert('Nuovo nick'+ userName) : null}>
+                                        <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={userName!='' ? "success" : "error"} onClick={()=> userName!='' ? changeName(userName) : null}>
                                             <strong>SALVA</strong>
                                         </Fab>
                                     </Box>

@@ -3,6 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Work Sans', sans-serif;
+  letter-spacing: 1px;
 }
 html {
   scroll-behavior: smooth;

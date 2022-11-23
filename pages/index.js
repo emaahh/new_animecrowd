@@ -120,6 +120,9 @@ export default function Home() {
 
       }
 
+    <script async="async" data-cfasync="false" src="//pl17984878.highperformancecpmgate.com/1b6373ad4b2983db25160080ceb42139/invoke.js"></script>
+    <div id="container-1b6373ad4b2983db25160080ceb42139"></div>
+
     </div>
   )
 };
