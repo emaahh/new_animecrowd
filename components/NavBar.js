@@ -483,7 +483,7 @@ export default function NavBar() {
                                                 </tr>
                                                 <tr>
                                                     <td>{accountData[0].Amici!=undefined ? JSON.stringify(accountData[0].Amici.length-1):null}</td>
-                                                    <td>{accountData[0].MiSeguono.length-1}</td>
+                                                    <td>{accountData[0].MiSeguono!=undefined ? JSON.stringify(accountData[0].MiSeguono.length-1):null}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
