@@ -155,6 +155,6 @@ a {
   .css-uwplx6.Mui-focusVisible{
     box-shadow: none!important;
   }
-  .css-uwplx6:hover{
-    background-color: transparent!important;
+  .css-uwplx6{
+    color: white!important;
   }
