@@ -10,15 +10,15 @@ export default async function handler(req, res) {
     let final_result = []
     let i = 0;
 
-    MongoClient.connect(uri, async function(err, db) {
-        var dbo = db.db("animeDB");
+    MongoClient.connect(uri, async function(err, dbo) {
+        
 
         feed.items.forEach((item, index) => {
             
             let link = item.link.replace('https://www.animeworld.tv/play/','').split("/")[0];
             let Nome = item.title
 
-                dbo.collection("Anime").find({"IdAW" : link}).toArray(function(err, result) {
+                dbo.db("animeDB").collection("Anime").find({"IdAW" : link}).toArray(async function(err, result) {
                     
                     if(result[0] != undefined) {
                         i++

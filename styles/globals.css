@@ -151,3 +151,7 @@ a {
   #nuoviephead, #incorsohead, #nuoveaggiuntehead{
     backdrop-filter: none;
   }
+
+  .css-uwplx6.Mui-focusVisible{
+    box-shadow: none!important;
+  }
