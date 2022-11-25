@@ -39,12 +39,11 @@ function UtentePage() {
 
 
 
-    async function LogIn(emailPROPS, passwordPROPS) {
-        const res = await fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS);
-        return (
-            setAccountData(await res.json())
-            
-        )
+    function LogIn(emailPROPS, passwordPROPS) {
+        fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS)
+        .then(data => data.json()).then(data => {
+            setAccountData(data)
+        })
     }
     /*
     
@@ -64,7 +63,7 @@ function UtentePage() {
         setTimeout(()=>{
             if(accountData === undefined){
 
-                console.log( 's>>>>>' + JSON.stringify(accountData[0]))
+                
 
             }else if(accountData){
 
@@ -73,13 +72,6 @@ function UtentePage() {
                         setUtenteSeguito(true)
                     }else{
                         setUtenteSeguito(false)
-                    }
-                })
-                currentProfile.Amici.map(item => {
-                    if(item._id!=undefined){
-                        if(item._id == accountData[0]._id){
-                            setTiSegue(true)
-                        }
                     }
                 })
 
@@ -91,9 +83,26 @@ function UtentePage() {
         }, 1000)
     })
 
+    useEffect(() => {
+        if(accountData === undefined){
+
+                
+
+        }else if(accountData){
+            setTiSegue(false)
+            currentProfile.Amici.map(item => {
+                if(item._id!=undefined){
+                    console.log(item._id + '///' + accountData[0]._id)
+                    if(item._id == accountData[0]._id){
+                        setTiSegue(true)
+                    }
+                }
+            })
+        }
+    }, [currentProfile])
+
     
     useEffect(() => {
-            console.log('<<<<' + value.isLogStored)
             if(value.isLogStored == 1 && accountData==undefined){
 
                 LogIn(getCookie('email'),getCookie('password'))

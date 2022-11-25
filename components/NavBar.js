@@ -45,6 +45,36 @@ export default function NavBar() {
     const [currentName, setCurrentName] = useState(false);
     const [responceRegister, setResponceRegister] = useState([]);
 
+
+    const [currentPic, setCurrentPic] = useState(false);
+    const [currentBanner, setCurrentBanner] = useState(false);
+
+    function changePic(e){
+        setCurrentPic(e.target.files[0])
+        fetch("https://api.imgur.com/3/image",{
+            method: "POST",
+            headers: {
+                Authorization: "Client-ID b48fc4b39f05b42"
+            },
+            body: e.target.files[0]
+        }).then(data => data.json()).then(data => {
+            fetch("/api/editProfilePic/"+ getCookie('email') + '/' + getCookie('password') + '/'+ data.data.link.replace('https://i.imgur.com/', '').replace('.jpg', '').replace('.png', ''))
+        })
+    }
+    function changeBanner(e){
+        setCurrentBanner(e.target.files[0])
+        fetch("https://api.imgur.com/3/image",{
+            method: "POST",
+            headers: {
+                Authorization: "Client-ID b48fc4b39f05b42"
+            },
+            body: e.target.files[0]
+        }).then(data => data.json()).then(data => {
+            fetch("/api/editBanner/"+ getCookie('email') + '/' + getCookie('password') + '/'+ data.data.link.replace('https://i.imgur.com/', '').replace('.jpg', '').replace('.png', ''))
+        })
+    }
+
+
     function checkIfEmail(str) {
         // Regular expression to check if string is email
         const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
@@ -207,7 +237,7 @@ export default function NavBar() {
                 
                 <div id="serchIco" style={{marginRight: '-5vw', paddingRight: '5vw', display: 'flex'}}>
                     <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isSearching ? <SearchIcon/> : null}</strong></button></h1>
-                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isLog ? <NoAccountsIcon/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
+                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isLog ? <NoAccountsIcon/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
                 </div>
             </nav>
 
@@ -408,7 +438,7 @@ export default function NavBar() {
 
 
                             <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
-                            <img className="imagebann" alt={'Banner di '+ accountData[0].NomeUtente} src={accountData[0].Sfondo == '' || accountData[0].Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+accountData[0].Sfondo+'.jpg'} style={{opacity: .8, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                            <img className="imagebann" alt={'Banner di '+ accountData[0].NomeUtente} src={currentBanner ? URL.createObjectURL(currentBanner) : accountData[0].Sfondo == '' || accountData[0].Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+accountData[0].Sfondo+'.jpg'} style={{opacity: .8, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
                             <div variant="contained" className="videoHome"></div>
                             <style>
                                 {`
@@ -458,17 +488,38 @@ export default function NavBar() {
                                         component="img"
                                         sx={{ width: 200, borderRadius: '500px', }}
                                         style={{objectFit: 'cover', height: '200px'}}
-                                        image={accountData[0].Avatar!=undefined ?'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'.jpg':null}
+                                        image={currentPic? URL.createObjectURL(currentPic) : accountData[0].Avatar!=undefined ?'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'.jpg':null}
                                         alt={'Foto profilo di '+ accountData[0].NomeUtente}
                                     />
-                                                                        
-                                    <Box sx={{maxWidth: '350px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                                        <EditIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                        <TextField className="newusernametext" style={{textTransform: 'uppercase'}} id="input-with-sx" onChange={handleChangeUserName}  label={currentName ? currentName : accountData[0].NomeUtente} variant="standard" inputProps={{ maxLength: 11 }} type={'text'}/>
 
-                                        <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={userName!='' ? "success" : "error"} onClick={()=> userName!='' ? changeName(userName) : null}>
-                                            <strong>SALVA</strong>
+                                    <br></br>                                    
+                                    
+                                    <Container maxWidth="sm" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap',}}> 
+                                        <Fab sx={{ml: 1, height: '40px', marginBottom: '10px'}} variant="extended">
+                                            <label for="imgprofiloinput"><strong>Modifica foto profilo</strong></label>
                                         </Fab>
+                                        
+                                        <Fab sx={{ml: 1, height: '40px'}} variant="extended">
+                                            <label for="imgbannerinput"><strong>Modifica banner</strong></label>
+                                        </Fab>
+
+                                        <input id="imgprofiloinput" type="file" accept="image/*" onChange={changePic} style={{visibility: 'hidden', display: 'none',}}/>
+                                        <input id="imgbannerinput" type="file" accept="image/*" onChange={changeBanner} style={{visibility: 'hidden', display: 'none',}}/>
+                                    </Container>
+
+                                    <Box sx={{maxWidth: '350px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} >
+                                        <EditIcon sx={{fontSize: '30px', marginBottom: '5px'}}/>&nbsp;&nbsp;
+                                        <TextField className="newusernametext" style={{textTransform: 'uppercase'}} id="input-with-sx" onChange={handleChangeUserName}  label={currentName ? currentName : accountData[0].NomeUtente} variant="standard" inputProps={{ maxLength: 11 }} type={'text'}/>
+                                        <div>
+                                        {userName!='' ?
+
+                                            <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={userName!='' ? "success" : "error"} onClick={()=> userName!='' ? changeName(userName) : null}>
+                                                <strong>SALVA</strong>
+                                            </Fab>
+
+                                            :null
+                                        } 
+                                        </div> 
                                     </Box>
                     
                                     <br></br>
@@ -497,6 +548,7 @@ export default function NavBar() {
 
                                     <Fab variant="extended" color={'warning'} onClick={() => logOut()}>
                                         <LogoutIcon/>
+                                        &nbsp;
                                         <strong>LOGOUT</strong>
                                     </Fab>
 
