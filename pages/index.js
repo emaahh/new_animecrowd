@@ -57,7 +57,6 @@ export default function Home() {
             }
             
         }
-
   })
 
   useEffect(() => {
@@ -79,7 +78,7 @@ export default function Home() {
       })
 
       let rr = [];
-      if(accountData!=undefined && accountData[0].Lista){
+      if(isLog == true && accountData!=undefined && accountData[0].Lista){
         accountData[0].Lista.map((_, index) => {
 
           if(_.state == 1){
@@ -93,7 +92,6 @@ export default function Home() {
           if(index+1 == accountData[0].Lista.length){
             setAnimeDaContinuare([])
             setAnimeDaContinuare(rr)
-            console.log(animeDaContinuare)
           }
 
         });
