@@ -167,3 +167,9 @@ a {
     background: transparent!important;
     backdrop-filter: blur(50px)!important;
   }
+
+
+  .MuiSvgIcon-root .MuiSvgIcon-fontSizeMedium .css-phb9gr{
+    height: '25px';
+    fill: 'currentColor';
+  }
