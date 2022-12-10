@@ -40,13 +40,13 @@ export default function VideoHome(props) {
                 {volume? 
                 
                     <Button onClick={()=>setVolume(false)} className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '20%', borderRadius: '15px', }}>
-                        <VolumeUpRoundedIcon/>
+                        <VolumeUpRoundedIcon sx={{ color: 'black', fontSize: 24 }}/>
                     </Button>
 
                 : 
 
                     <Button onClick={()=>setVolume(true)} className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '20%', borderRadius: '15px', }}>
-                        <VolumeOffRoundedIcon/>
+                        <VolumeOffRoundedIcon sx={{ color: 'black', fontSize: 24 }}/>
                     </Button>
 
                 }

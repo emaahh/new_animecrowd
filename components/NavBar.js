@@ -130,7 +130,7 @@ export default function NavBar() {
             setIsLog(true)
         })
     }
-    
+
     //check credenziali
     useEffect(() => {
         if(accountData!=[]&&accountData!=''){
@@ -247,7 +247,7 @@ export default function NavBar() {
 
                     <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isSearching ? <SearchRoundedIcon sx={{color: 'white'}}/> : null}</button>
                     
-                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{state.right==true? null : !isLog ? <PersonOffRoundedIcon/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
+                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{state.right==true? null : !isLog ? <PersonOffRoundedIcon sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
                 
                 </div>
             </nav>
@@ -404,7 +404,7 @@ export default function NavBar() {
                                         <center>
                                             <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                                                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
-                                                <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
+                                                    <strong>PROBLEMI? SCRIVICI!</strong>
                                                 </Fab>
                                             </a>
                                         </center>
@@ -448,7 +448,7 @@ export default function NavBar() {
                                         <center>
                                             <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                                                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
-                                                <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
+                                                    <strong>PROBLEMI? SCRIVICI!</strong>
                                                 </Fab>
                                             </a>
                                         </center>
@@ -541,7 +541,7 @@ export default function NavBar() {
                                     <center>
                                             <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                                                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
-                                                <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
+                                                    <strong>PROBLEMI? SCRIVICI!</strong>
                                                 </Fab>
                                             </a>
                                     </center>
