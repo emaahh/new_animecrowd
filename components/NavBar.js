@@ -304,7 +304,7 @@ export default function NavBar() {
                                     <center>
                                         <p style={{fontSize: '10px', color: 'rgba(0,0,0,0.5)'}}>Digita almeno 3 caratteri o cambia parola chiave</p>
 
-                                        <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                        <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                                             <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)', fontSize: '10px'}} variant="extended">
                                                 <strong>NON TROVI QUELLO CHE CERCHI? SCRIVICI!</strong>
                                             </Fab>
@@ -398,7 +398,7 @@ export default function NavBar() {
                                         <br></br>
 
                                         <center>
-                                            <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                            <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                                                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
                                                 <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
                                                 </Fab>
@@ -442,7 +442,7 @@ export default function NavBar() {
                                         <br></br>
                                         
                                         <center>
-                                            <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                            <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                                                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
                                                 <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
                                                 </Fab>
@@ -535,7 +535,7 @@ export default function NavBar() {
                                     <br></br>
 
                                     <center>
-                                            <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                            <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                                                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
                                                 <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
                                                 </Fab>

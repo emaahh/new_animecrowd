@@ -138,13 +138,13 @@ export default function Home() {
             
 
             <center>
-              <a href={'https://t.me/AnimeCrowd'} target="_blank">
+              <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended" style={{margin: '5px'}}>
                   <strong>GRUPPO TELEGRAM</strong>
                 </Fab>
               </a>
               
-              <a href={'https://www.tiktok.com/@dumbotakudevvvv'} target="_blank">
+              <a href={'https://www.tiktok.com/@dumbotakudevvvv'} target="_blank" rel="noreferrer">
                 <Fab sx={{height: '30px', backgroundColor: 'rgb(238, 29, 82)'}} variant="extended" style={{margin: '5px'}}>
                   <strong>TikTok</strong>
                 </Fab>
