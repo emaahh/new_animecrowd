@@ -1,11 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
+import Link from 'next/link'
 
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 
 import InfoIcon from '@mui/icons-material/Info';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import VolumeOffIcon from '@mui/icons-material/VolumeOff';
+import VolumeUpRoundedIcon from '@mui/icons-material/VolumeUpRounded';
+import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 
 export default function VideoHome(props) {
 
@@ -25,24 +27,26 @@ export default function VideoHome(props) {
         <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative'}}>
 
             <div style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'block', zIndex: '300', bottom: '3vh', width: 'max-content',}}>
-                <h1 style={{textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}>{props.Titolo}</h1>
+                <h1 style={{textShadow: 'rgba(255, 255, 255, 0.6) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}><strong>{props.Titolo}</strong></h1>
                 <br></br>
             </div>
             <Container maxWidth="sm" style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'flex', zIndex: '300', bottom: '3vh'}}>
-                <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
-                    <InfoIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>ALTRO</strong>
-                </Button>
+                <Link href={'/anime/'+ props.id} passHref legacyBehavior>
+                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
+                        <PlayArrowRoundedIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>GUARDA</strong>
+                    </Button>
+                </Link>
                 &nbsp;
                 {volume? 
                 
                     <Button onClick={()=>setVolume(false)} className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '20%', borderRadius: '15px', }}>
-                        <strong style={{fontSize: 20}}>🔊</strong>
+                        <VolumeUpRoundedIcon/>
                     </Button>
 
                 : 
 
                     <Button onClick={()=>setVolume(true)} className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '20%', borderRadius: '15px', }}>
-                        <strong style={{fontSize: 20}}>🔈</strong>
+                        <VolumeOffRoundedIcon/>
                     </Button>
 
                 }

@@ -1,10 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Loading from '/components/Loading'
 
 import {useAutoAnimate} from '@formkit/auto-animate/react'
+
+import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
 
 import Container from '@mui/material/Container'
 import CardMedia from '@mui/material/CardMedia'
@@ -21,17 +24,35 @@ import Fab from '@mui/material/Fab';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Divider from '@mui/material/Divider';
+
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import CheckIcon from '@mui/icons-material/Check';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+
+import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import HeartBrokenRoundedIcon from '@mui/icons-material/HeartBrokenRounded';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import DeleteIcon from '@mui/icons-material/Delete';
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
+
+import {UserContext} from '../_app'
+
 
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 
-
-
-
 function AnimePage() {
-    
+    const valueee = React.useContext(UserContext);  
     const [animationParent] = useAutoAnimate()
     const router = useRouter()
     const { animeId } = router.query
@@ -42,6 +63,56 @@ function AnimePage() {
     const [currentEpisode, setCurrentEpisode] = useState(-1)
     const [autoPlay, setAutoPlay] = useState(false)
     const [currentVideo, setCurrentAnimeVideo] = useState('')
+
+    const [listState, setListState] = useState(null)
+    const [favorite, setFavorite] = useState(false)
+
+    const [isLog, setIsLog] = useState(false);
+    const [accountData, setAccountData] = useState(undefined);
+
+    function LogIn(emailPROPS, passwordPROPS) {
+        fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS)
+        .then(data => data.json()).then(data => {
+            setAccountData(data)
+            setIsLog(true)
+            setTimeout(() => {
+                console.log('ddddddddd')
+                    if(data[0].Lista){
+                        data[0].Lista.map((_, index) => {
+                            if(_._id == animeId){
+                                setListState(_.state)
+                            }
+                        })
+                    }
+                    if(data[0].Preferiti){
+                        data[0].Preferiti.map((_, index) => {
+                            if(_._id == animeId){
+                                setFavorite(true)
+                            }
+                        })
+                    }
+
+            }, 1000);
+        })
+    }
+    useEffect(() => {
+        if(valueee.isLogStored == 1 && accountData==undefined){
+            setTimeout(() => {
+                LogIn(getCookie('email'),getCookie('password'))
+            }, 500)
+            
+
+        }else if(valueee.isLogStored == 0){
+            if(accountData===undefined){
+                setIsLog(false)
+            }else{
+                setAccountData(undefined)
+                setIsLog(false)
+            }
+            
+        }
+
+    })
 
 
     //ragruppamento bottoni ep
@@ -71,6 +142,9 @@ function AnimePage() {
     }, [currentEpisode])
 
     useEffect(() => {
+        setListState(null)
+        setFavorite(false)
+        setAccountData(undefined)
         setLoading(true)
         fetch('/api/findAnime/' + animeId)
             .then((res) => res.json())
@@ -155,6 +229,54 @@ function AnimePage() {
         },
     }));
 
+    //menu lista
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = (param) => {
+        setAnchorEl(null);
+        switch (param) {
+            case 0:
+                // da guaardare
+                setListState(0)
+                fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+                break;
+            case 1:
+                // in corso
+                setListState(1)
+                fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+                break;
+            case 2:
+                // completato
+                setListState(2)
+                fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+                break;
+            case 3:
+                // droppato
+                setListState(3)
+                fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+                break;
+            case 4:
+                // preferito
+                setFavorite(true)
+                fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+                break;
+            case 5:
+                // rimuovi
+                setListState(null)
+                fetch("/api/removeToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+                break;
+            case 6:
+                // non preferito
+                setFavorite(false)
+                fetch("/api/removeToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+                break;
+            
+        }
+    };
+
     function autoPlayActiveDeactive(){
         var vid = document.getElementById("myVideo");
         if(autoPlay == false){
@@ -185,7 +307,17 @@ function AnimePage() {
         <div ref={animationParent}>
             <Head>
                 <title>AnimeCrowd</title>
-                <meta name="description" content="Anime in streaming e download SUB ITA e ITA" />
+                
+                
+                <meta name="description" content={currentAnime.Trama} />
+                <meta name="robots" content="index, follow" />
+                <meta name="keywords" content={"Anime, Naruto, Onepiece, Episodi, Puntate, Toriko, Kuroko, Inazuma, Oav, Film, Faunsub, Traduttori, Fairy, Tail, bleach, hunter, sword, art, online, pokémon, infinite, stratos, log, horizon, blazblue, tokyo, ravens, soul, eater, outbreak, company, ecchi, dragon, ball, super, fullmetal, quanzhi, fashi, anime streaming, anime sub ita, anime ita, AnimeUnity, Anime Streaming, Anime Streaming ITA, Streaming Anime SUB ITA, Streaming Anime ITA, Lista Anime ITA, Lista Anime SUB ITA, " + currentAnime.Nome + " SUB ITA, " + currentAnime.Nome + " ITA, " + currentAnime.Nome + " Episodi ITA Download e Streaming, " + currentAnime.Nome + " Episodi SUB ITA Download e Streaming, " + currentAnime.Nome + " Episodi ITA Streaming Online, " + currentAnime.Nome + " Episodi SUB ITA Streaming Online, " + currentAnime.Nome + " SUB ITA Lista episodi, " + currentAnime.Nome + " ITA Lista episodi, " + currentAnime.Nome + " Streaming Lista episodi, " + currentAnime.Nome + " Download Lista episodi, " + currentAnime.Nome + " Download SUB ITA, " + currentAnime.Nome + " Download ITA, " + currentAnime.Nome + " Streaming SUB ITA, " + currentAnime.Nome + " Streaming ITA, " + currentAnime.Nome + " Episodi ITA, " + currentAnime.Nome + " Episodi SUB ITA, " + currentAnime.Nome + " sub ita streaming, " + currentAnime.Nome + " ita streaming, " + currentAnime.Nome + " AnimeUnity, " + currentAnime.Nome + " AnimeUnity, " + currentAnime.Nome + " AnimeOra, " + currentAnime.Nome + " Fairytailitalia, " + currentAnime.Nome + " AnimeWorld, " + currentAnime.Nome + " DreamSub, " + currentAnime.Nome + " Animeleggendari, " + currentAnime.Nome + " AnimeLove, " + currentAnime.Nome + " AnimeSaturn"}/>
+                <meta property="og:image" content={currentAnime.Copertina}></meta>
+                <meta name="author" content="AnimeCrowd Staff"></meta>
+                <meta name="msapplication-TileColor" content="#000000"></meta>
+                <meta name="theme-color" content="#000000"></meta>
+
+
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200" />
             </Head>
@@ -244,9 +376,66 @@ function AnimePage() {
                             />
                             
                             
-                            <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{currentAnime.Nome}</strong></h1>
+                            <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{currentAnime.Nome}&nbsp;{favorite? <FavoriteRoundedIcon/> : null}</strong></h1>
+                            
+                            {isLog ?
+                                <> 
+                                    <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={"success"} ria-controls={open ? 'basic-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={handleClick}>
+                                        <strong>MODIFICA LA TUA CROWDLIST</strong> &nbsp; <ArrowDropDownRoundedIcon sx={{fontSize: '30px', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}/>
+                                    </Fab>
+                                    <Menu
+                                        id="basic-menu"
+                                        anchorEl={anchorEl}
+                                        open={open}
+                                        onClose={handleClose}
+                                        MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                        }}
+                                    >
+                                        {listState==null?
+                                            <>
+                                                <MenuItem onClick={()=>handleClose(0)}><BookmarkAddRoundedIcon/> &nbsp; Da guardare</MenuItem>
+                                                <MenuItem onClick={()=>handleClose(1)}><RemoveRedEyeIcon/> &nbsp; In corso</MenuItem>
+                                                <MenuItem onClick={()=>handleClose(2)}><CheckIcon/> &nbsp; Completato</MenuItem>
+                                                <MenuItem onClick={()=>handleClose(3)}><VisibilityOffIcon/> &nbsp; Droppato</MenuItem>
+                                            </>
+                                            : 
+                                            <MenuItem onClick={()=>handleClose(5)}><DeleteRoundedIcon/> &nbsp; Rimuovi dalla lista</MenuItem>
+                                        }
+                                        
 
+                                        <Divider />
 
+                                        {favorite?
+                                            <MenuItem onClick={()=>handleClose(6)}><HeartBrokenRoundedIcon/> &nbsp; Rimuovi dai preferiti</MenuItem>
+                                            : 
+                                            <MenuItem onClick={()=>handleClose(4)}><FavoriteRoundedIcon/> &nbsp; Aggiungi ai preferiti</MenuItem>
+                                        }
+                                        
+                                    </Menu>
+                                </>
+                                : 
+                                null
+
+                            }
+                            
+                            <h5>
+                                {
+                                    listState == 0 ? 
+                                        "Devi ancora guardare "+currentAnime.Nome : 
+                                    listState == 1 ? 
+                                        "Stai guardando "+currentAnime.Nome : 
+                                    listState == 2 ? 
+                                        "Complimenti! Hai finito "+currentAnime.Nome :
+                                    listState == 3 ? 
+                                        currentAnime.Nome + " è tra i tuoi droppati" :
+                                    listState == null ? 
+                                        currentAnime.Nome + " non si trova nella tua lista" : null
+                                }
+                            </h5>
+
+                            <br></br>
+                            <br></br>
                             <br></br>
 
                                 <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
@@ -290,10 +479,10 @@ function AnimePage() {
 
                         <center style={{zIndex: '1'}} >
                             <h3 style={{opacity: '.5'}}>EPISODI</h3>
-                            <br></br>
 
                             <Box sx={{ width: '100%', typography: 'body1' }} ref={animationParent}>
                                 <TabContext value={value} ref={animationParent}>
+                                    
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 
                                         <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -333,6 +522,9 @@ function AnimePage() {
                                                 }
                                                 else if(currentAnimeButton.length <= 1200){
                                                     return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label="1000 - 1100" value="11" onClick={()=> handleChange(1, '11')}/><Tab label={"1100 - "+ currentAnimeButton.length} value="12" onClick={()=> handleChange(1, '12')}/></>
+                                                }
+                                                else if(currentAnimeButton.length <= 1300){
+                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label="1000 - 1100" value="11" onClick={()=> handleChange(1, '11')}/><Tab label={"1100 - 1200"} value="12" onClick={()=> handleChange(1, '12')}/><Tab label={"1200 - "+ currentAnimeButton.length} value="13" onClick={()=> handleChange(1, '13')}/></>
                                                 }
                                             })()}
                                         </TabList>
@@ -486,6 +678,19 @@ function AnimePage() {
                                         <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
                                             {currentAnimeButton.map((_, index) => (
                                                 index>1099&&index<=1199 ? 
+                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
+                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
+                                                        <strong>EP {_._id+1}</strong>
+                                                    </Button>
+                                                </Grid>
+                                                : null
+                                            ))}
+                                        </Grid>
+                                    </TabPanel>
+                                    <TabPanel value="13" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
+                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                                            {currentAnimeButton.map((_, index) => (
+                                                index>1199&&index<=1299 ? 
                                                 <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
                                                     <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
                                                         <strong>EP {_._id+1}</strong>

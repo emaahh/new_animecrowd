@@ -1,10 +1,15 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 import React, { useEffect, useRef, useState, useMemo } from "react";
 
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@mui/material'
+import Fab from '@mui/material/Fab';
+
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 import Grid from '@mui/material/Grid';
 
@@ -13,13 +18,47 @@ import Loading from '/components/Loading'
 import CardComponent from '../components/CardComponent';
 import VideoHome from '../components/VideoHome';
 
+import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
+import {UserContext} from './_app'
+
 export default function Home() {
+  const valueee = React.useContext(UserContext);  
   
   const [animationParent] = useAutoAnimate()
 
   const [newEpisode, setNewEpisode] = useState([])
   const [allAnime, setAllAnime] = useState([])
   const [isLoading, setLoading] = useState(true)
+
+  const [isLog, setIsLog] = useState(false);
+  const [accountData, setAccountData] = useState(undefined);
+
+  const [animeDaContinuare, setAnimeDaContinuare] = useState([])
+
+  function LogIn(emailPROPS, passwordPROPS) {
+    
+        fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS)
+        .then(data => data.json()).then(data => {
+            setAccountData(data)
+            setIsLog(true)
+        })
+  }
+  useEffect(() => {
+        if(valueee.isLogStored == 1 && accountData==undefined){
+
+            LogIn(getCookie('email'),getCookie('password'))
+
+        }else if(valueee.isLogStored == 0){
+            if(accountData===undefined){
+                setIsLog(false)
+            }else{
+                setAccountData(undefined)
+                setIsLog(false)
+            }
+            
+        }
+
+  })
 
   useEffect(() => {
     setLoading(true)
@@ -38,15 +77,45 @@ export default function Home() {
           setLoading(false)
         }, 1000);
       })
-  }, [])
 
+      let rr = [];
+      if(accountData!=undefined && accountData[0].Lista){
+        accountData[0].Lista.map((_, index) => {
+
+          if(_.state == 1){
+            fetch('/api/findAnime/' + _._id)
+            .then((res) => res.json())
+            .then((data1) => {
+              let e = data1[0];
+              rr.push(e)
+            })
+          }
+          if(index+1 == accountData[0].Lista.length){
+            setAnimeDaContinuare([])
+            setAnimeDaContinuare(rr)
+            console.log(animeDaContinuare)
+          }
+
+        });
+      }
+
+  }, [isLog])
   
   
   return (
     <div ref={animationParent} style={{height: '1px'}}>
       <Head>
         <title>AnimeCrowd</title>
-        <meta name="description" content="Anime in streaming e download SUB ITA e ITA" />
+        
+        <meta name="description" content="Guarda anime in streaming e download SUB ITA e ITA completamente gratis e senza pop-up fastidiosi si AnimeCrowd" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://animecrowd.it/" />
+        <meta name="keywords" content="Anime, Naruto, Onepiece, Episodi, Puntate, Toriko, Kuroko, Inazuma, Oav, Film, Faunsub, Traduttori, Fairy, Tail, bleach, hunter, sword, art, online, pokémon, infinite, stratos, log, horizon, blazblue, tokyo, ravens, soul, eater, outbreak, company, ecchi, dragon, ball, super, fullmetal, quanzhi, fashi, anime streaming, anime sub ita, anime ita, AnimeCrowd, Anime Streaming, Anime Streaming ITA, Streaming Anime SUB ITA, Streaming Anime ITA, Lista Anime ITA, Lista Anime SUB ITA, "/>
+        <meta property="og:image" content="https://www.animecrowd.it/favicon.ico"></meta>
+        <meta name="author" content="AnimeCrowd Staff"></meta>
+        <meta name="msapplication-TileColor" content="#000000"></meta>
+        <meta name="theme-color" content="#000000"></meta>
+
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200" />
       </Head>
@@ -58,12 +127,56 @@ export default function Home() {
         <>
           <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
             <Paper style={{backgroundColor: 'black', backgroundImage: 'none',}}>
-              <VideoHome Titolo="CHAINSAW MAN" OP="/openingCSM.mp4"/>
+              <VideoHome Titolo="CHAINSAW MAN" OP="/openingCSM.mp4" id="6347ce0e6d12e43a9bd32a89"/>
             </Paper>
           </Carousel>
+          
         
 
           <div style={{marginTop: '-90px'}} ref={animationParent}>
+            
+            
+
+            <center>
+              <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended" style={{margin: '5px'}}>
+                  <strong>GRUPPO TELEGRAM</strong>
+                </Fab>
+              </a>
+              
+              <a href={'https://www.tiktok.com/@dumbotakudevvvv'} target="_blank">
+                <Fab sx={{height: '30px', backgroundColor: 'rgb(238, 29, 82)'}} variant="extended" style={{margin: '5px'}}>
+                  <strong>TikTok</strong>
+                </Fab>
+              </a>
+            </center>
+
+            
+
+            {
+              isLog?
+                animeDaContinuare.length!=0 ? 
+                  <>
+                    <strong><h1 id="dacontinuareephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>CONTINUA...</h1></strong>
+                    <br></br>
+
+                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+
+                      {animeDaContinuare.map((_, index) => (
+                        <Grid item key={index} style={{maxWidth: '400px'}}>
+                          <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                        </Grid>
+                      ))}
+                        
+                    </Grid> 
+
+                    <br></br>
+                  </>
+                : 
+                  null
+              : 
+                null
+            }
 
             <strong><h1 id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
             <br></br>
@@ -75,6 +188,10 @@ export default function Home() {
                   <CardComponent EPISODE={true} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
                 </Grid>
               ))}
+
+              {newEpisode.length==0?
+                <p>Nessun nuovo episodio trovato</p>
+              :null}
                 
             </Grid> 
 

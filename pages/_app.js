@@ -41,17 +41,21 @@ function MyApp({ Component, pageProps }) {
             document.getElementById("navbar").style.backgroundColor = "transparent";
         }
         if(document.getElementById("nuoviephead") != null){
-          if (document.body.scrollTop > 470 && document.body.scrollTop < 740 || document.documentElement.scrollTop > 470 && document.documentElement.scrollTop < 780) {
-              document.getElementById("nuoviephead").style = " transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 2; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
-          }else{
-            document.getElementById("nuoviephead").style = " transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
-          }
 
-          if (document.body.scrollTop > 780 && document.body.scrollTop < 2050 || document.documentElement.scrollTop > 780 && document.documentElement.scrollTop < 2050) {
-            document.getElementById("incorsohead").style = " transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 2; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
-          }else{
-            document.getElementById("incorsohead").style = " transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
-          }
+          
+            if (document.body.scrollTop > 500 && document.body.scrollTop < 1100 || document.documentElement.scrollTop > 500 && document.documentElement.scrollTop < 1100) {
+              document.getElementById("nuoviephead").style = " transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 2; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
+            }else{
+              document.getElementById("nuoviephead").style = " transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
+            }
+
+            if (document.body.scrollTop > 1100 && document.body.scrollTop < 5050 || document.documentElement.scrollTop > 1100 && document.documentElement.scrollTop < 5050) {
+              document.getElementById("incorsohead").style = " transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 2; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
+            }else{
+              document.getElementById("incorsohead").style = " transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
+            }
+          
+
         }
     }
 }, [])
@@ -66,6 +70,8 @@ function MyApp({ Component, pageProps }) {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
           <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap" rel="stylesheet"></link>
           <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
         </Head>
 
         <div ref={animationParent} >

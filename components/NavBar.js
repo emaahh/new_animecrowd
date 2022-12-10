@@ -4,15 +4,17 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
 
-import LogoutIcon from '@mui/icons-material/Logout';
-import SearchIcon from '@mui/icons-material/Search';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import NoAccountsIcon from '@mui/icons-material/NoAccounts';
+import PersonOffRoundedIcon from '@mui/icons-material/PersonOffRounded';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import EditIcon from '@mui/icons-material/Edit';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 
 import Avatar from '@mui/material/Avatar';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -23,6 +25,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 
 import {UserContext} from '/pages/_app'
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+
 
 
 export default function NavBar() {
@@ -91,7 +95,7 @@ export default function NavBar() {
             return;
         }
     
-        setState({ ...state, ['right']: open });
+        setState({ ...state, [anchor]: open });
         setIsSearching(false);
         setSearchResult([])
         setUserName('')
@@ -236,8 +240,11 @@ export default function NavBar() {
                 
                 
                 <div id="serchIco" style={{marginRight: '-5vw', paddingRight: '5vw', display: 'flex'}}>
-                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isSearching ? <SearchIcon/> : null}</strong></button></h1>
-                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{!isLog ? <NoAccountsIcon/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
+
+                    <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isSearching ? <SearchRoundedIcon sx={{color: 'white'}}/> : null}</button>
+                    
+                    <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{state.right==true? null : !isLog ? <PersonOffRoundedIcon/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
+                
                 </div>
             </nav>
 
@@ -293,7 +300,18 @@ export default function NavBar() {
 
                             <div style={{border: '5px solid white', padding: '10px', backgroundColor: '#ffffff', width: '100%', height: '100%', borderRadius: '15px', maxHeight: '50vh', overflowY: 'scroll'}}>
 
-                                {searchResult.length == 0 ? <center><p style={{fontSize: '10px', color: 'rgba(0,0,0,0.5)'}}>Digita almeno 3 caratteri o cambia parola chiave</p></center> : 
+                                {searchResult.length == 0 ? 
+                                    <center>
+                                        <p style={{fontSize: '10px', color: 'rgba(0,0,0,0.5)'}}>Digita almeno 3 caratteri o cambia parola chiave</p>
+
+                                        <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                            <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)', fontSize: '10px'}} variant="extended">
+                                                <strong>NON TROVI QUELLO CHE CERCHI? SCRIVICI!</strong>
+                                            </Fab>
+                                        </a>
+                                        
+                                    </center> 
+                                : 
                                     
                                     searchResult.map((_, index) => (
                                         _.NomeUtente==undefined ?
@@ -366,7 +384,7 @@ export default function NavBar() {
                                             <TextField id="input-with-sx" label="Email" variant="standard" onChange={handleChangeEmail} type={'email'}/>
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                                            <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                                            <VpnKeyRoundedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                                             <TextField id="input-with-sx" label="Password" variant="standard" onChange={handleChangePassword} type={'password'}/>
                                         </Box>
 
@@ -375,6 +393,17 @@ export default function NavBar() {
                                         <Fab variant="extended" color={email!=''&&password!='' ? "success" : "error"} onClick={()=> email!=''&&password!='' ? LogIn(email,password) : null}>
                                             <strong>ENTRA</strong>
                                         </Fab>
+
+                                        <br></br>
+                                        <br></br>
+
+                                        <center>
+                                            <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                                <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
+                                                <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
+                                                </Fab>
+                                            </a>
+                                        </center>
 
                                         <br></br>
                                         <br></br>
@@ -399,7 +428,7 @@ export default function NavBar() {
                                             <TextField id="input-with-sx" label="Email" variant="standard" onChange={handleChangeEmail} type={'email'}/>
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
-                                            <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                                            <VpnKeyRoundedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                                             <TextField id="input-with-sx" label="Password" variant="standard" onChange={handleChangePassword} inputProps={{ maxLength: 11 }} type={'password'}/>
                                         </Box>
 
@@ -408,6 +437,17 @@ export default function NavBar() {
                                         <Fab variant="extended" color={userName!=''&&email!=''&&password!='' ? "success" : "error"} onClick={()=> userName!=''&&email!=''&&password!='' ? Register(userName,email,password) : null}>
                                             <strong>ENTRA</strong>
                                         </Fab>
+                                        
+                                        <br></br>
+                                        <br></br>
+                                        
+                                        <center>
+                                            <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                                <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
+                                                <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
+                                                </Fab>
+                                            </a>
+                                        </center>
 
                                         <br></br>
                                         <br></br>
@@ -425,7 +465,7 @@ export default function NavBar() {
                         </center>
                         <br></br>
                         <br></br>
-                        <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+                        <Fab variant="extended" onClick={toggleDrawer('right', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
                             <CloseRoundedIcon sx={{fontSize: '30px'}}/>
                         </Fab>
                     </Container>
@@ -492,7 +532,17 @@ export default function NavBar() {
                                         alt={'Foto profilo di '+ accountData[0].NomeUtente}
                                     />
 
-                                    <br></br>                                    
+                                    <br></br>
+
+                                    <center>
+                                            <a href={'https://t.me/AnimeCrowd'} target="_blank">
+                                                <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended">
+                                                <SendRoundedIcon/> &nbsp; <strong>PROBLEMI? SCRIVICI!</strong>
+                                                </Fab>
+                                            </a>
+                                    </center>
+
+                                    <br></br>                              
                                     
                                     <Container maxWidth="sm" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap',}}> 
                                         <Fab sx={{ml: 1, height: '40px', marginBottom: '10px'}} variant="extended">
@@ -543,11 +593,21 @@ export default function NavBar() {
 
 
                                     <br></br>
+
+                                    <Link href={'/utente/'+accountData[0]._id} passHref legacyBehavior>
+                                        <Fab variant="extended" color={'success'} onClick={toggleDrawer('bottom', false)}>
+                                            <AccountBoxRoundedIcon/>
+                                            &nbsp;
+                                            <strong>PAGINA PROFILO</strong>
+                                        </Fab>
+                                    </Link>
+
+                                    <br></br>
                                     <br></br>
                                     <br></br>
 
                                     <Fab variant="extended" color={'warning'} onClick={() => logOut()}>
-                                        <LogoutIcon/>
+                                        <LogoutRoundedIcon/>
                                         &nbsp;
                                         <strong>LOGOUT</strong>
                                     </Fab>
@@ -563,7 +623,7 @@ export default function NavBar() {
                             </Container>
                             <br></br>
                             <br></br>
-                            <Fab variant="extended" onClick={toggleDrawer('bottom', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+                            <Fab variant="extended" onClick={toggleDrawer('right', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
                                 <CloseRoundedIcon sx={{fontSize: '30px'}}/>
                             </Fab>
                         </center>
@@ -571,6 +631,7 @@ export default function NavBar() {
                 </SwipeableDrawer>
             
             }
+
 
         </span>
     )

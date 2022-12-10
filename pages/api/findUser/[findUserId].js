@@ -13,9 +13,7 @@ export default function handler(req, res) {
             var dbo = db.db("animeDB");
             dbo.collection("Users").find({_id : o_id}).toArray(function(err, result) {
                 if (err) throw err;
-
-                res.send([{Tag: o_id, NomeUtente: result[0].NomeUtente, Avatar: result[0].Avatar, Sfondo: result[0].Sfondo, DataAccount: result[0].DataAccount, Amici: result[0].Amici, MiSeguono: result[0].MiSeguono, AnimeVisti: result[0].AnimeVisti, Badge: result[0].Badge}]);
-                    
+                res.send(result);
                 db.close();
             });
         });
