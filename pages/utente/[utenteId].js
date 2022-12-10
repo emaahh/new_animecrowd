@@ -24,6 +24,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import DeleteIcon from '@mui/icons-material/Delete';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
