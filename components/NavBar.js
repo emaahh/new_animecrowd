@@ -8,7 +8,7 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import PersonOffRoundedIcon from '@mui/icons-material/PersonOffRounded';
+import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
@@ -247,7 +247,7 @@ export default function NavBar() {
 
                     <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isSearching ? <SearchRoundedIcon style={{height: '25px', fill: 'currentColor'}}/> : null}</button>
                     
-                    <button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{isLog == false ? <PersonOffRoundedIcon sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</button>
+                    <button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{isLog == false ? <NoAccountsIcon sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</button>
                 
                 </div>
             </nav>
