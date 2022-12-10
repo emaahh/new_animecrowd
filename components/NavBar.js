@@ -315,7 +315,7 @@ export default function NavBar() {
                                     
                                     searchResult.map((_, index) => (
                                         _.NomeUtente==undefined ?
-                                            <Link href={'/anime/'+ _._id} passHref onClick={openSearch}>
+                                            <Link href={'/anime/'+ _._id} passHref onClick={openSearch} key={_.id}>
                                                 <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
                                                     <CardMedia
                                                         component="img"
@@ -333,7 +333,7 @@ export default function NavBar() {
                                             
                                             :
 
-                                            <Link href={'/utente/'+ _._id} passHref onClick={openSearch}>
+                                            <Link href={'/utente/'+ _._id} passHref onClick={openSearch} key={_.id}>
                                                 <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
                                                     <CardMedia
                                                         component="img"
