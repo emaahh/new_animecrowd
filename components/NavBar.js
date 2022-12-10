@@ -24,7 +24,7 @@ import Container from '@mui/material/Container';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 
-import {UserContext} from '/pages/_app'
+import {UserContext} from '../pages/_app'
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 
@@ -123,10 +123,14 @@ export default function NavBar() {
         setPassword(event.target.value)
     }
 
-    async function LogIn(emailPROPS, passwordPROPS) {
-        const res = await fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS);
-        return (setAccountData(await res.json()), setState({ ...state, ['right']: false }))
+    function LogIn(emailPROPS, passwordPROPS) {
+        fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS)
+        .then(data => data.json()).then(data => {
+            setAccountData(data)
+            setIsLog(true)
+        })
     }
+    
     //check credenziali
     useEffect(() => {
         if(accountData!=[]&&accountData!=''){

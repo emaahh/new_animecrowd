@@ -30,7 +30,7 @@ export default function VideoHome(props) {
                 <h1 style={{textShadow: 'rgba(255, 255, 255, 0.6) 0px 0px 20px', fontFamily: 'Work Sans, sans-serif', fontWeight: '500'}}><strong>{props.Titolo}</strong></h1>
                 <br></br>
             </div>
-            <Container maxWidth="sm" style={{left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'flex', zIndex: '300', bottom: '3vh'}}>
+            <Container maxWidth="sm" style={{maxHeight: '50px', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'flex', zIndex: '300', bottom: '3vh'}}>
                 <Link href={'/anime/'+ props.id} passHref legacyBehavior>
                     <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
                         <PlayArrowRoundedIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>GUARDA</strong>

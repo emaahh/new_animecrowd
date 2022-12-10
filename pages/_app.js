@@ -13,7 +13,6 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 export const UserContext = React.createContext();
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
   const [animationParent] = useAutoAnimate()
 
   const darkTheme = createTheme({
