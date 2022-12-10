@@ -375,7 +375,6 @@ function AnimePage() {
                                 alt={'Copertina di '+ currentAnime.Nome}
                             />
                             
-                            
                             <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{currentAnime.Nome}&nbsp;{favorite? <FavoriteRoundedIcon/> : null}</strong></h1>
                             
                             {isLog ?
@@ -754,7 +753,6 @@ function AnimePage() {
                             </div>
 
                             <p style={{opacity: '.2', marginTop: '100px'}}>
-                            <br></br>
                                 <br></br>
                                 <br></br>
                                 <br></br>
@@ -764,6 +762,11 @@ function AnimePage() {
                                 <br></br>
                                 <br></br>
                                 <br></br>
+
+                                <p style={{fontFamily: 'Work Sans, sans-serif', fontWeight: 'extrabold'}}>Aggiunto al sito da <strong style={{textTransform: 'uppercase'}}>{currentAnime.Richiedente}</strong></p>
+                                
+                                <br></br>
+                                
                                 {currentAnime.Nome} AnimeCrowd - {currentAnime.Nome} Anime Crowd - {currentAnime.Nome} Gratis - {currentAnime.Nome} SUB ITA - {currentAnime.Nome} ITA - Streaming {currentAnime.Nome} Episodio 5 - Download {currentAnime.Nome} Episodio 5 - {currentAnime.Nome} Episodi ITA Download e Streaming - {currentAnime.Nome} Episodi SUB ITA Download e Streaming - {currentAnime.Nome} Episodi ITA Streaming Online - {currentAnime.Nome} Episodi SUB Streaming Online - {currentAnime.Nome} SUB ITA Lista episodi - {currentAnime.Nome} ITA Lista episodi - {currentAnime.Nome} Streaming Lista episodi - {currentAnime.Nome} Download Lista episodi - {currentAnime.Nome} Download SUB ITA - {currentAnime.Nome} Download ITA - {currentAnime.Nome} Streaming SUB ITA - {currentAnime.Nome} Streaming ITA - {currentAnime.Nome} Episodi ITA - {currentAnime.Nome} Episodi SUB ITA - {currentAnime.Nome} AnimeUnity - {currentAnime.Nome} AnimeWorld - {currentAnime.Nome} DreamSub - {currentAnime.Nome} Animeleggendari - {currentAnime.Nome} AnimeLove - {currentAnime.Nome} AnimeSaturn
                             </p>
                                 
