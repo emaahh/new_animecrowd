@@ -245,7 +245,7 @@ export default function NavBar() {
                 
                 <div id="serchIco" style={{marginRight: '-5vw', paddingRight: '5vw', display: 'flex'}}>
 
-                    <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isSearching ? <SearchRoundedIcon sx={{color: 'white'}}/> : null}</button>
+                    <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isSearching ? <SearchRoundedIcon style={{height: '25px', fill: 'currentColor'}}/> : null}</button>
                     
                     <h1 style={{fontFamily: 'Work Sans, sans-serif'}}><button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><strong>{state.right==true? null : !isLog ? <PersonOffRoundedIcon sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</strong></button></h1>
                 
