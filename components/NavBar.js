@@ -102,6 +102,7 @@ export default function NavBar() {
         setUserName('')
         setEmail('')
         setPassword('')
+        setErrLog(false)
         setResponceRegister([])
 
     };
