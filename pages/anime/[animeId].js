@@ -752,6 +752,7 @@ function AnimePage() {
                                 }
                             </div>
 
+
                             <p style={{opacity: '.2', marginTop: '100px'}}>
                                 <br></br>
                                 <br></br>
