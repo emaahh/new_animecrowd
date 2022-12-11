@@ -4,7 +4,7 @@
 export default async function handler(req, res) {
     let result = '';
 
-    fetch('https://newanimecrowd.vercel.app/api/findnew')
+    fetch('https://animecrowd.it/api/findnew')
         .then((response) => response.json())
         .then((data) => {
             data.forEach(element => {
