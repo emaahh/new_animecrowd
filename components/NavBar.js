@@ -49,6 +49,7 @@ export default function NavBar() {
     const [currentName, setCurrentName] = useState(false);
     const [responceRegister, setResponceRegister] = useState([]);
 
+    const [errLog, setErrLog] = useState(false);
 
     const [currentPic, setCurrentPic] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(false);
@@ -126,8 +127,13 @@ export default function NavBar() {
     function LogIn(emailPROPS, passwordPROPS) {
         fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS)
         .then(data => data.json()).then(data => {
-            setAccountData(data)
-            setIsLog(true)
+            if(JSON.stringify(data) == '[]'){
+                setErrLog(true)
+            }else{
+                setAccountData(data)
+                setIsLog(true)
+            }
+            
         })
     }
 
@@ -169,6 +175,7 @@ export default function NavBar() {
 
     //logout
     function logOut(){
+        setErrLog(false)
         setAccountData('')
         setIsLog(false)
         setUserName('')
@@ -393,7 +400,7 @@ export default function NavBar() {
                                         </Box>
 
                                         <br></br>
-                                        {accountData==[]? null:<h3>Credenziali errate</h3>}
+                                        {!errLog? null:<h3>Credenziali errate</h3>}
                                         <Fab variant="extended" color={email!=''&&password!='' ? "success" : "error"} onClick={()=> email!=''&&password!='' ? LogIn(email,password) : null}>
                                             <strong>ENTRA</strong>
                                         </Fab>
