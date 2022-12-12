@@ -13,7 +13,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import EditIcon from '@mui/icons-material/Edit';
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 
 import Avatar from '@mui/material/Avatar';
@@ -38,7 +38,7 @@ export default function NavBar() {
     const [isSearching, setIsSearching] = useState(false)
     const [query, setQuery] = useState('')
     const [searchResult, setSearchResult] = useState([])
-    const [state, setState] = useState({right: false,});
+    const [state, setState] = useState({right: false, Altro:false});
 
     const [logPage, setLogPage] = useState(0);
     const [isLog, setIsLog] = useState(false);
@@ -242,23 +242,26 @@ export default function NavBar() {
 
     return (
         <span id="navbar" ref={animationParent} style={{zIndex: '999999999999999999', position: 'fixed', width: '100%'}}>
-
-            <nav style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: '5vw', paddingLeft: '5vw', zIndex: '99999999999999999918'}}>
-                <div>
-                    <Link href="/" passHref legacyBehavior>
-                        <h1 style={{fontFamily: 'Work Sans, sans-serif', cursor: 'pointer', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px',}}>ANIME<a style={{color: 'rgb(220 135 255)', textShadow: 'rgba(220, 135, 255, 0.8) 0px 0px 20px',}}>CROWD</a></h1>
-                    </Link>
-                </div>
-                
-                
-                <div id="serchIco" style={{marginRight: '-5vw', paddingRight: '5vw', display: 'flex'}}>
-
-                    <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isSearching ? <SearchRoundedIcon style={{height: '25px', fill: 'currentColor'}}/> : null}</button>
+            <Container maxWidth="xxl">
+                <nav style={{display: 'flex', justifyContent: 'space-between', zIndex: '99999999999999999918'}}>
+                    <div>
+                        <Link href="/" passHref legacyBehavior>
+                            <h1 style={{fontFamily: 'Work Sans, sans-serif', cursor: 'pointer', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px',}}>ANIME<a style={{color: 'rgb(220 135 255)', textShadow: 'rgba(220, 135, 255, 0.8) 0px 0px 20px',}}>CROWD</a></h1>
+                        </Link>
+                    </div>
                     
-                    <button id="buttAccountNav" onClick={toggleDrawer('right', true)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isLog ? <NoAccountsIcon id="NoAccountICO" sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</button>
-                
-                </div>
-            </nav>
+                    
+                    <div id="serchIco" style={{display: 'flex'}}>
+
+                        <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><SearchRoundedIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/></button>
+                        
+                        <button id="buttAccountNav" onClick={toggleDrawer('right', !state.right)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isLog ? <NoAccountsIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</button>
+                        
+                        <button id="buttAccountNav" onClick={toggleDrawer('Altro', !state.Altro)} style={{padding: '0px', cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><MoreVertRoundedIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/></button>
+                        
+                    </div>
+                </nav>
+            </Container>
 
             {isSearching && ( 
                 <>
@@ -372,11 +375,9 @@ export default function NavBar() {
                         </Container>
                     </div>
                 </>
-
             )}
 
                                 
-
             {!isLog ?
                 //non è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
@@ -482,7 +483,6 @@ export default function NavBar() {
                         </Fab>
                     </Container>
                 </SwipeableDrawer>
-
                 : 
                 //è loggato
                 <SwipeableDrawer anchor={'right'} open={state['right']} onClose={toggleDrawer('right', false)} onOpen={toggleDrawer('right', true)}  ref={animationParent}>
@@ -641,8 +641,25 @@ export default function NavBar() {
                         </center>
                     
                 </SwipeableDrawer>
-            
             }
+
+            <SwipeableDrawer anchor={'right'} open={state['Altro']} onClose={toggleDrawer('Altro', false)} onOpen={toggleDrawer('Altro', true)}  ref={animationParent}>
+                <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
+                    <br></br>
+                    <br></br>
+                    <center  ref={animationParent}>
+                        
+                        <h1>IN ARRIVO! 🤫</h1>
+                        <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
+                        
+                    </center>
+                    <br></br>
+                    <br></br>
+                    <Fab variant="extended" onClick={toggleDrawer('Altro', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+                        <CloseRoundedIcon sx={{fontSize: '30px'}}/>
+                    </Fab>
+                </Container>
+            </SwipeableDrawer>
 
 
         </span>
