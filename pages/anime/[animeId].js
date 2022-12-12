@@ -437,42 +437,42 @@ function AnimePage() {
                             <br></br>
                             <br></br>
 
-                                <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
-                                    <tbody>
-                                        <tr>
-                                            <th>STATO</th>
-                                            <th>USCITA</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{currentAnime.Stato}</td>
-                                            <td>{currentAnime.Uscita}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br></br>
-                                <br></br>
-                                <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
-                                    <tbody>
-                                        <tr>
-                                            <th>GENERI</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{currentAnime.Generi}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <br></br>
-                                <br></br>
-                                <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
-                                    <tbody>
-                                        <tr>
-                                            <th>TRAMA</th>
-                                        </tr>
-                                        <tr>
-                                            <td><p style={{fontFamily: 'Work Sans, sans-serif', textAlign: 'justify', textAlignLast: 'center'}}>{currentAnime.Trama}</p></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
+                                <tbody>
+                                    <tr>
+                                        <th>STATO</th>
+                                        <th>USCITA</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{currentAnime.Stato}</td>
+                                        <td>{currentAnime.Uscita}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
+                                <tbody>
+                                    <tr>
+                                        <th>GENERI</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{currentAnime.Generi}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <br></br>
+                            <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
+                                <tbody>
+                                    <tr>
+                                        <th>TRAMA</th>
+                                    </tr>
+                                    <tr>
+                                        <td><p style={{fontFamily: 'Work Sans, sans-serif', textAlign: 'justify', textAlignLast: 'center'}}>{currentAnime.Trama}</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </center>
 
                         <br></br>

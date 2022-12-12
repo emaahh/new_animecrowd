@@ -453,7 +453,6 @@ function UtentePage() {
                                             {/*LISTA*/}
                                             <>
                                                 <strong><h1 style={{fontFamily: 'Work Sans, sans-serif'}}><a style={{color: 'rgb(220 135 255)', textShadow: 'rgba(220, 135, 255, 0.3) 0px 0px 20px',}}>CROWD</a>LIST  DI {currentProfile.NomeUtente}</h1></strong>
-                                                <br></br>
 
                                                     {
                                                         currentProfile.Lista && currentProfile.Lista.length!=0?
@@ -554,7 +553,6 @@ function UtentePage() {
                                             {/*TUA LISTA*/}
                                             <>
                                                 <strong><h1 style={{fontFamily: 'Work Sans, sans-serif'}}>LA TUA <a style={{color: 'rgb(220 135 255)', textShadow: 'rgba(220, 135, 255, 0.3) 0px 0px 20px',}}>CROWD</a>LIST</h1></strong>
-                                                <br></br>
                                                 
                                                 {
                                                     currentProfile.Lista && currentProfile.Lista.length!=0?
@@ -646,8 +644,6 @@ function UtentePage() {
                                                             <h5>NON HAI ANCORA AGGIUNTO NIENTE AI PREFERITI</h5>
                                                     }
                                             </>
-                                                
-                                            
 
                                             <br></br>
                                         </>
