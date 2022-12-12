@@ -449,6 +449,8 @@ function AnimePage() {
                                         </tr>
                                     </tbody>
                                 </table>
+                                <br></br>
+                                <br></br>
                                 <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
                                     <tbody>
                                         <tr>
