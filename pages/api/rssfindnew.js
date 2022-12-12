@@ -11,16 +11,7 @@ export default async function handler(req, res) {
                 result += '<div class="posts"><h1>'+element.Nome+'</h1><img src="'+element.Copertina+'"/><a href="https://www.animecrowd.it/anime/'+ element._id +'">https://www.animecrowd.it/anime/'+ element._id +'</a></div>'
             });
             res.send(result);
-        });
-
-
-    
-
-
-    
-
-
-    
+        });  
 }
 
 
