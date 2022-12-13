@@ -9,7 +9,8 @@ function Loading(props) {
                 
                 <br></br>
                 <img src='/eventoNatale/slitta.png' className="slitta" style={{width: '80px', height: 'auto', }}/>
-                <p>BUONE FESTE DAL TEAM DI ANIMECROWD ❤️</p>
+                <p>BUONE FESTE ❤️</p>
+                <p>dal team di AnimeCrowd</p>
             </div>
                 
                 <style>
