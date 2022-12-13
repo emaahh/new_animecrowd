@@ -116,6 +116,8 @@ export default function Home() {
 
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200" />
+      
+        <link rel="preload" href="/eventoNatale/slitta.png" as="image"></link>
       </Head>
 
       {isLoading == true ?
