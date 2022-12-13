@@ -461,11 +461,13 @@ function UtentePage() {
                                                                 animeDaContinuare.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><RemoveRedEyeIcon/> IN CORSO</h1></strong>
-                                                                    {animeDaContinuare.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeDaContinuare.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -473,11 +475,13 @@ function UtentePage() {
                                                                 animeDaGuardare.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><BookmarkAddRoundedIcon/> DA GUARDARE</h1></strong>
-                                                                    {animeDaGuardare.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeDaGuardare.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -485,11 +489,13 @@ function UtentePage() {
                                                                 animeCompletati.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><CheckIcon/> COMPLETATI</h1></strong>
-                                                                    {animeCompletati.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeCompletati.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -497,11 +503,13 @@ function UtentePage() {
                                                                 animeDroppati.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><VisibilityOffIcon/> DROPPATI</h1></strong>
-                                                                    {animeDroppati.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeDroppati.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -529,12 +537,13 @@ function UtentePage() {
                                                             {
                                                                 animePreferiti.length!=0?
                                                                 <>
-                                                                    <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
-                                                                    {animePreferiti.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animePreferiti.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -561,11 +570,13 @@ function UtentePage() {
                                                                 animeDaContinuare.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><RemoveRedEyeIcon/> IN CORSO</h1></strong>
-                                                                    {animeDaContinuare.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeDaContinuare.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -573,11 +584,13 @@ function UtentePage() {
                                                                 animeDaGuardare.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><BookmarkAddRoundedIcon/> DA GUARDARE</h1></strong>
-                                                                    {animeDaGuardare.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeDaGuardare.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -585,11 +598,13 @@ function UtentePage() {
                                                                 animeCompletati.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><CheckIcon/> COMPLETATI</h1></strong>
-                                                                    {animeCompletati.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeCompletati.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -597,11 +612,13 @@ function UtentePage() {
                                                                 animeDroppati.length!=0?
                                                                 <>
                                                                     <strong><h1 style={{textAlign: 'left', fontFamily: 'Work Sans, sans-serif'}}><VisibilityOffIcon/> DROPPATI</h1></strong>
-                                                                    {animeDroppati.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animeDroppati.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
@@ -628,11 +645,13 @@ function UtentePage() {
                                                             {
                                                                 animePreferiti.length!=0?
                                                                 <>
-                                                                    {animePreferiti.map((_, index) => (
-                                                                        <Grid item key={index} style={{maxWidth: '400px'}}>
-                                                                            <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                                                                        </Grid>
-                                                                    ))}
+                                                                    <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                                                        {animePreferiti.map((_, index) => (
+                                                                            <Grid item key={index} style={{maxWidth: '400px'}}>
+                                                                                <CardComponent EPISODE={false} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                                                            </Grid>
+                                                                        ))}
+                                                                    </Grid>
                                                                 </>
                                                                 :null
                                                             }
