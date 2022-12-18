@@ -74,9 +74,14 @@ function CardComponent(props) {
                     </CardContent>
 
                     <Box sx={{ display: 'flex', alignItems: 'center', pl: 1,  pr: 1, pb: 1, justifyContent: 'center', width: '100%' }}>
-                        <Button onClick={toggleDrawer('bottom', true)} className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}} style={{width: '100%', borderRadius: '15px'}}>
+                        <Link href={'/anime/'+props.Id} passHref legacyBehavior>
+                            <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}} style={{width: '100%', borderRadius: '15px'}}>
+                                <PlayArrowRoundedIcon sx={{ color: 'black', fontSize: 30 }}/><strong>Guarda</strong>
+                            </Button>
+                        </Link>
+                        {/*<Button onClick={toggleDrawer('bottom', true)} className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}} style={{width: '100%', borderRadius: '15px'}}>
                             <InfoIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong>ALTRO</strong>
-                        </Button>
+                        </Button>*/}
                     </Box>
 
                 </Box>

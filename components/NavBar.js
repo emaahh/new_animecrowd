@@ -6,7 +6,6 @@ import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
 
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import CloseIcon from '@mui/icons-material/Close';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import NoAccountsIcon from '@mui/icons-material/NoAccounts';
 import AccountCircle from '@mui/icons-material/AccountCircle';
@@ -14,7 +13,6 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
-import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 
 import Avatar from '@mui/material/Avatar';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
@@ -24,8 +22,13 @@ import Container from '@mui/material/Container';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import {UserContext} from '../pages/_app'
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
 
 
@@ -38,7 +41,9 @@ export default function NavBar() {
     const [isSearching, setIsSearching] = useState(false)
     const [query, setQuery] = useState('')
     const [searchResult, setSearchResult] = useState([])
-    const [state, setState] = useState({right: false, Altro:false});
+
+    const [state, setState] = useState({right: false});
+    const [state2, setState2] = useState({Altro:false});
 
     const [logPage, setLogPage] = useState(0);
     const [isLog, setIsLog] = useState(false);
@@ -104,7 +109,24 @@ export default function NavBar() {
         setPassword('')
         setErrLog(false)
         setResponceRegister([])
-
+        value.openProfileSetting(open)
+    };
+    const toggleDrawer2 = (anchor, open) => (event) => {
+        if (
+            event &&
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return;
+        }
+        setState2({ ...state2, [anchor]: open });
+        setIsSearching(false);
+        setSearchResult([])
+        setUserName('')
+        setEmail('')
+        setPassword('')
+        setErrLog(false)
+        setResponceRegister([])
     };
 
     function handleChangeInput(event) {
@@ -132,6 +154,7 @@ export default function NavBar() {
                 setErrLog(true)
             }else{
                 setAccountData(data)
+                setState({ ...state, ['right']: false });
                 setIsLog(true)
             }
             
@@ -176,6 +199,7 @@ export default function NavBar() {
 
     //logout
     function logOut(){
+        router.push('/')
         setErrLog(false)
         setAccountData('')
         setIsLog(false)
@@ -240,6 +264,13 @@ export default function NavBar() {
         return (setResponceRegister(await res.text()), setCurrentName(params), document.getElementById('input-with-sx').value = '')
     }
 
+    //open profile panel
+    useEffect(() => {
+        if(value.impProfilo == true && state.right == false){
+            setState({ ...state, ['right']: true });
+        }
+    },[value.impProfilo])
+
     return (
         <span id="navbar" ref={animationParent} style={{zIndex: '999999999999999999', position: 'fixed', width: '100%'}}>
             <Container maxWidth="xxl">
@@ -255,9 +286,9 @@ export default function NavBar() {
 
                         <button onClick={openSearch} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><SearchRoundedIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/></button>
                         
-                        <button id="buttAccountNav" onClick={toggleDrawer('right', !state.right)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isLog ? <NoAccountsIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</button>
+                        <button id="buttAccountNav" onClick={isLog ? ()=>router.push('/utente/'+accountData[0]._id) : toggleDrawer('right', !state.right)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isLog ? <NoAccountsIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</button>
                         
-                        <button id="buttAccountNav" onClick={toggleDrawer('Altro', !state.Altro)} style={{padding: '0px', cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><MoreVertRoundedIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/></button>
+                        <button onClick={toggleDrawer2('Altro', !state2.Altro)} style={{padding: '0px', cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><MoreVertRoundedIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/></button>
                         
                     </div>
                 </nav>
@@ -490,46 +521,46 @@ export default function NavBar() {
 
 
                             <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
-                            <img className="imagebann" alt={'Banner di '+ accountData[0].NomeUtente} src={currentBanner ? URL.createObjectURL(currentBanner) : accountData[0].Sfondo == '' || accountData[0].Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+accountData[0].Sfondo+'.jpg'} style={{opacity: .8, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
-                            <div variant="contained" className="videoHome"></div>
-                            <style>
-                                {`
-                                    input[type="text"]
-                                    {
-                                        font-family: Work Sans, sans-serif;
-                                        font-size:30px;
-                                        font-weight: 900!important;
-                                    }
-                                    .MuiInputLabel-animated
-                                    {
-                                        font-family: Work Sans, sans-serif;
-                                        font-size:30px;
-                                        font-weight: 900!important;
-                                    }
-                                    .imagebann{
-                                        -webkit-mask-image: linear-gradient(transparent, black 50%, transparent);
-                                        mask-image: linear-gradient (transparent, black 50%, transparent);
-                                    }
-                                    .videoHome {
-                                        left: -1px;
-                                        width: -webkit-fill-available;
-                                        position: absolute;
-                                        top: 0;
-                                        height: 100%;
-
-                                        -webkit-mask-image: linear-gradient(black, transparent);
-                                        mask-image: linear-gradient (black, transparent);
-                                        z-index: 200;
-                                    }
-                                    .btnPlayCopertina:hover {
-                                            -webkit-text-decoration: none;
-                                            text-decoration: none;
-                                            background-color: rgb(220 135 255);
-                                            box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+                                <img className="imagebann" alt={'Banner di '+ accountData[0].NomeUtente} src={currentBanner ? URL.createObjectURL(currentBanner) : accountData[0].Sfondo == '' || accountData[0].Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+accountData[0].Sfondo+'.jpg'} style={{opacity: .8, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                                <div variant="contained" className="videoHome"></div>
+                                <style>
+                                    {`
+                                        input[type="text"]
+                                        {
+                                            font-family: Work Sans, sans-serif;
+                                            font-size:30px;
+                                            font-weight: 900!important;
                                         }
-                                    }
-                                `}
-                            </style>
+                                        .MuiInputLabel-animated
+                                        {
+                                            font-family: Work Sans, sans-serif;
+                                            font-size:30px;
+                                            font-weight: 900!important;
+                                        }
+                                        .imagebann{
+                                            -webkit-mask-image: linear-gradient(transparent, black 50%, transparent);
+                                            mask-image: linear-gradient (transparent, black 50%, transparent);
+                                        }
+                                        .videoHome {
+                                            left: -1px;
+                                            width: -webkit-fill-available;
+                                            position: absolute;
+                                            top: 0;
+                                            height: 100%;
+
+                                            -webkit-mask-image: linear-gradient(black, transparent);
+                                            mask-image: linear-gradient (black, transparent);
+                                            z-index: 200;
+                                        }
+                                        .btnPlayCopertina:hover {
+                                                -webkit-text-decoration: none;
+                                                text-decoration: none;
+                                                background-color: rgb(220 135 255);
+                                                box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+                                            }
+                                        }
+                                    `}
+                                </style>
                             </div>
 
                             <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">
@@ -570,17 +601,18 @@ export default function NavBar() {
                                     </Container>
 
                                     <Box sx={{maxWidth: '350px', display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }} >
-                                        <EditIcon sx={{fontSize: '30px', marginBottom: '5px'}}/>&nbsp;&nbsp;
+                                        
                                         <TextField className="newusernametext" style={{textTransform: 'uppercase'}} id="input-with-sx" onChange={handleChangeUserName}  label={currentName ? currentName : accountData[0].NomeUtente} variant="standard" inputProps={{ maxLength: 11 }} type={'text'}/>
+                                        <EditIcon sx={{fontSize: '30px', marginBottom: '5px'}}/>&nbsp;&nbsp;
                                         <div>
-                                        {userName!='' ?
+                                            {userName!='' ?
 
-                                            <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={userName!='' ? "success" : "error"} onClick={()=> userName!='' ? changeName(userName) : null}>
-                                                <strong>SALVA</strong>
-                                            </Fab>
+                                                <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={userName!='' ? "success" : "error"} onClick={()=> userName!='' ? changeName(userName) : null}>
+                                                    <strong>SALVA</strong>
+                                                </Fab>
 
-                                            :null
-                                        } 
+                                                :null
+                                            } 
                                         </div> 
                                     </Box>
                     
@@ -588,35 +620,6 @@ export default function NavBar() {
                                     <br></br>
                                     <br></br>
 
-                                        <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
-                                            <tbody>
-                                                <tr>
-                                                    <th>FOLLOWING</th>
-                                                    <th>FOLLOWER</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>{accountData[0].Amici!=undefined ? JSON.stringify(accountData[0].Amici.length-1):null}</td>
-                                                    <td>{accountData[0].MiSeguono!=undefined ? JSON.stringify(accountData[0].MiSeguono.length-1):0}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <br></br>
-                                        <br></br>
-
-
-                                    <br></br>
-
-                                    <Link href={'/utente/'+accountData[0]._id} passHref legacyBehavior>
-                                        <Fab variant="extended" color={'success'} onClick={toggleDrawer('bottom', false)}>
-                                            <AccountBoxRoundedIcon/>
-                                            &nbsp;
-                                            <strong>PAGINA PROFILO</strong>
-                                        </Fab>
-                                    </Link>
-
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
 
                                     <Fab variant="extended" color={'warning'} onClick={() => logOut()}>
                                         <LogoutRoundedIcon/>
@@ -643,21 +646,53 @@ export default function NavBar() {
                 </SwipeableDrawer>
             }
 
-            <SwipeableDrawer anchor={'right'} open={state['Altro']} onClose={toggleDrawer('Altro', false)} onOpen={toggleDrawer('Altro', true)}  ref={animationParent}>
+            <SwipeableDrawer anchor={'right'} open={state2['Altro']} onClose={toggleDrawer2('Altro', false)} onOpen={toggleDrawer2('Altro', true)}  ref={animationParent}>
                 <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
+
                     <br></br>
                     <br></br>
+
                     <center  ref={animationParent}>
+
+                        <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                <Typography>🔔 AGGIORNAMENTI</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+
+                                <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                        <Typography>VERSIONE 1.1</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography style={{textAlign: 'start'}}>
+                                            🔘 La sezione <strong>modifica profilo</strong> adesso si trova nella <strong>pagina del tuo profilo</strong>
+                                            <br></br>
+                                            🔘 La foto profilo accanto la ricerca in alto porterà alla <strong>pagina del tuo profilo</strong>
+                                            <br></br>
+                                            🔘 I tasti degli anime nella home non mostrano più un'anteprima ma portano direttamente alla <strong>pagina dell'anime</strong>
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+
+                            </AccordionDetails>
+                        </Accordion>
                         
-                        <h1>IN ARRIVO! 🤫</h1>
+                        <br></br>
+                        <br></br>
+
                         <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
+                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>1.1</strong></p>
                         
                     </center>
+
                     <br></br>
                     <br></br>
-                    <Fab variant="extended" onClick={toggleDrawer('Altro', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
+
+                    <Fab variant="extended" onClick={toggleDrawer2('Altro', false)} sx={{ left: '50%', width: '50px', position: 'sticky', transform: 'translate(-50%, 0%)', bottom: '20px',}}>
                         <CloseRoundedIcon sx={{fontSize: '30px'}}/>
                     </Fab>
+
                 </Container>
             </SwipeableDrawer>
 

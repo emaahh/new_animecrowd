@@ -25,8 +25,12 @@ function MyApp({ Component, pageProps }) {
   });
 
   const [saveLogState, setSaveLogState] = useState(0)
+  const [profileSetting, setProfileSetting] = useState(false)
   const saveLog = (props) => {
     setSaveLogState(props)
+  }
+  const openProfileSetting = (props) => {
+    setProfileSetting(props)
   }
 
   //nav background dynamic
@@ -61,7 +65,7 @@ function MyApp({ Component, pageProps }) {
 
 
   return (
-    <UserContext.Provider value={{isLogStored: saveLogState, saveLog}}>
+    <UserContext.Provider value={{isLogStored: saveLogState, saveLog, impProfilo: profileSetting, openProfileSetting}}>
       <ThemeProvider theme={darkTheme} ref={animationParent}>
 
         <Head>

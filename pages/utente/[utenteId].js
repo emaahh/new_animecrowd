@@ -15,6 +15,8 @@ import Container from '@mui/material/Container'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid';
+import Fab from '@mui/material/Fab';
+
 
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PersonAddDisabledIcon from '@mui/icons-material/PersonAddDisabled';
@@ -25,6 +27,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import DeleteIcon from '@mui/icons-material/Delete';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
 import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
@@ -346,7 +349,18 @@ function UtentePage() {
                             
                             <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{currentProfile.NomeUtente}</strong></h1>
 
-            
+
+                                {isLog?
+                                        accountData[0]._id == currentProfile._id?
+                                            <>
+                                                <Fab variant="extended" onClick={()=>value.openProfileSetting(!value.impProfilo)}>
+                                                    <strong>IMPOSTAZIONI PROFILO</strong>
+                                                </Fab>
+                                            </>
+                                        :null
+                                :null}
+                            <br></br>
+                            <br></br>
                             <br></br>
 
                                 <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
@@ -445,6 +459,10 @@ function UtentePage() {
                                 </ScrollContainer >
                                 </center>
 
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
                                 <br></br>
 
                                 {isLog?
