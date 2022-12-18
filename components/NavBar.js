@@ -662,7 +662,7 @@ export default function NavBar() {
 
                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                                        <Typography>VERSIONE 1.1</Typography>
+                                        <Typography>VERSIONE 2.1</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography style={{textAlign: 'start'}}>
@@ -682,7 +682,7 @@ export default function NavBar() {
                         <br></br>
 
                         <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
-                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>1.1</strong></p>
+                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.1</strong></p>
                         
                     </center>
 
