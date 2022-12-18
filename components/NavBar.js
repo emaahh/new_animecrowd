@@ -670,7 +670,7 @@ export default function NavBar() {
                                             <br></br>
                                             🔘 La foto profilo accanto la ricerca in alto porterà alla <strong>pagina del tuo profilo</strong>
                                             <br></br>
-                                            🔘 I tasti degli anime nella home non mostrano più un'anteprima ma portano direttamente alla <strong>pagina dell'anime</strong>
+                                            🔘 I tasti degli anime nella home non mostrano più un&apos;anteprima ma portano direttamente alla <strong>pagina dell&apos;anime</strong>
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
