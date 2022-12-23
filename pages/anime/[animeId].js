@@ -306,7 +306,7 @@ function AnimePage() {
     return (
         <div ref={animationParent}>
             <Head>
-                <title>AnimeCrowd</title>
+                <title>{currentAnime.Nome} su AnimeCrowd</title>
                 
                 
                 <meta name="description" content={currentAnime.Trama} />
