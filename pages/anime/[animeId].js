@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Head from 'next/head'
 import { NextSeo } from 'next-seo';
+import { RecipeJsonLd } from 'next-seo';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -327,6 +328,9 @@ function AnimePage() {
             <NextSeo
                 title={currentAnime.Nome != "non trovato"? currentAnime.Nome + " su AnimeCrowd" : "Guarda su AnimeCrowd"}
                 description={currentAnime.Trama}
+            />
+            <RecipeJsonLd 
+                keywords={"Anime, Naruto, Onepiece, Episodi, Puntate, Toriko, Kuroko, Inazuma, Oav, Film, Faunsub, Traduttori, Fairy, Tail, bleach, hunter, sword, art, online, pokémon, infinite, stratos, log, horizon, blazblue, tokyo, ravens, soul, eater, outbreak, company, ecchi, dragon, ball, super, fullmetal, quanzhi, fashi, anime streaming, anime sub ita, anime ita, AnimeUnity, Anime Streaming, Anime Streaming ITA, Streaming Anime SUB ITA, Streaming Anime ITA, Lista Anime ITA, Lista Anime SUB ITA, " + currentAnime.Nome + " SUB ITA, " + currentAnime.Nome + " ITA, " + currentAnime.Nome + " Episodi ITA Download e Streaming, " + currentAnime.Nome + " Episodi SUB ITA Download e Streaming, " + currentAnime.Nome + " Episodi ITA Streaming Online, " + currentAnime.Nome + " Episodi SUB ITA Streaming Online, " + currentAnime.Nome + " SUB ITA Lista episodi, " + currentAnime.Nome + " ITA Lista episodi, " + currentAnime.Nome + " Streaming Lista episodi, " + currentAnime.Nome + " Download Lista episodi, " + currentAnime.Nome + " Download SUB ITA, " + currentAnime.Nome + " Download ITA, " + currentAnime.Nome + " Streaming SUB ITA, " + currentAnime.Nome + " Streaming ITA, " + currentAnime.Nome + " Episodi ITA, " + currentAnime.Nome + " Episodi SUB ITA, " + currentAnime.Nome + " sub ita streaming, " + currentAnime.Nome + " ita streaming, " + currentAnime.Nome + " AnimeUnity, " + currentAnime.Nome + " AnimeUnity, " + currentAnime.Nome + " AnimeOra, " + currentAnime.Nome + " Fairytailitalia, " + currentAnime.Nome + " AnimeWorld, " + currentAnime.Nome + " DreamSub, " + currentAnime.Nome + " Animeleggendari, " + currentAnime.Nome + " AnimeLove, " + currentAnime.Nome + " AnimeSaturn"}
             />
 
             <br></br>

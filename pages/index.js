@@ -105,7 +105,7 @@ export default function Home() {
       <Head>
         <title>AnimeCrowd</title>
         
-        <meta name="description" content="Guarda anime in streaming e download SUB ITA e ITA completamente gratis e senza pop-up fastidiosi si AnimeCrowd" />
+        <meta name="description" content="Guarda anime in streaming e download SUB ITA e ITA completamente gratis e senza pop-up fastidiosi su AnimeCrowd" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://animecrowd.it/" />
         <meta name="keywords" content="Anime, Naruto, Onepiece, Episodi, Puntate, Toriko, Kuroko, Inazuma, Oav, Film, Faunsub, Traduttori, Fairy, Tail, bleach, hunter, sword, art, online, pokémon, infinite, stratos, log, horizon, blazblue, tokyo, ravens, soul, eater, outbreak, company, ecchi, dragon, ball, super, fullmetal, quanzhi, fashi, anime streaming, anime sub ita, anime ita, AnimeCrowd, Anime Streaming, Anime Streaming ITA, Streaming Anime SUB ITA, Streaming Anime ITA, Lista Anime ITA, Lista Anime SUB ITA, "/>
