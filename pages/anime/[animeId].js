@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Head from 'next/head'
+import { NextSeo } from 'next-seo';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -306,7 +307,6 @@ function AnimePage() {
     return (
         <div ref={animationParent}>
             <Head>
-                <title>{currentAnime.Nome} su AnimeCrowd</title>
                 
                 
                 <meta name="description" content={currentAnime.Trama} />
@@ -318,9 +318,16 @@ function AnimePage() {
                 <meta name="theme-color" content="#000000"></meta>
 
 
+
+
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200" />
             </Head>
+
+            <NextSeo
+                title={currentAnime.Nome + " su AnimeCrowd"}
+                description={currentAnime.Trama}
+            />
 
             <br></br>
 
