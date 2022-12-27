@@ -325,7 +325,7 @@ function AnimePage() {
             </Head>
 
             <NextSeo
-                title={currentAnime.Nome + " su AnimeCrowd"}
+                title={currentAnime.Nome != "non trovato"? + currentAnime.Nome + " su AnimeCrowd" : "AnimeCrowd"}
                 description={currentAnime.Trama}
             />
 
