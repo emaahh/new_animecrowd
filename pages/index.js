@@ -127,7 +127,7 @@ export default function Home() {
         <>
           <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
             <Paper style={{backgroundColor: 'black', backgroundImage: 'none',}}>
-              <VideoHome Titolo="CHAINSAW MAN" OP="https://i.imgur.com/tueaPPg.mp4" id="6347ce0e6d12e43a9bd32a89"/>
+              <VideoHome Titolo="BLUE LOCK" OP="https://i.imgur.com/HqzWuSD.mp4" id="63480f116d12e43a9b332ce8"/>
             </Paper>
           </Carousel>
           
