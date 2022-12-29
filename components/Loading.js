@@ -1,4 +1,4 @@
-
+import { Fireworks } from '@fireworks-js/react' //DA TOGLIERE
  
 
 function Loading(props) {
@@ -8,8 +8,25 @@ function Loading(props) {
                 <img className="heartbeat" src="/loadingGIF.gif" style={{width: '100px', height: 'auto', borderRadius: '30px'}}/> 
                 
                 <br></br>
-                <img src='/eventoNatale/slitta.png' className="slitta" style={{width: '80px', height: 'auto', }}/>
-                <p>BUONE FESTE ❤️</p>
+
+                <Fireworks
+                    options={{
+                        rocketsPoint: {
+                        min: 0,
+                        max: 100
+                        }
+                    }}
+                    style={{
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        position: 'fixed',
+                        background: 'transparent'
+                    }}
+                />
+
+                <p>BUON 2023 🎆</p>
                 <p>dal team di AnimeCrowd</p>
             </div>
                 

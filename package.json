@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@fireworks-js/react": "^2.10.0",
     "@formkit/auto-animate": "^1.0.0-beta.3",
     "@mui/icons-material": "^5.10.9",
     "@mui/lab": "^5.0.0-alpha.106",
