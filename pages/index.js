@@ -243,6 +243,8 @@ export default function Home() {
 
     <script async="async" data-cfasync="false" src="//pl17727417.highperformancecpmgate.com/65b96abcfdde95022fd25ce3998d9433/invoke.js"></script>
     <div id="container-65b96abcfdde95022fd25ce3998d9433"></div>
+    <script async="async" data-cfasync="false" src="//pl17727417.highperformancecpmgate.com/65b96abcfdde95022fd25ce3998d9433/invoke.js"></script>
+    <div id="container-65b96abcfdde95022fd25ce3998d9433"></div>
     
     </div>
   )
