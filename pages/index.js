@@ -244,8 +244,6 @@ export default function Home() {
     <script async="async" data-cfasync="false" src="//pl17727417.highperformancecpmgate.com/65b96abcfdde95022fd25ce3998d9433/invoke.js"></script>
     <div id="container-65b96abcfdde95022fd25ce3998d9433"></div>
     
-    <script async="async" type="text/javascript" src="https://www.effectivecreativeformat.com/71fa4d7e38a53066cc82942f95e9ebec/invoke.js"></script>
-
     </div>
   )
 };
