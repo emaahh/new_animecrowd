@@ -174,4 +174,10 @@ a {
     fill: currentColor;
   }
 
+  p:after {
+    content: none;
+ }
 
+  .MuiPaper-root:before{
+    display: none;
+  }

@@ -656,10 +656,30 @@ export default function NavBar() {
 
                         <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                <Typography>🎚️ RICERCA CON FILTRI</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography style={{textAlign: 'start'}}>
+                                    🔘 La sezione <strong>modifica profilo</strong> adesso si trova nella <strong>pagina del tuo profilo</strong>
+                                    <br></br>
+                                    🔘 La foto profilo accanto la ricerca in alto porterà alla <strong>pagina del tuo profilo</strong>
+                                    <br></br>
+                                    🔘 I tasti degli anime nella home non mostrano più un&apos;anteprima ma portano direttamente alla <strong>pagina dell&apos;anime</strong>
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <br></br>
+                        <br></br>
+                        
+                        {/*AGGIORNAMENTI*/}
+                        <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                                 <Typography>🔔 AGGIORNAMENTI</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
 
+                                {/*VERSIONE 2.1*/}
                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                                         <Typography>VERSIONE 2.1</Typography>
