@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useRouter } from 'next/router'
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -18,6 +19,7 @@ import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detec
 import Link from 'next/link'
 
 function CardComponent(props) {
+    const router = useRouter();
     const [state, setState] = React.useState({bottom: false,});
 
 
@@ -97,7 +99,7 @@ function CardComponent(props) {
             </Card>
         </BrowserView>
         <MobileView>
-            <div style={{padding: '10px',}} onClick={toggleDrawer('bottom', true)}>
+            <div style={{padding: '10px',}} onClick={() => router.push('/anime/'+props.Id)}>
                 <CardMedia
                     component="img"
                     sx={{ width: 151 }}

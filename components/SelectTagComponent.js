@@ -86,7 +86,7 @@ export default function SelectTagComponent() {
 
     return (
         <center>
-            <FormControl sx={{ m: 1, width: 300 }} style={{borderRadius: '50px'}}>
+            <FormControl sx={{ m: 1, width: '80%' }} style={{borderRadius: '50px'}}>
                 <InputLabel id="demo-multiple-checkbox-label">Cerca generi</InputLabel>
                 <Select
                     labelId="demo-multiple-checkbox-label"

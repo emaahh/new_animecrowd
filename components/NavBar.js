@@ -662,7 +662,6 @@ export default function NavBar() {
                                 <Typography style={{textAlign: 'start'}}>
 
                                     {/*<SelectTagComponent/>*/}
-
                                     <strong>IN ARRIVO</strong>
 
                                 </Typography>
