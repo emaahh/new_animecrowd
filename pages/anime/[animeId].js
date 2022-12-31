@@ -326,7 +326,7 @@ function AnimePage() {
             </Head>
 
             <NextSeo
-                title={currentAnime.Nome != "non trovato"? currentAnime.Nome + " su AnimeCrowd" : "Guarda su AnimeCrowd"}
+                title={currentAnime.Nome != "non trovato"? currentAnime.Nome + " Streaming & Download SUB ITA - AnimeCrowd" : "Streaming & Download SUB ITA - AnimeCrowd"}
                 description={currentAnime.Trama}
             />
             <RecipeJsonLd 

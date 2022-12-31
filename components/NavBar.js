@@ -29,7 +29,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import {UserContext} from '../pages/_app'
-
+import SelectTagComponent from './SelectTagComponent'
 
 
 export default function NavBar() {
@@ -660,11 +660,11 @@ export default function NavBar() {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography style={{textAlign: 'start'}}>
-                                    🔘 La sezione <strong>modifica profilo</strong> adesso si trova nella <strong>pagina del tuo profilo</strong>
-                                    <br></br>
-                                    🔘 La foto profilo accanto la ricerca in alto porterà alla <strong>pagina del tuo profilo</strong>
-                                    <br></br>
-                                    🔘 I tasti degli anime nella home non mostrano più un&apos;anteprima ma portano direttamente alla <strong>pagina dell&apos;anime</strong>
+
+                                    {/*<SelectTagComponent/>*/}
+
+                                    <strong>IN ARRIVO</strong>
+
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
