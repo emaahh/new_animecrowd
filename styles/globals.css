@@ -186,6 +186,6 @@ a {
     display: flex;
     align-items: center;
   }
-  .MuiAlert-message{
-    
+  .MuiInputLabel-animated{
+    font-size: 1rem!important;
   }
