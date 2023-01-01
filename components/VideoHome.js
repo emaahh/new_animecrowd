@@ -8,6 +8,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import VolumeUpRoundedIcon from '@mui/icons-material/VolumeUpRounded';
 import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import QueryBuilderRoundedIcon from '@mui/icons-material/QueryBuilderRounded';
 
 export default function VideoHome(props) {
 
@@ -31,11 +32,20 @@ export default function VideoHome(props) {
                 <br></br>
             </div>
             <Container maxWidth="sm" style={{maxHeight: '50px', left: '50%', transform: 'translate(-50%, -50%)', position: 'absolute', display: 'flex', zIndex: '300', bottom: '3vh'}}>
-                <Link href={'/anime/'+ props.id} passHref legacyBehavior>
-                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
-                        <PlayArrowRoundedIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>GUARDA</strong>
-                    </Button>
-                </Link>
+                {props.inarrivo == 'si'? 
+                    <Link href={'/anime/'+ props.id} passHref legacyBehavior>
+                        <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
+                            <QueryBuilderRoundedIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>IN ARRIVO</strong>
+                        </Button>
+                    </Link>
+                :
+                    <Link href={'/anime/'+ props.id} passHref legacyBehavior>
+                        <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{paddingRight: '20px', paddingLeft: '20px', width: '100%', borderRadius: '15px', }}>
+                            <PlayArrowRoundedIcon sx={{ color: 'black', mr: 1, fontSize: 25 }}/><strong style={{fontSize: 20}}>GUARDA</strong>
+                        </Button>
+                    </Link>
+                }
+                
                 &nbsp;
                 {volume? 
                 

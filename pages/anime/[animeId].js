@@ -29,6 +29,9 @@ import Switch from '@mui/material/Switch';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
@@ -152,18 +155,23 @@ function AnimePage() {
             .then((res) => res.json())
             .then((data1) => {
                 setCurrentAnime(data1[0])
-                if(data1[0].IdAW != undefined){
-                    fetch('/api/findAnimeButton/' + data1[0].IdAW)
-                        .then((res) => res.json())
-                        .then((data2) => {
-                            setCurrentAnimeButton(data2)
-                            setCurrentEpisode(-1)
-                            setCurrentAnimeVideo('')
-                            setTimeout(() => {
-                                setLoading(false)
-                            }, 1000);
-                        })
+                if(data1[0].Stato != 'Non rilasciato'){
+                    if(data1[0].IdAW != undefined){
+                        fetch('/api/findAnimeButton/' + data1[0].IdAW)
+                            .then((res) => res.json())
+                            .then((data2) => {
+                                setCurrentAnimeButton(data2)
+                                setCurrentEpisode(-1)
+                                setCurrentAnimeVideo('')
+                                setTimeout(() => {
+                                    setLoading(false)
+                                }, 1000);
+                            })
+                    }
+                }else{
+                    setLoading(false)
                 }
+                
             })
         
     }, [animeId])
@@ -542,6 +550,18 @@ function AnimePage() {
                                         </TabList>
 
                                     </Box>
+
+                                    {
+                                        currentAnime.Stato == 'Non rilasciato'?
+                                            <>
+                                                <br></br>
+                                                <Alert severity="info" style={{borderRadius: "15px", justifyContent: 'center'}}>
+                                                    <strong>ATTENZIONE</strong> questa serie non è stata ancora rilasciata, <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer"><strong>clicca qui per tenerti aggiornato!</strong></a>
+                                                </Alert>
+                                            </>
+                                        :
+                                        null
+                                    }
 
                                     <TabPanel value="1" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
                                         <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>

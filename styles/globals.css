@@ -181,3 +181,11 @@ a {
   .MuiPaper-root:before{
     display: none;
   }
+
+  .MuiAlert-icon {
+    display: flex;
+    align-items: center;
+  }
+  .MuiAlert-message{
+    
+  }

@@ -244,6 +244,7 @@ export default function NavBar() {
     useEffect(() => {
         if(searchInput.current != null){
             searchInput.current.focus()
+            document.getElementsByClassName("searchInput")[0].focus()
         }
         if(isSearching){
             document.getElementsByTagName("body")[0].style.overflowY = "hidden"
@@ -254,9 +255,17 @@ export default function NavBar() {
     
 
     const openSearch = () => {
+        /*
+        console.log(state.right, state2.Altro)
+        if(state.right == false && state2.Altro == false){
+            setIsSearching(current => !current);
+            setSearchResult([])
+        }*/
+        setState({ ...state, ['right']: false });
+        setState2({ ...state2, ['Altro']: false });
         setIsSearching(current => !current);
         setSearchResult([])
-        
+       
     }
 
     async function changeName(params) {
@@ -288,7 +297,7 @@ export default function NavBar() {
                         
                         <button id="buttAccountNav" onClick={isLog ? ()=>router.push('/utente/'+accountData[0]._id) : toggleDrawer('right', !state.right)} style={{cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}>{!isLog ? <NoAccountsIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/> : <Avatar alt="Avatar"sx={{ width: 26, height: 26 }} src={currentPic? URL.createObjectURL(currentPic) : 'https://i.imgur.com/'+accountData[0].Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg'} />}</button>
                         
-                        <button onClick={toggleDrawer2('Altro', !state2.Altro)} style={{padding: '0px', cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><MoreVertRoundedIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/></button>
+                        <button id="altroo" onClick={toggleDrawer2('Altro', !state2.Altro)} style={{padding: '0px', cursor: 'pointer', backgroundColor: 'transparent', borderColor: 'transparent', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}><MoreVertRoundedIcon class="ICOW" sx={{ color: 'white', fontSize: 24 }}/></button>
                         
                     </div>
                 </nav>
@@ -297,7 +306,7 @@ export default function NavBar() {
             {isSearching && ( 
                 <>
                     <div className="blur" style={{position: 'fixed', marginTop: '-80px', height: '120vh', width: '100vw', backgroundColor: 'rgba(0,0,0,0.6)', zIndex: '-1'}}></div>
-                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', justifyContent: 'center',zIndex: '1'}}>
 
                         <Container style={{}} maxWidth="sm">
                             <div style={{display: 'flex'}}>
@@ -646,8 +655,9 @@ export default function NavBar() {
                 </SwipeableDrawer>
             }
 
+            {/*ALTRO*/}
             <SwipeableDrawer anchor={'right'} open={state2['Altro']} onClose={toggleDrawer2('Altro', false)} onOpen={toggleDrawer2('Altro', true)}  ref={animationParent}>
-                <Container style={{padding: '50px'}} maxWidth="sm"  ref={animationParent}>
+                <Container style={{paddingTop: '50px'}} maxWidth="sm"  ref={animationParent}>
 
                     <br></br>
                     <br></br>
@@ -661,14 +671,12 @@ export default function NavBar() {
                             <AccordionDetails>
                                 <Typography style={{textAlign: 'start'}}>
 
-                                    {/*<SelectTagComponent/>*/}
-                                    <strong>IN ARRIVO</strong>
+                                    <SelectTagComponent/>
 
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
 
-                        <br></br>
                         <br></br>
                         
                         {/*AGGIORNAMENTI*/}
@@ -678,6 +686,20 @@ export default function NavBar() {
                             </AccordionSummary>
                             <AccordionDetails>
 
+                                {/*VERSIONE 2.2*/}
+                                <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                        <Typography>VERSIONE 2.2</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography style={{textAlign: 'start'}}>
+                                            🔘 Reinserita la funzione <strong>ricerca con filtri</strong>, disponibile nel menù <strong>altro</strong>
+                                            <br></br>
+                                            🔘 Bug fix generale
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <br></br>
                                 {/*VERSIONE 2.1*/}
                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -701,7 +723,7 @@ export default function NavBar() {
                         <br></br>
 
                         <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
-                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.1</strong></p>
+                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.2</strong></p>
                         
                     </center>
 
