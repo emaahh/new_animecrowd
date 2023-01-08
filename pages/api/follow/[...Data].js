@@ -37,6 +37,7 @@ export default function handler(req, res) {
                     dbo.collection("Users").updateOne({Email: myemail, Password: mypass}, {$set: {Amici: oldPinUserArr}})
 
                     res.send(resultuser[0].NomeUtente);
+                    db.close();
                 }
                 else{
                     oldMiSeguono = [{_id:'no'},{_id: myid}]
@@ -46,6 +47,7 @@ export default function handler(req, res) {
                     dbo.collection("Users").updateOne({Email: myemail, Password: mypass}, {$set: {Amici: oldPinUserArr}})
 
                     res.send(resultuser[0].NomeUtente);
+                    db.close();
                 }
 
                 /*dbo.collection("Users").updateOne({_id : ObjectId(userid)}, {$set: {MiSeguono: newMiSeguono}})

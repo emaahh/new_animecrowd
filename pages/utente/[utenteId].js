@@ -236,6 +236,14 @@ function UtentePage() {
         setTiSegue(false)
         setAccountData(undefined)
         setLoading(true)
+
+        setCurrentProfile([{_id: 'o_id', NomeUtente: 'result[0].NomeUtente', Avatar: 'result[0].Avatar', DataAccount: 'result[0].DataAccount', Amici: [{}], MiSeguono: [{}], AnimeVisti: [{}], Badge: ''}])
+        setAnimeDaGuardare(null)
+        setAnimeDaContinuare(null)
+        setAnimeCompletati(null)
+        setAnimeDroppati(null)
+        setAnimePreferiti(null)
+
         fetch('/api/findUser/' + utenteId)
             .then((res) => res.json())
             .then((data1) => {

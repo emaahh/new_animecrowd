@@ -11,6 +11,7 @@ export default function handler(req, res) {
         dbo.collection("Anime").find({}).toArray(function(err, result) {
             if (err) throw err;
             res.send(result);
+            db.close();
         });
     });
 }

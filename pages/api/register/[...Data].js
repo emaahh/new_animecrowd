@@ -58,7 +58,7 @@ export default function handler(req, res) {
                 MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, db) {
                     if (err) throw err;
                     var dbo = db.db("animeDB");
-                    dbo.collection("Users").insertOne({ NomeUtente: datiaccount1, Email: datiaccount2, Password: datiaccount3, Avatar: "https://i.imgur.com/WMw4pS1.png", DataAccount: finalDate, CodiceRipristino: codiceSegretogenerato, Amici: [{ Amico: "" }] }, function (err, response) {
+                    dbo.collection("Users").insertOne({ NomeUtente: datiaccount1.trim(), Email: datiaccount2.trim(), Password: datiaccount3, Avatar: "https://i.imgur.com/WMw4pS1.png", DataAccount: finalDate, CodiceRipristino: codiceSegretogenerato, Amici: [{ Amico: "" }] }, function (err, response) {
                         if (err) throw err;
                         console.log(response)
 

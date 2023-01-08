@@ -157,15 +157,14 @@ function AnimePage() {
                 setCurrentAnime(data1[0])
                 if(data1[0].Stato != 'Non rilasciato'){
                     if(data1[0].IdAW != undefined){
+
+                        setLoading(false)
                         fetch('/api/findAnimeButton/' + data1[0].IdAW)
                             .then((res) => res.json())
                             .then((data2) => {
                                 setCurrentAnimeButton(data2)
                                 setCurrentEpisode(-1)
                                 setCurrentAnimeVideo('')
-                                setTimeout(() => {
-                                    setLoading(false)
-                                }, 1000);
                             })
                     }
                 }else{
@@ -552,7 +551,7 @@ function AnimePage() {
                                     </Box>
 
                                     {
-                                        currentAnime.Stato == 'Non rilasciato'?
+                                        currentAnime.Stato == 'Non rilasciato'||currentAnimeButton.length==0?
                                             <>
                                                 <br></br>
                                                 <Alert severity="info" style={{borderRadius: "15px", justifyContent: 'center'}}>

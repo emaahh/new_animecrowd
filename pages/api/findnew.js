@@ -28,6 +28,7 @@ export default async function handler(req, res) {
                             console.log('fatto')
                             
                             res.end(JSON.stringify(final_result));
+                            dbo.close();
                         }
                     }else{
                         i++
@@ -36,6 +37,7 @@ export default async function handler(req, res) {
                             console.log('fatto')
                             
                             res.end(JSON.stringify(final_result));
+                            dbo.close();
                         }
                     }
                     

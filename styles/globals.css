@@ -189,3 +189,11 @@ a {
   .MuiInputLabel-animated{
     font-size: 1rem!important;
   }
+  #navbar{
+    transition: all 0.5s;
+  }
+  .hidd{
+    max-height: 500px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(black 80%, transparent 100%);
+  }

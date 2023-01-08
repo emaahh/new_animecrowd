@@ -20,7 +20,7 @@ export default function handler(req, res) {
         dbo.collection("Users").find({Email: datiaccount1, Password: datiaccount2}).toArray(function(err, result) {
             if (err) throw err;
 
-                dbo.collection("Users").updateOne({Email: datiaccount1, Password: datiaccount2}, {$set: {NomeUtente: datiaccount3}})
+                dbo.collection("Users").updateOne({Email: datiaccount1, Password: datiaccount2}, {$set: {NomeUtente: datiaccount3.trim()}})
                 
 
                 res.send(toString(result[0].NomeUtente));

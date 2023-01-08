@@ -21,14 +21,18 @@ import VideoHome from '../components/VideoHome';
 import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
 import {UserContext} from './_app'
 
+
 export default function Home() {
   const valueee = React.useContext(UserContext);  
   
   const [animationParent] = useAutoAnimate()
 
+  const [voted, setVoted] = useState([])
   const [newEpisode, setNewEpisode] = useState([])
   const [allAnime, setAllAnime] = useState([])
   const [isLoading, setLoading] = useState(true)
+
+  const [hidd, setHidd] = useState(true)
 
   const [isLog, setIsLog] = useState(false);
   const [accountData, setAccountData] = useState(undefined);
@@ -61,6 +65,12 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true)
+
+    fetch('/api/findpopular')
+      .then((res) => res.json())
+      .then((data) => {
+        setVoted(data)
+      })
 
     fetch('/api/findnew')
       .then((res) => res.json())
@@ -135,12 +145,17 @@ export default function Home() {
 
           <div style={{marginTop: '-90px'}} ref={animationParent}>
             
-            
 
             <center>
               <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer">
                 <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended" style={{margin: '5px'}}>
                   <strong>GRUPPO TELEGRAM</strong>
+                </Fab>
+              </a>
+
+              <a href={'https://t.me/animecrowdnews'} target="_blank" rel="noreferrer">
+                <Fab sx={{height: '30px', backgroundColor: 'rgb(51, 168, 217)'}} variant="extended" style={{margin: '5px'}}>
+                  <strong>CANALE NEWS</strong>
                 </Fab>
               </a>
               
@@ -149,10 +164,16 @@ export default function Home() {
                   <strong>TikTok</strong>
                 </Fab>
               </a>
+
+              {/*<a href={'https://www.buymeacoffee.com/animecrowd'} target="_blank" rel="noreferrer">
+                <Fab sx={{height: '30px', backgroundColor: '#fd0'}} variant="extended" style={{margin: '5px'}}>
+                  <strong>Supporta AnimeCrowd</strong>
+                </Fab>
+              </a>*/}
             </center>
 
             
-
+            {/*CONTINUA*/}
             {
               isLog?
                 animeDaContinuare.length!=0 ? 
@@ -177,7 +198,8 @@ export default function Home() {
               : 
                 null
             }
-
+            
+            {/*NUOVI EPISODI*/}
             <strong><h1 id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVI EPISODI</h1></strong>
             <br></br>
 
@@ -198,11 +220,36 @@ export default function Home() {
             <br></br>
 
 
-            
-              <strong><h1 id="incorsohead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
-              <br></br>
 
-              <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+            {/*VOTATI*/}
+            <strong><h1 id="nuoviephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>I PIÙ VOTATI</h1></strong>
+            <p style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif', marginTop: '-20px', marginBottom: '16px'}}>su myanimelist</p>
+            <br></br>
+
+            <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+
+              {voted.sort((a, b) => b.Valutazione - a.Valutazione).map((_, index) => (
+                <Grid item key={index} style={{maxWidth: '400px'}}>
+                  <CardComponent Votato="si" Voto={_.Valutazione} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Generi={_.Generi}/>
+                </Grid>
+              ))}
+
+              {newEpisode.length==0?
+                <p>Nessuna classifica trovata</p>
+              :null}
+                
+            </Grid> 
+
+            <br></br>
+
+
+
+
+            {/*IN CORSO*/}
+            <strong><h1 id="incorsohead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>IN CORSO</h1></strong>
+            <br></br>
+
+            <Grid container className={hidd==true? 'hidd':''} columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
                 {allAnime.reverse().map((_, index) => (
                   _.Stato == 'In corso'?
@@ -212,24 +259,28 @@ export default function Home() {
                   : null
                 ))}
                 
-              </Grid> 
-
-              <br></br>
+            </Grid> 
+            <center><h4 style={{cursor:'pointer'}} onClick={()=>setHidd(!hidd)}>mostra {hidd==false? 'meno':'tutto'}</h4></center>
+            
+            <br></br>
               
-              <strong><h1 id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
-              <br></br>
 
-              <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
-                {allAnime.reverse().slice(-4).reverse().map((_, index) => (
-                  <Grid item key={index} style={{maxWidth: '400px'}}>
-                    <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
-                  </Grid>
-                ))}
+            {/*IN CORSO*/}
+            <strong><h1 id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
+            <br></br>
+
+            <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+
+              {allAnime.reverse().slice(-4).reverse().map((_, index) => (
+                <Grid item key={index} style={{maxWidth: '400px'}}>
+                  <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                </Grid>
+              ))}
                 
-              </Grid> 
+            </Grid> 
 
-              <br></br>
+            <br></br>
 
           </div>
 

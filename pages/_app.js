@@ -39,26 +39,12 @@ function MyApp({ Component, pageProps }) {
     function scrollFunction() {
 
         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-            document.getElementById("navbar").style.backgroundColor = "black";
+            document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0,0.5)";
+            document.getElementById("navbar").style.backdropFilter = "blur(50px)"
+            
         } else {
-            document.getElementById("navbar").style.backgroundColor = "transparent";
-        }
-        if(document.getElementById("nuoviephead") != null){
-
-          
-            if (document.body.scrollTop > 500 && document.body.scrollTop < 1100 || document.documentElement.scrollTop > 500 && document.documentElement.scrollTop < 1100) {
-              document.getElementById("nuoviephead").style = " transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 2; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
-            }else{
-              document.getElementById("nuoviephead").style = " transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
-            }
-
-            if (document.body.scrollTop > 1100 && document.body.scrollTop < 5050 || document.documentElement.scrollTop > 1100 && document.documentElement.scrollTop < 5050) {
-              document.getElementById("incorsohead").style = " transform: translate(-2.5%, 0%); text-align: center; font-size: 20px; z-index: 2; position: fixed; top: 45px; padding-left: 4.5vw; padding-top: 25px; padding-bottom: 15px; background-color: rgba(0,0,0,0.5); width: -webkit-fill-available; backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);";
-            }else{
-              document.getElementById("incorsohead").style = " transform: translate(0%, 0%); text-align: left; font-size: 2em; position: relative; top: auto; padding-left: 4.5vw; height: auto; backdrop-filter: none;";
-            }
-          
-
+          document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0,0)";
+            document.getElementById("navbar").style.backdropFilter = "blur(0px)"
         }
     }
 }, [])
@@ -81,6 +67,8 @@ function MyApp({ Component, pageProps }) {
           <NavBar />
 
           <Component {...pageProps}/> 
+
+          {/*<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="animecrowd" data-description="Support me on Buy me a coffee!" data-message="Grazie di utilizzare AnimeCrowd ❤️, se credi nel progetto puoi aiutarci con il suo mantenimento mensile, basta veramente poco." data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>*/}
         </div>
         
         <Analytics />

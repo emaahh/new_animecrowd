@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import Container from '@mui/material/Container';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded';
 
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 
@@ -49,6 +50,13 @@ function CardComponent(props) {
                             {props.Nome}
                             
                         </Typography>
+                        {props.Votato == "si"?
+                            <Typography variant="p" color="text.secondary" component="div" noWrap>
+                                <strong>Voto:</strong> {props.Voto}/10
+                            </Typography>
+                        :
+                            null
+                        }
                         {
                             !props.EPISODE?
                                 <>
@@ -99,14 +107,19 @@ function CardComponent(props) {
             </Card>
         </BrowserView>
         <MobileView>
-            <div style={{padding: '10px',}} onClick={() => router.push('/anime/'+props.Id)}>
+            <div style={{padding: '10px',}}>
                 <CardMedia
+                    onClick={() => router.push('/anime/'+props.Id)}
                     component="img"
                     sx={{ width: 151 }}
-                    style={{objectFit: 'cover', height: '200px', borderRadius: '15px'}}
+                    style={{objectFit: 'cover', height: '200px', borderTopLeftRadius: '15px', borderTopRightRadius: '15px'}}
                     image={props.Copertina}
                     alt={'Copertina di '+ props.Nome}
                 />
+                
+                <Button className="btnPlayCopertina" onClick={toggleDrawer('bottom', true)} variant="contained" sx={{backgroundColor: 'white'}} style={{width: '100%', borderBottomLeftRadius: '15px', borderBottomRightRadius: '15px', borderTopLeftRadius: '0', borderTopRightRadius: '0'}}>
+                    <RemoveRedEyeRoundedIcon sx={{ color: 'black'}}/><strong>&nbsp;Di più</strong>
+                </Button>
             </div>
 
         </MobileView>
@@ -127,7 +140,7 @@ function CardComponent(props) {
                             alt={'Copertina di '+ props.Nome}
                         />
 
-                        <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{props.Nome}</strong></h1>
+                        <h3 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{props.Nome}</strong></h3>
                             
                         <Link href={'/anime/'+props.Id} passHref legacyBehavior>
                             <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}} style={{width: '100%', borderRadius: '15px'}}>
@@ -144,11 +157,21 @@ function CardComponent(props) {
                         <table style={{width: '100%', textAlign: 'center', tableLayout: 'fixed', opacity: '0.5'}}>
                             <tr>
                                 <th>STATO</th>
-                                <th>USCITA</th>
+                                
+                                {props.Votato == "si"?
+                                    <th>Voto</th>
+                                :
+                                    <th>USCITA</th>
+                                }
                             </tr>
                             <tr>
-                                <td>{props.Stato}</td>
-                                <td>{props.Uscita}</td>
+                                <td style={{fontSize: '13px'}}>{props.Stato}</td>
+                                {props.Votato == "si"? 
+                                    <td style={{fontSize: '13px'}}>{props.Voto}/10</td>                     
+                                :    
+                                    <td style={{fontSize: '13px'}}>{props.Uscita}</td>
+                                }
+                                
                             </tr>
                         </table>
                     </center>
@@ -160,7 +183,7 @@ function CardComponent(props) {
                                 <th>GENERI</th>
                             </tr>
                             <tr>
-                                <td>{props.Generi.replace(/ - /g, ' | ')}</td>
+                                <td style={{fontSize: '12px'}}>{props.Generi}</td>
                             </tr>
                         </table>
                     </center>

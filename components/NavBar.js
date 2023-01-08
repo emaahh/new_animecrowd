@@ -685,7 +685,26 @@ export default function NavBar() {
                                 <Typography>🔔 AGGIORNAMENTI</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-
+                                 {/*VERSIONE 2.3*/}
+                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                        <Typography>VERSIONE 2.3</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography style={{textAlign: 'start'}}>
+                                            🔘 Introdotta sezione <strong>i più votati</strong> disponibile nella home
+                                            <br></br>
+                                            🔘 Migliorate le sezioni della <strong>home</strong> su mobile
+                                            <br></br>
+                                            🔘 Diverse migliorate grafiche tra cui il raggruppmento nella <strong>home</strong> della sezione <strong>in corso</strong>
+                                            <br></br>
+                                            🔘 Tempo di caricamento della pagina degli anime <strong>ridotto</strong>
+                                            <br></br>
+                                            🔘 Bug fix generale
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <br></br>
                                 {/*VERSIONE 2.2*/}
                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -723,7 +742,7 @@ export default function NavBar() {
                         <br></br>
 
                         <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
-                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.2</strong></p>
+                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.3</strong></p>
                         
                     </center>
 
