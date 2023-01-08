@@ -120,7 +120,7 @@ export default function Home() {
         <link rel="canonical" href="https://animecrowd.it/" />
         <meta name="keywords" content="Anime, Naruto, Onepiece, Episodi, Puntate, Toriko, Kuroko, Inazuma, Oav, Film, Faunsub, Traduttori, Fairy, Tail, bleach, hunter, sword, art, online, pokémon, infinite, stratos, log, horizon, blazblue, tokyo, ravens, soul, eater, outbreak, company, ecchi, dragon, ball, super, fullmetal, quanzhi, fashi, anime streaming, anime sub ita, anime ita, AnimeCrowd, Anime Streaming, Anime Streaming ITA, Streaming Anime SUB ITA, Streaming Anime ITA, Lista Anime ITA, Lista Anime SUB ITA, "/>
         <meta property="og:image" content="https://www.animecrowd.it/favicon.ico"></meta>
-        <meta name="author" content="AnimeCrowd Staff"></meta>
+        <meta name="author" content="AnimeCrowd"></meta>
         <meta name="msapplication-TileColor" content="#000000"></meta>
         <meta name="theme-color" content="#000000"></meta>
 
