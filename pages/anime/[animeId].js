@@ -62,7 +62,7 @@ function AnimePage() {
     const router = useRouter()
     const { animeId } = router.query
 
-    const [currentAnime, setCurrentAnime] = useState({Nome: "non trovato", Trama: "non trovato", Copertina: "non trovato", Stato: "non trovato", Uscita: "non trovato", Generi: "non trovato"})
+    const [currentAnime, setCurrentAnime] = useState({Nome: "non trovato", Trama: "Guarda ora gratis", Copertina: "non trovato", Stato: "non trovato", Uscita: "non trovato", Generi: "non trovato"})
     const [currentAnimeButton, setCurrentAnimeButton] = useState([])
     const [isLoading, setLoading] = useState(true)
     const [currentEpisode, setCurrentEpisode] = useState(-1)
