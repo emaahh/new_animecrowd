@@ -244,6 +244,39 @@ function AnimePage() {
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
+    function handleClose(param){
+        setAnchorEl(null);
+        if(param == 0){
+            // da guaardare
+            setListState(0)
+            fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+        }else if(param == 1){
+            // in corso
+            setListState(1)
+            fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+        }else if(param == 2){
+            // completato
+            setListState(2)
+            fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+        }else if(param == 3){
+            // droppato
+            setListState(3)
+            fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+        }else if(param == 4){
+            // preferito
+            setFavorite(true)
+            fetch("/api/addToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+        }else if(param == 5){
+            // rimuovi
+            setListState(null)
+            fetch("/api/removeToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+        }else if(param == 6){
+            // non preferito
+            setFavorite(false)
+            fetch("/api/removeToList/"+ getCookie('email') + '/' + getCookie('password') + '/' + animeId + '/' + param)
+        }
+    }
+    /*
     const handleClose = (param) => {
         setAnchorEl(null);
         switch (param) {
@@ -285,6 +318,7 @@ function AnimePage() {
             
         }
     };
+    */
 
     function autoPlayActiveDeactive(){
         var vid = document.getElementById("myVideo");
