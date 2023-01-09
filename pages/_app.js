@@ -41,10 +41,12 @@ function MyApp({ Component, pageProps }) {
         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
             document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0,0.5)";
             document.getElementById("navbar").style.backdropFilter = "blur(50px)"
+            document.getElementById("navbar").className= "blur"
             
         } else {
-          document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0,0)";
+            document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0,0)";
             document.getElementById("navbar").style.backdropFilter = "blur(0px)"
+            document.getElementById("navbar").className= ""
         }
     }
 }, [])

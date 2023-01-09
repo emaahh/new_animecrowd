@@ -197,3 +197,6 @@ a {
     overflow: hidden;
     -webkit-mask-image: linear-gradient(black 80%, transparent 100%);
   }
+  .blur{
+    -webkit-backdrop-filter: blur(50px)!important;
+  }

@@ -578,6 +578,8 @@ function AnimePage() {
                                                 }
                                                 else if(currentAnimeButton.length <= 1300){
                                                     return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label="1000 - 1100" value="11" onClick={()=> handleChange(1, '11')}/><Tab label={"1100 - 1200"} value="12" onClick={()=> handleChange(1, '12')}/><Tab label={"1200 - "+ currentAnimeButton.length} value="13" onClick={()=> handleChange(1, '13')}/></>
+                                                }else if(currentAnimeButton.length <= 1400){
+                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label="1000 - 1100" value="11" onClick={()=> handleChange(1, '11')}/><Tab label={"1100 - 1200"} value="12" onClick={()=> handleChange(1, '12')}/><Tab label={"1200 - 1300"} value="13" onClick={()=> handleChange(1, '13')}/><Tab label={"1300 - "+ currentAnimeButton.length} value="14" onClick={()=> handleChange(1, '14')}/></>
                                                 }
                                             })()}
                                         </TabList>
@@ -756,6 +758,19 @@ function AnimePage() {
                                         <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
                                             {currentAnimeButton.map((_, index) => (
                                                 index>1199&&index<=1299 ? 
+                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
+                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
+                                                        <strong>EP {_._id+1}</strong>
+                                                    </Button>
+                                                </Grid>
+                                                : null
+                                            ))}
+                                        </Grid>
+                                    </TabPanel>
+                                    <TabPanel value="14" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
+                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+                                            {currentAnimeButton.map((_, index) => (
+                                                index>1299&&index<=1399 ? 
                                                 <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
                                                     <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
                                                         <strong>EP {_._id+1}</strong>
