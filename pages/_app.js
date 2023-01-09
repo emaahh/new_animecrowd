@@ -71,6 +71,12 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps}/> 
 
           {/*<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="animecrowd" data-description="Support me on Buy me a coffee!" data-message="Grazie di utilizzare AnimeCrowd ❤️, se credi nel progetto puoi aiutarci con il suo mantenimento mensile, basta veramente poco." data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>*/}
+          <script async="async" data-cfasync="false" src="//pl17727417.highperformancecpmgate.com/65b96abcfdde95022fd25ce3998d9433/invoke.js"></script>
+          <div id="container-65b96abcfdde95022fd25ce3998d9433"></div>
+          <script async="async" data-cfasync="false" src="//pl18252550.highcpmrevenuenetwork.com/9dea030dc93e767553bb9c0061cc5940/invoke.js"></script>
+          <div id="container-9dea030dc93e767553bb9c0061cc5940"></div>
+          <script async="async" data-cfasync="false" src="//pl18252549.highcpmrevenuenetwork.com/6f3cae702227cd5f51b5ce0f8350e6c0/invoke.js"></script>
+          <div id="container-6f3cae702227cd5f51b5ce0f8350e6c0"></div>
         </div>
         
         <Analytics />
