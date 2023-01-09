@@ -851,7 +851,7 @@ function AnimePage() {
                                 <br></br>
                                 <center>
                                 <div style={{maxWidth: '90%'}}>
-                                    <script id="show-banner">
+                                    <script async="async" data-cfasync="false" id="show-banner">
                                         {`atOptions = {
                                             'key' : '71fa4d7e38a53066cc82942f95e9ebec',
                                             'format' : 'iframe',
@@ -861,7 +861,7 @@ function AnimePage() {
                                         };
                                         `}
                                     </script>
-                                    <script src="https://www.effectivecreativeformat.com/71fa4d7e38a53066cc82942f95e9ebec/invoke.js"></script>
+                                    <script async="async" data-cfasync="false" src="https://www.effectivecreativeformat.com/71fa4d7e38a53066cc82942f95e9ebec/invoke.js"></script>
                                 </div>
                                 </center>
                                                                 
