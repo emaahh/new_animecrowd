@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import Script from 'next/script'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
