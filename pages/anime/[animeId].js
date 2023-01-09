@@ -849,12 +849,13 @@ function AnimePage() {
                                 <p style={{fontFamily: 'Work Sans, sans-serif', fontWeight: 'extrabold'}}>Aggiunto al sito da <strong style={{textTransform: 'uppercase'}}>{currentAnime.Richiedente}</strong></p>
                                 
                                 <br></br>
+                                
                                 <Script id="show-banner">
                                     {`atOptions = {
                                         'key' : '71fa4d7e38a53066cc82942f95e9ebec',
                                         'format' : 'iframe',
                                         'height' : 60,
-                                        'width' : 468,
+                                        'width' : 100%,
                                         'params' : {}
                                     };
                                     `}
