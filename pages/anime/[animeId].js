@@ -849,19 +849,21 @@ function AnimePage() {
                                 <p style={{fontFamily: 'Work Sans, sans-serif', fontWeight: 'extrabold'}}>Aggiunto al sito da <strong style={{textTransform: 'uppercase'}}>{currentAnime.Richiedente}</strong></p>
                                 
                                 <br></br>
-                                
-                                <script id="show-banner">
-                                    {`atOptions = {
-                                        'key' : '71fa4d7e38a53066cc82942f95e9ebec',
-                                        'format' : 'iframe',
-                                        'height' : 60,
-                                        'width' : 468,
-                                        'params' : {}
-                                    };
-                                    `}
-                                </script>
-                                <script src="https://www.effectivecreativeformat.com/71fa4d7e38a53066cc82942f95e9ebec/invoke.js"></script>
-                                
+                                <center>
+                                <div style={{maxWidth: '90%'}}>
+                                    <script id="show-banner">
+                                        {`atOptions = {
+                                            'key' : '71fa4d7e38a53066cc82942f95e9ebec',
+                                            'format' : 'iframe',
+                                            'height' : 60,
+                                            'width' : 468,
+                                            'params' : {}
+                                        };
+                                        `}
+                                    </script>
+                                    <script src="https://www.effectivecreativeformat.com/71fa4d7e38a53066cc82942f95e9ebec/invoke.js"></script>
+                                </div>
+                                </center>
                                                                 
                                 {currentAnime.Nome} AnimeCrowd - {currentAnime.Nome} Anime Crowd - {currentAnime.Nome} Gratis - {currentAnime.Nome} SUB ITA - {currentAnime.Nome} ITA - Streaming {currentAnime.Nome} Episodio 5 - Download {currentAnime.Nome} Episodio 5 - {currentAnime.Nome} Episodi ITA Download e Streaming - {currentAnime.Nome} Episodi SUB ITA Download e Streaming - {currentAnime.Nome} Episodi ITA Streaming Online - {currentAnime.Nome} Episodi SUB Streaming Online - {currentAnime.Nome} SUB ITA Lista episodi - {currentAnime.Nome} ITA Lista episodi - {currentAnime.Nome} Streaming Lista episodi - {currentAnime.Nome} Download Lista episodi - {currentAnime.Nome} Download SUB ITA - {currentAnime.Nome} Download ITA - {currentAnime.Nome} Streaming SUB ITA - {currentAnime.Nome} Streaming ITA - {currentAnime.Nome} Episodi ITA - {currentAnime.Nome} Episodi SUB ITA - {currentAnime.Nome} AnimeUnity - {currentAnime.Nome} AnimeWorld - {currentAnime.Nome} DreamSub - {currentAnime.Nome} Animeleggendari - {currentAnime.Nome} AnimeLove - {currentAnime.Nome} AnimeSaturn
                             </p>
