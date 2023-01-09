@@ -292,11 +292,11 @@ export default function Home() {
     <br></br>
     <br></br>
 
-    <script async="async" data-cfasync="false" src="//pl17727417.highperformancecpmgate.com/65b96abcfdde95022fd25ce3998d9433/invoke.js"></script>
+    <Script async="async" data-cfasync="false" src="//pl17727417.highperformancecpmgate.com/65b96abcfdde95022fd25ce3998d9433/invoke.js"></Script>
     <div id="container-65b96abcfdde95022fd25ce3998d9433"></div>
-    <script async="async" data-cfasync="false" src="//pl18252550.highcpmrevenuenetwork.com/9dea030dc93e767553bb9c0061cc5940/invoke.js"></script>
+    <Script async="async" data-cfasync="false" src="//pl18252550.highcpmrevenuenetwork.com/9dea030dc93e767553bb9c0061cc5940/invoke.js"></Script>
     <div id="container-9dea030dc93e767553bb9c0061cc5940"></div>
-    <script async="async" data-cfasync="false" src="//pl18252549.highcpmrevenuenetwork.com/6f3cae702227cd5f51b5ce0f8350e6c0/invoke.js"></script>
+    <Script async="async" data-cfasync="false" src="//pl18252549.highcpmrevenuenetwork.com/6f3cae702227cd5f51b5ce0f8350e6c0/invoke.js"></Script>
     <div id="container-6f3cae702227cd5f51b5ce0f8350e6c0"></div>
     
     </div>
