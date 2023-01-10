@@ -131,7 +131,7 @@ export default function Home() {
       
         <link rel="preload" href="/eventoNatale/slitta.png" as="image"></link>
 
-        
+        <meta name="Trafficstars" content="animecrowdoff"></meta>
       </Head>
 
       {isLoading == true ?
