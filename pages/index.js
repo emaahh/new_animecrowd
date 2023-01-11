@@ -141,7 +141,7 @@ export default function Home() {
         <>
           <Carousel interval={10000} fullHeightHover={false} cycleNavigation={true} navButtonsAlwaysVisible={false} indicators={false} animation={'slide'} duration={500} sx={{top: '-70px', position: 'relative', zIndex: '-9999'}}>
             <Paper style={{backgroundColor: 'black', backgroundImage: 'none',}}>
-              <VideoHome Titolo="VINLAND SAGA 2" OP="https://i.imgur.com/Evp6uKA.mp4" id="63b16a2846272d1ff302d8f5" inarrivo="no"/>
+              <VideoHome Titolo="VINLAND SAGA 2" OP="https://i.imgur.com/xzmdmm9.mp4" id="63b16a2846272d1ff302d8f5" inarrivo="no"/>
             </Paper>
           </Carousel>
           
@@ -308,7 +308,7 @@ export default function Home() {
             cols: 4,
             rows: 1,
             mobileEnabled: false,
-            title: "Suggested for you",
+            title: "",
             titlePosition: "left",
             adsByPosition: "right",
           });
