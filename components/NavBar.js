@@ -248,6 +248,7 @@ export default function NavBar() {
         }
         if(isSearching){
             document.getElementsByTagName("body")[0].style.overflowY = "hidden"
+            document.getElementById("navbar").style.backdropFilter = "none"
         }else{
             document.getElementsByTagName("body")[0].style.overflowY = "scroll"
         }
@@ -663,7 +664,7 @@ export default function NavBar() {
                     <br></br>
 
                     <center  ref={animationParent}>
-
+                        {/*RICERCA FILTRI*/}
                         <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                                 <Typography>🎚️ RICERCA CON FILTRI</Typography>
@@ -738,6 +739,17 @@ export default function NavBar() {
                             </AccordionDetails>
                         </Accordion>
                         
+                        <br></br>
+                        
+                        <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                <Typography>❤️ Supportaci</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <iframe id='kofiframe' src='https://ko-fi.com/animecrowd/?hidefeed=true&widget=true&embed=true' style={{borderRadius: '15px', border:'none', width:'100%', padding:'4px', background:'#f9f9f9'}} height='712' title='animecrowd'></iframe>
+                            </AccordionDetails>
+                        </Accordion>
+
                         <br></br>
                         <br></br>
 

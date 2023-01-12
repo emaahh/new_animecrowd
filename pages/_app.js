@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useRouter } from 'next/router'
+import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/react';
 
 import Head from 'next/head'
@@ -41,11 +42,11 @@ function MyApp({ Component, pageProps }) {
         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
             document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0,0.5)";
             document.getElementById("navbar").style.backdropFilter = "blur(50px)"
-            document.getElementById("navbar").className= "blur"
+            document.getElementById("navbar").className= "blurnav"
             
         } else {
             document.getElementById("navbar").style.backgroundColor = "rgba(0,0,0,0)";
-            document.getElementById("navbar").style.backdropFilter = "blur(0px)"
+            document.getElementById("navbar").style.backdropFilter = "none"
             document.getElementById("navbar").className= ""
         }
     }
@@ -71,6 +72,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps}/> 
 
           {/*<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="animecrowd" data-description="Support me on Buy me a coffee!" data-message="Grazie di utilizzare AnimeCrowd ❤️, se credi nel progetto puoi aiutarci con il suo mantenimento mensile, basta veramente poco." data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>*/}
+        
         </div>
         
         <Analytics />

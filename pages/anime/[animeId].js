@@ -51,6 +51,8 @@ import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
+import CardComponent from '/components/CardComponent';
+
 
 import {UserContext} from '../_app'
 
@@ -70,6 +72,9 @@ function AnimePage() {
     const [currentEpisode, setCurrentEpisode] = useState(-1)
     const [autoPlay, setAutoPlay] = useState(false)
     const [currentVideo, setCurrentAnimeVideo] = useState('')
+
+    const [allAnime, setAllAnime] = useState([])
+    const [correlati, setCorrelati] = useState([])
 
     const [listState, setListState] = useState(null)
     const [favorite, setFavorite] = useState(false)
@@ -153,6 +158,14 @@ function AnimePage() {
         setFavorite(false)
         setAccountData(undefined)
         setLoading(true)
+        setCorrelati([])
+
+        fetch('/api/allanimeapi')
+            .then((res) => res.json())
+            .then((data) => {
+                setAllAnime(data)
+            })
+
         fetch('/api/findAnime/' + animeId)
             .then((res) => res.json())
             .then((data1) => {
@@ -176,6 +189,23 @@ function AnimePage() {
             })
         
     }, [animeId])
+
+    useEffect(() => {
+        setCorrelati([])
+        setTimeout(() => {
+            setCorrelati([])
+            console.log(correlati)
+            
+            allAnime.map((_, index) => {
+                if(_.Nome.indexOf(currentAnime.Nome) > -1 && _._id != currentAnime._id || currentAnime.Nome.indexOf(_.Nome) > -1 && _._id != currentAnime._id){
+                    console.log(_.Nome)
+                    setCorrelati(correlati => [...correlati, _])
+                }
+            }) 
+
+        }, 1000);
+
+    }, [isLoading==false]);
 
     const openVideo = async (epnum, prop) => {
         const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdAW+'/'+prop);
@@ -835,6 +865,37 @@ function AnimePage() {
                                     :null  
                                 }
                             </div>
+                        </center>
+                    </Container>
+                    {/*
+                    
+                    {correlati.length>0?
+                        <>
+                            <strong><h1 id="altriephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>ALTRI DELLA SERIE</h1></strong>
+                            <br></br>
+
+                            <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
+                                    
+                                        
+                                {correlati.map((_, index) => (
+                                    <Grid item key={index} style={{maxWidth: '400px'}}>
+                                        <CardComponent EPISODE={true} Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
+                                    </Grid>
+                                ))}
+                            
+                                    
+
+                            </Grid>
+                        </>
+                    :null}
+                    
+                    */}
+                    
+
+                    <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">
+                        <center>
+
+                            <br></br>
 
 
                             <p style={{opacity: '.2', marginTop: '100px'}}>
@@ -863,12 +924,29 @@ function AnimePage() {
                 </>
             }
 
-            <Script id={unique_id} async="async" data-cfasync="false" src={`//pl17727417.highperformancecpmgate.com/65b96abcfdde95022fd25ce3998d9433/invoke.js?v=${unique_id}`}></Script>
-            <div id="container-65b96abcfdde95022fd25ce3998d9433"></div>
-            <Script id={unique_id} async="async" data-cfasync="false" src={`//pl18252550.highcpmrevenuenetwork.com/9dea030dc93e767553bb9c0061cc5940/invoke.js?v=${unique_id}`}></Script>
-            <div id="container-9dea030dc93e767553bb9c0061cc5940"></div>
-            <Script id={unique_id} async="async" data-cfasync="false" src={`//pl18252549.highcpmrevenuenetwork.com/6f3cae702227cd5f51b5ce0f8350e6c0/invoke.js?v=${unique_id}`}></Script>
-            <div id="container-6f3cae702227cd5f51b5ce0f8350e6c0"></div>
+            <div id="ts_ad_native_msor2"></div>
+            <Script
+                src="//cdn.runative-syndicate.com/sdk/v1/n.js"
+                onLoad={() => {
+                    NativeAd({
+                        element_id: "ts_ad_native_msor2",
+                        spot: "8cadf2d386f0498f9ab99b1f19f718f7",
+                        type: "label-under",
+                        cols: 6,
+                        rows: 1,
+                        title: "",
+                        titlePosition: "left",
+                        adsByPosition: "right",
+                        breakpoints: [
+                                {
+                                            "cols": 2,
+                                            "width": 770
+                                }
+                        ],
+                    });
+                }}
+            />
+            
         </div>
     )
 }

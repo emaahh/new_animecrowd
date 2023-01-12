@@ -308,7 +308,7 @@ export default function Home() {
             cols: 4,
             rows: 1,
             mobileEnabled: false,
-            title: "",
+            title: "Suggested for you",
             titlePosition: "left",
             adsByPosition: "right",
           });
