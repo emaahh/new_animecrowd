@@ -299,7 +299,7 @@ export default function Home() {
 
       <div id="ts_ad_native_rackl"></div>
       <Script
-        src="//cdn.runative-syndicate.com/sdk/v1/n.js"
+        src={`//cdn.runative-syndicate.com/sdk/v1/n.js?cacheControl=${new Date().getTime()}`}
         onLoad={() => {
           NativeAd({
             element_id: "ts_ad_native_rackl",

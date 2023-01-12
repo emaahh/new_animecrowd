@@ -888,7 +888,7 @@ function AnimePage() {
                             </Grid>
                         </>
                     :null}
-                    
+
                     */}
                     
 
@@ -926,7 +926,7 @@ function AnimePage() {
 
             <div id="ts_ad_native_msor2"></div>
             <Script
-                src="//cdn.runative-syndicate.com/sdk/v1/n.js"
+                src={`//cdn.runative-syndicate.com/sdk/v1/n.js?cacheControl=${new Date().getTime()}`}
                 onLoad={() => {
                     NativeAd({
                         element_id: "ts_ad_native_msor2",
