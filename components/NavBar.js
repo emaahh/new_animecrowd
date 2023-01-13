@@ -741,14 +741,16 @@ export default function NavBar() {
                         
                         <br></br>
                         
-                        <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
-                                <Typography>❤️ Supportaci</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <iframe id='kofiframe' src='https://ko-fi.com/animecrowd/?hidefeed=true&widget=true&embed=true' style={{borderRadius: '15px', border:'none', width:'100%', padding:'4px', background:'#f9f9f9'}} height='712' title='animecrowd'></iframe>
-                            </AccordionDetails>
-                        </Accordion>
+                        {/* 
+                            <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                    <Typography>❤️ Supportaci</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <iframe id='kofiframe' src='https://ko-fi.com/animecrowd/?hidefeed=true&widget=true&embed=true' style={{borderRadius: '15px', border:'none', width:'100%', padding:'4px', background:'#f9f9f9'}} height='712' title='animecrowd'></iframe>
+                                </AccordionDetails>
+                            </Accordion>
+                        */}
 
                         <br></br>
                         <br></br>
