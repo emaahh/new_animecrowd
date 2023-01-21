@@ -781,7 +781,7 @@ export default function NavBar() {
                                     <Typography>❤️ Supportaci</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <iframe id='kofiframe' src='https://ko-fi.com/animecrowd/?hidefeed=false&widget=true&embed=true' style={{borderRadius: '15px', border:'none', width:'100%', padding:'4px', background:'#f9f9f9'}} height='712' title='animecrowd'></iframe>
+                                    <iframe id='kofiframe' src='https://ko-fi.com/animecrowd/?widget=true&embed=true' style={{borderRadius: '15px', border:'none', width:'100%', padding:'4px', background:'#f9f9f9'}} height='712' title='animecrowd'></iframe>
                                 </AccordionDetails>
                         </Accordion>
                         
