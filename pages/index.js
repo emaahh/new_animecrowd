@@ -169,11 +169,11 @@ export default function Home() {
                 </Fab>
               </a>
 
-              {/*<a href={'https://www.buymeacoffee.com/animecrowd'} target="_blank" rel="noreferrer">
+              <a href={'https://ko-fi.com/animecrowd'} target="_blank" rel="noreferrer">
                 <Fab sx={{height: '30px', backgroundColor: '#fd0'}} variant="extended" style={{margin: '5px'}}>
                   <strong>Supporta AnimeCrowd</strong>
                 </Fab>
-              </a>*/}
+              </a>
             </center>
 
             
