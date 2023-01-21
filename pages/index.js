@@ -270,7 +270,7 @@ export default function Home() {
               
 
 
-            {/*IN CORSO*/}
+            {/*NUOVE AGGIUNTE*/}
             <strong><h1 id="nuoveaggiuntehead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>NUOVE AGGIUNTE</h1></strong>
             <br></br>
 

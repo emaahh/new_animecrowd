@@ -29,7 +29,9 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import {UserContext} from '../pages/_app'
+
 import SelectTagComponent from './SelectTagComponent'
+import Statistiche from './Statistiche'
 
 
 export default function NavBar() {
@@ -686,8 +688,28 @@ export default function NavBar() {
                                 <Typography>🔔 AGGIORNAMENTI</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                 {/*VERSIONE 2.3*/}
-                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                {/*VERSIONE 2.4*/}
+                                <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                        <Typography>VERSIONE 2.4</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography style={{textAlign: 'start'}}>
+                                            🔘 Introdotta sezione <strong>correlati</strong> nella pagine degli anime
+                                            <br></br>
+                                            🔘 Migliorate il sistema dei <strong>pulsanti episodio</strong>
+                                            <br></br>
+                                            🔘 Introdotta <strong>ricerca episodio</strong> nella pagine degli anime
+                                            <br></br>
+                                            🔘 Aggiunta sezione <strong>sostienici</strong> nel menù ALTRO
+                                            <br></br>
+                                            🔘 Bug fix generale
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <br></br>
+                                {/*VERSIONE 2.3*/}
+                                <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                                         <Typography>VERSIONE 2.3</Typography>
                                     </AccordionSummary>
@@ -738,25 +760,37 @@ export default function NavBar() {
 
                             </AccordionDetails>
                         </Accordion>
-                        
+
                         <br></br>
                         
-                        {/* 
-                            <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                        {/*TO DO
+                        <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                <Typography>📊 CARRIERA</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Statistiche/>
+                            </AccordionDetails>
+                        </Accordion>
+                        
+                        <br></br>
+                        */}
+                        
+                        <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                 <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                                     <Typography>❤️ Supportaci</Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
                                     <iframe id='kofiframe' src='https://ko-fi.com/animecrowd/?hidefeed=true&widget=true&embed=true' style={{borderRadius: '15px', border:'none', width:'100%', padding:'4px', background:'#f9f9f9'}} height='712' title='animecrowd'></iframe>
                                 </AccordionDetails>
-                            </Accordion>
-                        */}
+                        </Accordion>
+                        
 
                         <br></br>
                         <br></br>
 
                         <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
-                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.3</strong></p>
+                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.4</strong></p>
                         
                     </center>
 

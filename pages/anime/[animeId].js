@@ -33,9 +33,12 @@ import Divider from '@mui/material/Divider';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+
 
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
-
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -58,6 +61,7 @@ import {UserContext} from '../_app'
 
 
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import { Rule } from "@mui/icons-material";
 
 function AnimePage() {
     const unique_id = new Date().getTime();
@@ -66,12 +70,17 @@ function AnimePage() {
     const router = useRouter()
     const { animeId } = router.query
 
+    const queryEpInput = useRef(null);
+
     const [currentAnime, setCurrentAnime] = useState({Nome: "non trovato", Trama: "Guarda ora gratis", Copertina: "non trovato", Stato: "non trovato", Uscita: "non trovato", Generi: "non trovato"})
     const [currentAnimeButton, setCurrentAnimeButton] = useState([])
     const [isLoading, setLoading] = useState(true)
     const [currentEpisode, setCurrentEpisode] = useState(-1)
     const [autoPlay, setAutoPlay] = useState(false)
     const [currentVideo, setCurrentAnimeVideo] = useState('')
+    const [TitleButt, setTitleButt] = useState('')
+    const [queryEp, setQueryEp] = useState('')
+    const [resultEp, setResultEp] = useState([])
 
     const [allAnime, setAllAnime] = useState([])
     const [correlati, setCorrelati] = useState([])
@@ -207,12 +216,13 @@ function AnimePage() {
 
     }, [isLoading==false]);
 
-    const openVideo = async (epnum, prop) => {
+    const openVideo = async (epnum, prop, title) => {
         const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdAW+'/'+prop);
         const newData = await req.json();
     
         setCurrentAnimeVideo(newData[0]);
         setCurrentEpisode(epnum)
+        setTitleButt(title)
         setTimeout(() => {
             document.getElementById('playersWrapper').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
         }, 500);
@@ -369,13 +379,49 @@ function AnimePage() {
                 if(autoPlay){
                     console.log("dsdasd")
                     vid.autoplay = true
-                    openVideo(currentEpisode+1, currentAnimeButton[currentEpisode+1].src)
+                    openVideo(currentEpisode+1, currentAnimeButton[currentEpisode+1].src, currentAnimeButton[currentEpisode+1].title)
                 }
             };
         }else if(currentEpisode+1==currentAnimeButton.length){
             setAutoPlay(false)
         }
     }
+
+    {/* TODO */}
+    useEffect(() => {
+        let interval = setInterval(() => {
+
+            if(currentEpisode!=-1){
+                var video = document.getElementById("myVideo");
+                if (video.paused) {
+                    console.log("video is stopped");
+                    //DO SOMETING...
+                } else {
+                    console.log("video is playing");
+                     
+                    console.log("mando al db"); 
+                    
+                }
+            }
+
+        }, 60000);
+        return () => {
+            clearInterval(interval);
+        };
+    }, [currentEpisode]);
+
+    function serchingEp(event){
+        
+            setQueryEp(event.target.value)
+
+    }
+
+    useEffect(() => {
+
+            let result = currentAnimeButton.filter(el => el.title.indexOf(queryEp) != -1);
+            setResultEp(result)
+
+    }, [queryEp]);
     
 
     return (
@@ -566,255 +612,55 @@ function AnimePage() {
                         <center style={{zIndex: '1'}} >
                             <h3 style={{opacity: '.5'}}>EPISODI</h3>
 
+                            
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                                <SearchRoundedIcon class="ICOW" sx={{ color: 'white', mr: 1, my: 0.5  }}/>
+                                <TextField value={queryEp} className="queryEpInput" id="input-with-sx" label="CERCA EPISODIO" variant="standard" onChange={serchingEp} ref={queryEpInput}/>
+                                <CancelRoundedIcon class="ICOW" sx={{ color: 'white', mr: 1, my: 0.5  }} onClick={()=> setQueryEp('')}/>
+                            </Box>
+
+                            <br></br>
+                            <br></br>
+                            <br></br>
+
                             <Box sx={{ width: '100%', typography: 'body1' }} ref={animationParent}>
-                                <TabContext value={value} ref={animationParent}>
-                                    
-                                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 
-                                        <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                            {(() => {
-                                                if(currentAnimeButton.length <= 100){
-                                                    return <><Tab label={"1 - "+ currentAnimeButton.length} value="1" onClick={()=> handleChange(1, '1')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 200){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label={"100 - "+ currentAnimeButton.length} value="2" onClick={()=> handleChange(1, '2')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 300){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label={"200 - "+ currentAnimeButton.length} value="3" onClick={()=> handleChange(1, '3')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 400){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label={"300 - "+ currentAnimeButton.length} value="4"  onClick={()=> handleChange(1, '4')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 500){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label={"400 - "+ currentAnimeButton.length} value="5" onClick={()=> handleChange(1, '5')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 600){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label={"500 - "+ currentAnimeButton.length} value="6" onClick={()=> handleChange(1, '6')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 700){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label={"600 - "+ currentAnimeButton.length} value="7" onClick={()=> handleChange(1, '7')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 800){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label={"700 - "+ currentAnimeButton.length} value="8" onClick={()=> handleChange(1, '8')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 900){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label={"800 - "+ currentAnimeButton.length} value="9" onClick={()=> handleChange(1, '9')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 1000){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label={"900 - "+ currentAnimeButton.length} value="10" onClick={()=> handleChange(1, '10')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 1100){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label={"1000 - "+ currentAnimeButton.length} value="11" onClick={()=> handleChange(1, '11')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 1200){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label="1000 - 1100" value="11" onClick={()=> handleChange(1, '11')}/><Tab label={"1100 - "+ currentAnimeButton.length} value="12" onClick={()=> handleChange(1, '12')}/></>
-                                                }
-                                                else if(currentAnimeButton.length <= 1300){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label="1000 - 1100" value="11" onClick={()=> handleChange(1, '11')}/><Tab label={"1100 - 1200"} value="12" onClick={()=> handleChange(1, '12')}/><Tab label={"1200 - "+ currentAnimeButton.length} value="13" onClick={()=> handleChange(1, '13')}/></>
-                                                }else if(currentAnimeButton.length <= 1400){
-                                                    return <><Tab label="1 - 100" value="1" onClick={()=> handleChange(1, '1')}/><Tab label="100 - 200" value="2" onClick={()=> handleChange(1, '2')}/><Tab label="200 - 300" value="3" onClick={()=> handleChange(1, '3')}/><Tab label="300 - 400" value="4"  onClick={()=> handleChange(1, '4')}/><Tab label="400 - 500" value="5" onClick={()=> handleChange(1, '5')}/><Tab label="500 - 600" value="6" onClick={()=> handleChange(1, '6')}/><Tab label="600 - 700" value="7" onClick={()=> handleChange(1, '7')}/><Tab label="700 - 800" value="8" onClick={()=> handleChange(1, '8')}/><Tab label="800 - 900" value="9" onClick={()=> handleChange(1, '9')}/><Tab label="900 - 1000" value="10" onClick={()=> handleChange(1, '10')}/><Tab label="1000 - 1100" value="11" onClick={()=> handleChange(1, '11')}/><Tab label={"1100 - 1200"} value="12" onClick={()=> handleChange(1, '12')}/><Tab label={"1200 - 1300"} value="13" onClick={()=> handleChange(1, '13')}/><Tab label={"1300 - "+ currentAnimeButton.length} value="14" onClick={()=> handleChange(1, '14')}/></>
-                                                }
-                                            })()}
-                                        </TabList>
-
-                                    </Box>
-
-                                    {
-                                        currentAnime.Stato == 'Non rilasciato'||currentAnimeButton.length==0?
-                                            <>
-                                                <br></br>
-                                                <Alert severity="info" style={{borderRadius: "15px", justifyContent: 'center'}}>
-                                                    <strong>ATTENZIONE</strong> questa serie non è stata ancora rilasciata, <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer"><strong>clicca qui per tenerti aggiornato!</strong></a>
-                                                </Alert>
-                                            </>
+                                <Grid className="hidd" container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxHeight: '50vh',overflow: 'scroll!important',  overflowX: 'scroll!important'}}>
+                                    {queryEp != ''? 
+                                        resultEp.map((_, index) => (
+                                        
+                                            <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
+                                                <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: 'auto', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src, _.title)}>
+                                                    <strong>EP {_.title}</strong>
+                                                </Button>
+                                            </Grid>
+                                                
+                                        ))
                                         :
-                                        null
+                                        currentAnimeButton.map((_, index) => (
+                                        
+                                            <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
+                                                <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: 'auto', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src, _.title)}>
+                                                    <strong>EP {_.title}</strong>
+                                                </Button>
+                                            </Grid>
+                                                
+                                        ))
                                     }
 
-                                    <TabPanel value="1" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index<=99 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP <br></br> {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="2" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>99&&index<=199 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="3" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>199&&index<=299 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="4" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>299&&index<=399 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="5" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>399&&index<=499 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="6" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>499&&index<=599 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="7" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>599&&index<=699 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="8" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>699&&index<=799 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="9" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>799&&index<=899 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="10" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>899&&index<=999 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="11" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>999&&index<=1099 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="12" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>1099&&index<=1199 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="13" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>1199&&index<=1299 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-                                    <TabPanel value="14" sx={{paddingLeft: '0px', paddingRight: '0px', margin: '-15px'}}>
-                                        <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                                            {currentAnimeButton.map((_, index) => (
-                                                index>1299&&index<=1399 ? 
-                                                <Grid item key={index} style={{maxWidth: '400px', padding: '5px'}}>
-                                                    <Button className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}}  style={{width: '15px', borderRadius: '15px', }} key={index} onClick={() => openVideo(_._id, _.src)}>
-                                                        <strong>EP {_._id+1}</strong>
-                                                    </Button>
-                                                </Grid>
-                                                : null
-                                            ))}
-                                        </Grid>
-                                    </TabPanel>
-
-                                </TabContext>
+                                </Grid>
+                                {
+                                    currentAnime.Stato == 'Non rilasciato'||currentAnimeButton.length==0?
+                                      <>
+                                             <br></br>
+                                            <Alert severity="info" style={{borderRadius: "15px", justifyContent: 'center'}}>
+                                                 <strong>ATTENZIONE</strong> questa serie non è stata ancora rilasciata, <a href={'https://t.me/AnimeCrowd'} target="_blank" rel="noreferrer"><strong>clicca qui per tenerti aggiornato!</strong></a>
+                                            </Alert>
+                                        </>
+                                    :
+                                    null
+                                }
+                                
                             </Box>
                             
                             <div ref={animationParent} id="playersWrapper">
@@ -825,7 +671,7 @@ function AnimePage() {
                                 {currentEpisode!=-1?
                                     <div ref={animationParent}>
                                         
-                                            <h1 ref={animationParent} style={{opacity: '.5'}}>EPISODIO {currentEpisode+1}</h1> 
+                                            <h1 ref={animationParent} style={{opacity: '.5'}}>EPISODIO {TitleButt}</h1> 
                                             
                                         
                                         <video onEnded={videoEnd} poster={'/videoCover2.png'} id="myVideo" controls style={{width: '100%', height: '600px', zIndex: '2', marginTop: '30px'}} src={currentVideo}></video>
@@ -833,7 +679,7 @@ function AnimePage() {
                                         <br></br>
                                         <div style={{display: 'inline'}} ref={animationParent}>
                                             {currentEpisode>0 && currentEpisode!= -1 ?
-                                                <Fab style={{float: 'left', marginRight: '10px'}} variant="extended" onClick={() => openVideo(currentEpisode-1, currentAnimeButton[currentEpisode-1].src)}>
+                                                <Fab style={{float: 'left', marginRight: '10px'}} variant="extended" onClick={() => openVideo(currentEpisode-1, currentAnimeButton[currentEpisode-1].src, currentAnimeButton[currentEpisode-1].title)}>
                                                     <SkipPreviousIcon/>
                                                 </Fab>
                                                 :null
@@ -842,7 +688,7 @@ function AnimePage() {
                                             {currentEpisode+1==currentAnimeButton.length || currentEpisode== -1 ?
                                                 null
                                                 :
-                                                <Fab style={{float: 'left'}} variant="extended" onClick={()=> openVideo(currentEpisode+1, currentAnimeButton[currentEpisode+1].src)}>
+                                                <Fab style={{float: 'left'}} variant="extended" onClick={()=> openVideo(currentEpisode+1, currentAnimeButton[currentEpisode+1].src, currentAnimeButton[currentEpisode+1].title)}>
                                                     <SkipNextIcon/>
                                                 </Fab>
                                             }
@@ -867,9 +713,8 @@ function AnimePage() {
                             </div>
                         </center>
                     </Container>
-                    {/*
                     
-                    {correlati.length>0?
+                    {correlati.length>0? 
                         <>
                             <strong><h1 id="altriephead" style={{paddingLeft: '4.5vw', fontFamily: 'Work Sans, sans-serif'}}>ALTRI DELLA SERIE</h1></strong>
                             <br></br>
@@ -889,7 +734,6 @@ function AnimePage() {
                         </>
                     :null}
 
-                    */}
                     
 
                     <Container style={{padding: '50px', marginTop: '-200px', zIndex: '999999'}} maxWidth="lg">

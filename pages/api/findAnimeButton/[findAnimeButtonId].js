@@ -18,8 +18,9 @@ export default function handler(req, res) {
             newsRow.getElementsByTagName("a").forEach((element, index) => {
 
                 let d = element.getAttribute('href').replace('/play/'+findAnimeButtonId+'/', '')
+                let b = element.innerHTML
 
-                PreLink.push({_id: index, src: d})
+                PreLink.push({_id: index, src: d, title:b})
                         
             })
 
