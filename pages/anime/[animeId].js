@@ -63,6 +63,7 @@ import {UserContext} from '../_app'
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import { Rule } from "@mui/icons-material";
 
+
 function AnimePage() {
     const unique_id = new Date().getTime();
     const valueee = React.useContext(UserContext);  
@@ -438,8 +439,6 @@ function AnimePage() {
                 <meta name="theme-color" content="#000000"></meta>
 
 
-
-
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,700,1,200" />
 
@@ -610,7 +609,7 @@ function AnimePage() {
                         <br></br>
 
                         <center style={{zIndex: '1'}} >
-                            <h3 style={{opacity: '.5'}}>EPISODI</h3>
+                            <h3 style={{opacity: '.5'}}>{resultEp.length} EPISODI</h3>
 
                             
                             <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
@@ -625,7 +624,7 @@ function AnimePage() {
 
                             <Box sx={{ width: '100%', typography: 'body1' }} ref={animationParent}>
 
-                                <Grid className="hidd" container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxHeight: '50vh',overflow: 'scroll!important',  overflowX: 'scroll!important'}}>
+                                <Grid className="hidd" container columns={{ xs: 100, sm: 100, md: 100 }} style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', maxHeight: '50vh',overflow: 'scroll',  overflowX: 'scroll'}}>
                                     {queryEp != ''? 
                                         resultEp.map((_, index) => (
                                         
@@ -675,6 +674,8 @@ function AnimePage() {
                                             
                                         
                                         <video onEnded={videoEnd} poster={'/videoCover2.png'} id="myVideo" controls style={{width: '100%', height: '600px', zIndex: '2', marginTop: '30px'}} src={currentVideo}></video>
+                                        
+
                                         <br></br>
                                         <br></br>
                                         <div style={{display: 'inline'}} ref={animationParent}>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
 
+
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -513,6 +514,7 @@ export default function NavBar() {
                                         <Fab variant="extended" onClick={() => setLogPage(0)}>
                                             <strong>Ho un account</strong>
                                         </Fab>
+
                                     </div>
                             
                                 }

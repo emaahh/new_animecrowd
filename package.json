@@ -26,10 +26,12 @@
     "fs": "^0.0.1-security",
     "mongodb": "^3.7.3",
     "next": "^13.0.0",
+    "next-auth": "^4.18.8",
     "next-seo": "^5.15.0",
     "nodemailer": "^6.8.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
+    "react-chromecast": "^0.0.5-alpha",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-indiana-drag-scroll": "^2.2.0",
@@ -42,6 +44,7 @@
   },
   "devDependencies": {
     "eslint": "8.26.0",
-    "eslint-config-next": "^13.0.0"
+    "eslint-config-next": "^13.0.0",
+    "video.js": "^7.21.1"
   }
 }
