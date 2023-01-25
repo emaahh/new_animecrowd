@@ -609,7 +609,7 @@ function AnimePage() {
                         <br></br>
 
                         <center style={{zIndex: '1'}} >
-                            <h3 style={{opacity: '.5'}}>{resultEp.length} EPISODI</h3>
+                            <h3 style={{opacity: '.5'}}>{currentAnimeButton.length} EPISODI</h3>
 
                             
                             <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
