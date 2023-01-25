@@ -191,6 +191,15 @@ function AnimePage() {
                                 setCurrentEpisode(-1)
                                 setCurrentAnimeVideo('')
                             })
+                    }else if(data1[0].IdHW != undefined){
+                        setLoading(false)
+                        fetch('/api/findAnimeButtonHENTAI/' + data1[0].IdHW)
+                            .then((res) => res.json())
+                            .then((data2) => {
+                                setCurrentAnimeButton(data2)
+                                setCurrentEpisode(-1)
+                                setCurrentAnimeVideo('')
+                            })
                     }
                 }else{
                     setLoading(false)
@@ -218,15 +227,28 @@ function AnimePage() {
     }, [isLoading==false]);
 
     const openVideo = async (epnum, prop, title) => {
-        const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdAW+'/'+prop);
-        const newData = await req.json();
-    
-        setCurrentAnimeVideo(newData[0]);
-        setCurrentEpisode(epnum)
-        setTitleButt(title)
-        setTimeout(() => {
-            document.getElementById('playersWrapper').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-        }, 500);
+        if(data1[0].IdAW != undefined){
+            const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdAW+'/'+prop);
+            const newData = await req.json();
+        
+            setCurrentAnimeVideo(newData[0]);
+            setCurrentEpisode(epnum)
+            setTitleButt(title)
+            setTimeout(() => {
+                document.getElementById('playersWrapper').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+            }, 500);
+        }else if(data1[0].IdHW != undefined){
+            const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdHW+'/'+prop);
+            const newData = await req.json();
+        
+            setCurrentAnimeVideo(newData[0]);
+            setCurrentEpisode(epnum)
+            setTitleButt(title)
+            setTimeout(() => {
+                document.getElementById('playersWrapper').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+            }, 500);
+        }
+        
         
     };
 
