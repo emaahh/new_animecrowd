@@ -227,7 +227,8 @@ function AnimePage() {
     }, [isLoading==false]);
 
     const openVideo = async (epnum, prop, title) => {
-        if(data1[0].IdAW != undefined){
+        if(currentAnime.IdAW != undefined){
+
             const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdAW+'/'+prop);
             const newData = await req.json();
         
@@ -237,8 +238,10 @@ function AnimePage() {
             setTimeout(() => {
                 document.getElementById('playersWrapper').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
             }, 500);
-        }else if(data1[0].IdHW != undefined){
-            const req = await fetch('/api/findAnimeVideo/'+currentAnime.IdHW+'/'+prop);
+
+        }else if(currentAnime.IdHW != undefined){
+
+            const req = await fetch('/api/findAnimeVideoHENTAI/'+currentAnime.IdHW+'/'+prop);
             const newData = await req.json();
         
             setCurrentAnimeVideo(newData[0]);
@@ -247,6 +250,7 @@ function AnimePage() {
             setTimeout(() => {
                 document.getElementById('playersWrapper').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
             }, 500);
+
         }
         
         
