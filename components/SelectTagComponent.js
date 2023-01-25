@@ -175,6 +175,7 @@ export default function SelectTagComponent() {
                 : 
                                     
                     searchResult.map((_, index) => (
+                        _.IdAW?
                             <Link href={'/anime/'+ _._id} passHref key={_.id}>
                                 <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
                                     <CardMedia
@@ -190,6 +191,7 @@ export default function SelectTagComponent() {
                                     </div>
                                 </div>
                             </Link>
+                        :null
                     ))
                                 
                 }

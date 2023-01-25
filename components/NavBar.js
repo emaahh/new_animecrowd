@@ -62,6 +62,8 @@ export default function NavBar() {
     const [currentPic, setCurrentPic] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(false);
 
+    const [ricercaHentai, setRicercaHentai] = useState(false);
+
     function changePic(e){
         setCurrentPic(e.target.files[0])
         fetch("https://api.imgur.com/3/image",{
@@ -374,21 +376,41 @@ export default function NavBar() {
                                     
                                     searchResult.map((_, index) => (
                                         _.NomeUtente==undefined ?
-                                            <Link href={'/anime/'+ _._id} passHref onClick={openSearch} key={_.id}>
-                                                <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
-                                                    <CardMedia
-                                                        component="img"
-                                                        sx={{ width: 'auto', borderRadius: '10px', }}
-                                                        style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
-                                                        image={_.Copertina}
-                                                        alt={'Copertina di ' + _.Nome}
-                                                    />
-                                                    <div>
-                                                        <h4 style={{marginBottom: '0px'}}>{_.Nome}</h4>
-                                                        <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>STATO:</strong> {_.Stato} <strong>USCITA:</strong> {_.Uscita}</p>
+                                            _.IdAW?
+                                                <Link href={'/anime/'+ _._id} passHref onClick={openSearch} key={_.id}>
+                                                    <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
+                                                        <CardMedia
+                                                            component="img"
+                                                            sx={{ width: 'auto', borderRadius: '10px', }}
+                                                            style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
+                                                            image={_.Copertina}
+                                                            alt={'Copertina di ' + _.Nome}
+                                                        />
+                                                        <div>
+                                                            <h4 style={{marginBottom: '0px'}}>{_.Nome}</h4>
+                                                            <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>STATO:</strong> {_.Stato} <strong>USCITA:</strong> {_.Uscita}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </Link>
+                                                </Link>
+                                                :
+                                                    _.IdHW && ricercaHentai==true?
+                                                        <Link href={'/anime/'+ _._id} passHref onClick={openSearch} key={_.id}>
+                                                            <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
+                                                                <CardMedia
+                                                                    component="img"
+                                                                    sx={{ width: 'auto', borderRadius: '10px', }}
+                                                                    style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
+                                                                    image={_.Copertina}
+                                                                    alt={'Copertina di ' + _.Nome}
+                                                                />
+                                                                <div>
+                                                                    <h4 style={{marginBottom: '0px'}}>{_.Nome}</h4>
+                                                                    <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>STATO:</strong> {_.Stato} <strong>USCITA:</strong> {_.Uscita}</p>
+                                                                </div>
+                                                            </div>
+                                                        </Link>
+                                                    :null
+
                                             
                                             :
 
@@ -690,6 +712,18 @@ export default function NavBar() {
                                 <Typography>🔔 AGGIORNAMENTI</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
+                                 {/*VERSIONE 2.4.b*/}
+                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                        <Typography>VERSIONE 2.4.b</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography style={{textAlign: 'start'}}>
+                                            🔘 Macro aggiornamento per adattare gli algoritmi alla nuova versione <strong>2.5</strong> in arrivo
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <br></br>
                                 {/*VERSIONE 2.4*/}
                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -792,7 +826,7 @@ export default function NavBar() {
                         <br></br>
 
                         <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
-                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.4</strong></p>
+                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.4.b</strong></p>
                         
                     </center>
 

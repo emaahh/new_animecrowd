@@ -257,9 +257,11 @@ export default function Home() {
 
                 {allAnime.reverse().map((_, index) => (
                   _.Stato == 'In corso'?
+                    _.IdAW?
                     <Grid item key={index} style={{maxWidth: '400px'}}>
                       <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
                     </Grid>
+                    :null
                   : null
                 ))}
                 
@@ -277,9 +279,11 @@ export default function Home() {
             <Grid container columns={{ xs: 100, sm: 100, md: 100 }} style={{paddingLeft: '2vw', paddingRight: '2vw', display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap'}}>
 
               {allAnime.reverse().slice(-4).reverse().map((_, index) => (
+                 _.IdAW?
                 <Grid item key={index} style={{maxWidth: '400px'}}>
                   <CardComponent Nome={_.Nome} Uscita={_.Uscita} Stato={_.Stato} Copertina={_.Copertina} Id={_._id} Trama={_.Trama} Generi={_.Generi}/>
                 </Grid>
+                :null
               ))}
                 
             </Grid> 
