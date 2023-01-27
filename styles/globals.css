@@ -200,3 +200,12 @@ a {
   .blurnav{
     -webkit-backdrop-filter: blur(50px)!important;
   }
+  .MuiDialog-container{
+    -webkit-backdrop-filter: blur(50px)!important;
+    backdrop-filter: blur(50px);
+  }
+  .MuiDialog-paperScrollPaper{
+    border-radius: 15px;
+    background-color: transparent;
+    background-image: none!important;
+  }

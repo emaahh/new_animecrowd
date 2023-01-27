@@ -149,7 +149,7 @@ export default function NavBar() {
         }
     }
     function handleChangePassword(event) {
-        setPassword(event.target.value)
+        setPassword(event.target.value.replace(/[^a-z0-9 .]/gi, ''))
     }
 
     function LogIn(emailPROPS, passwordPROPS) {
@@ -508,12 +508,12 @@ export default function NavBar() {
                                         </Box>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
                                             <VpnKeyRoundedIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                                            <TextField id="input-with-sx" label="Password" variant="standard" onChange={handleChangePassword} inputProps={{ maxLength: 11 }} type={'password'}/>
+                                            <TextField id="input-with-sx" value={password.replace(/[^a-z0-9 .]/gi, '')} label="Password" variant="standard" onChange={handleChangePassword} inputProps={{ maxLength: 11 }} type={'password'}/>
                                         </Box>
 
                                         <br></br>
                                         {responceRegister != 'utente già registato' ? null:<h3>Email già registrata</h3>}
-                                        <Fab variant="extended" color={userName!=''&&email!=''&&password!='' ? "success" : "error"} onClick={()=> userName!=''&&email!=''&&password!='' ? Register(userName,email,password) : null}>
+                                        <Fab variant="extended" color={userName!=''&&email!=''&&password!='' ? "success" : "error"} onClick={()=> userName!=''&&email!=''&&password!='' ? Register(userName,email,password.replace(/[^a-z0-9 .]/gi, '')) : null}>
                                             <strong>ENTRA</strong>
                                         </Fab>
                                         
@@ -712,8 +712,20 @@ export default function NavBar() {
                                 <Typography>🔔 AGGIORNAMENTI</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                 {/*VERSIONE 2.4.b*/}
-                                 <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                {/*VERSIONE 2.4.c*/}
+                                <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+                                        <Typography>VERSIONE 2.4.c</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Typography style={{textAlign: 'start'}}>
+                                            🔘 Cliccando sui badge nelle pagine utente adesso è possibile leggere le <strong>informazioni</strong>
+                                        </Typography>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <br></br>
+                                {/*VERSIONE 2.4.b*/}
+                                <Accordion style={{borderRadius: '15px', backdropFilter: 'blur(50px)', backgroundColor: 'rgba(0,0,0,0.7)'}}>
                                     <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                                         <Typography>VERSIONE 2.4.b</Typography>
                                     </AccordionSummary>
@@ -826,7 +838,7 @@ export default function NavBar() {
                         <br></br>
 
                         <p>Qui potrai controllare obiettivi, eventi e molto altro...</p>
-                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.4.b</strong></p>
+                        <p style={{opacity: '.3', paddingTop: '100px'}}>versione attuale: <strong>2.4.c</strong></p>
                         
                     </center>
 

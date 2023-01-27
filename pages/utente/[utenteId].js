@@ -39,7 +39,36 @@ import {UserContext} from '../_app'
 import CardComponent from '/components/CardComponent';
 import { maxWidth } from "@mui/system";
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 function UtentePage() {
+
+    const [open, setOpen] = React.useState(false);
+    const [badgeDialog, setBadgeDialog] = useState('');
+
+    const handleClickOpen = (param) => {
+        if(param.Desc != undefined){
+            console.log(param.Desc)
+            setBadgeDialog(param.Desc)
+        }
+        
+        setOpen(true);
+       
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const unique_id = new Date().getTime();
     const value = React.useContext(UserContext);  
 
@@ -431,36 +460,74 @@ function UtentePage() {
                                     <h1>&nbsp;</h1>
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].dev?
-                                            <img height={100} src="/badge/DEVbadge.png" style={{zIndex: '-1'}}/>
+                                            <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
+                                                <img height={100} src="/badge/DEVbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].dev})}/>
+                                            </button>
                                         :
                                             null
                                     }
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].first?
-                                            <img height={100} src="/badge/FIRSTbadge.png" style={{zIndex: '-1'}}/>
-                                        :
+                                            <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
+                                                <img height={100} src="/badge/FIRSTbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].first})}/>
+                                            </button>
+                                            :
                                             null
                                     }
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].second?
-                                            <img height={100} src="/badge/SECONDbadge.png" style={{zIndex: '-1'}}/>
+                                            <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
+                                                <img height={100} src="/badge/SECONDbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].second})}/>
+                                            </button>
                                         :
                                             null
                                     }
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].third?
-                                            <img height={100} src="/badge/THIRDbadge.png" style={{zIndex: '-1'}}/>
+                                            <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
+                                                <img height={100} src="/badge/THIRDbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].third})}/>
+                                            </button>
+                                        :
+                                            null
+                                    }
+                                    {
+                                        currentProfile.Badge&&currentProfile.Badge[0].kofi?
+                                            <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
+                                                <img height={100} src="/badge/KOFIbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].kofi})}/>
+                                            </button>
                                         :
                                             null
                                     }
                                     {
                                         currentProfile.DataAccount.split('-')[0] == '2022' && currentProfile.DataAccount.split('-')[1] < 12?
-                                            <img height={100} src="/badge/V1badge.png" style={{zIndex: '-1'}}/>
+                                            <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
+                                                <img height={100} src="/badge/V1badge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:'Questo utente si è registrato ad AnimeCrowd durante la versione 1.0'})}/>
+                                            </button>
                                         :
                                             null
                                     }
                                     
-                                    
+                                    <Dialog
+                                        open={open}
+                                        TransitionComponent={Transition}
+                                        keepMounted
+                                        onClose={handleClose}
+                                        aria-describedby="alert-dialog-slide-description"
+                                    >
+                                        <DialogTitle>{"Descrizione Badge"}</DialogTitle>
+
+                                        <DialogContent>
+                                            <DialogContentText id="alert-dialog-slide-description">
+                                                <h5>{badgeDialog}</h5>
+                                            </DialogContentText>
+                                        </DialogContent>
+
+                                        <DialogActions>
+                                            <Button onClick={handleClose} className="btnPlayCopertina" variant="contained" sx={{backgroundColor: 'white'}} style={{width: 'auto', borderRadius: '15px'}}>
+                                                <strong>Chiudi</strong>
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
                                     
                                     
                                     
