@@ -300,7 +300,7 @@ export default function Home() {
       <br></br>
       <br></br>
 
-      
+      <Script src="https://dibsemey.com/pfe/current/tag.min.js?z=5697219" data-cfasync="false" async/>
 
       <div id="ts_ad_native_rackl"></div>
       <Script
