@@ -64,6 +64,8 @@ function MyApp({ Component, pageProps }) {
           <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/>
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
           <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+
+          <meta name="monetag" content="583f40dabad739a5671c99cc54b413c3"></meta>
         </Head>
 
         <div ref={animationParent} >
