@@ -300,9 +300,6 @@ export default function Home() {
       <br></br>
       <br></br>
 
-      <Script id="show-banner">
-        {`(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('osspalkiaom.com',5697204,document.createElement('script'))`}
-      </Script>
       
 
       <div id="ts_ad_native_rackl"></div>
