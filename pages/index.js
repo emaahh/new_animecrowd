@@ -300,8 +300,10 @@ export default function Home() {
       <br></br>
       <br></br>
 
+      <Script id="show-banner">
+        {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('glizauvo.net',5696903,document.createElement('script'))`}
+      </Script>
       
-      <script dangerouslySetInnerHTML={{ __html: `(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('glizauvo.net',5696903,document.createElement('script'))` }} />
 
       <div id="ts_ad_native_rackl"></div>
       <Script
