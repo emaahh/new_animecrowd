@@ -301,7 +301,7 @@ export default function Home() {
       <br></br>
 
       <Script id="show-banner">
-        {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('glizauvo.net',5696903,document.createElement('script'))`}
+        {`    <script>(function(d,z,s){s.src='https://'+d+'/400/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('osspalkiaom.com',5697204,document.createElement('script'))</script>`}
       </Script>
       
 
