@@ -56,9 +56,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContext.Provider value={{isLogStored: saveLogState, saveLog, impProfilo: profileSetting, openProfileSetting}}>
       <ThemeProvider theme={darkTheme} ref={animationParent}>
-
-        <Head>
-        
           <Script id="show-banner">
             {`(function(w,d,s,a){var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl='&.='+new Date().getTime()
@@ -67,6 +64,9 @@ function MyApp({ Component, pageProps }) {
               f.parentNode.insertBefore(j,f);
             })(window,document,'script','2706');`}
           </Script>
+        <Head>
+        
+          
         
 
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -76,6 +76,7 @@ function MyApp({ Component, pageProps }) {
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
           <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
         </Head>
+
 
         <div ref={animationParent} >
           <NavBar />
