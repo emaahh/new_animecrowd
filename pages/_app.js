@@ -58,14 +58,23 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={darkTheme} ref={animationParent}>
 
         <Head>
+        
+          <Script id="show-banner">
+            {`(function(w,d,s,a){var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl='&.='+new Date().getTime()
+              ,r=d.referrer;r=!!r&&r!==d.location.href?'&r='+r:'';j.async=true;
+              w['.']=a;j.src= '//pubtagmanager.com/ptm.js?id='+a+dl+r;
+              f.parentNode.insertBefore(j,f);
+            })(window,document,'script','2706');`}
+          </Script>
+        
+
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
           <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;900&display=swap" rel="stylesheet"></link>
           <meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/>
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
           <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-
-          <meta name="monetag" content="583f40dabad739a5671c99cc54b413c3"></meta>
         </Head>
 
         <div ref={animationParent} >
