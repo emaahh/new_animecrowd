@@ -300,7 +300,7 @@ export default function Home() {
       <br></br>
       <br></br>
 
-     
+     <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2371206706057153" crossorigin="anonymous"/>
 
       <div id="ts_ad_native_rackl"></div>
       <Script
