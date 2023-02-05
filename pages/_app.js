@@ -56,14 +56,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserContext.Provider value={{isLogStored: saveLogState, saveLog, impProfilo: profileSetting, openProfileSetting}}>
       <ThemeProvider theme={darkTheme} ref={animationParent}>
-          <Script id="show-banner">
-            {`(function(w,d,s,a){var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl='&.='+new Date().getTime()
-              ,r=d.referrer;r=!!r&&r!==d.location.href?'&r='+r:'';j.async=true;
-              w['.']=a;j.src= '//pubtagmanager.com/ptm.js?id='+a+dl+r;
-              f.parentNode.insertBefore(j,f);
-            })(window,document,'script','2706');`}
-          </Script>
         <Head>
         
           
