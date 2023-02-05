@@ -301,6 +301,25 @@ export default function Home() {
       <br></br>
 
 
+
+
+
+<Script  
+   id="Adsense-id"  async
+   onError={(e) => { console.error("Script failed to load", e); }}
+strategy="afterInteractive"
+ src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2371206706057153"
+  crossorigin="anonymous"
+/> <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-format="autorelaxed"
+      data-ad-client="ca-pub-2371206706057153"
+      data-ad-slot="6731790651"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
       <div id="ts_ad_native_rackl"></div>
       <Script
         src={`//cdn.runative-syndicate.com/sdk/v1/n.js?cacheControl=${new Date().getTime()}`}
