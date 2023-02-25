@@ -1,4 +1,4 @@
 This is a Brave Rewards publisher verification file.
 
 Domain: animecrowd.it
-Token: d7270494fcda34a8abe5fc68614db822e907c1db84ebe799450847d1c5cbbfae
+Token: 6a65336e55d8690379ddfb2aa5bb13fb7b93e1970c829af56e0426ee2d6171cd
