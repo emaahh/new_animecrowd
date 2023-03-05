@@ -92,6 +92,8 @@ function AnimePage() {
     const [isLog, setIsLog] = useState(false);
     const [accountData, setAccountData] = useState(undefined);
 
+    const [currVidId, setCurrVidId] = useState('');
+
     function LogIn(emailPROPS, passwordPROPS) {
         fetch('/api/logIn/'+emailPROPS+'/'+passwordPROPS)
         .then(data => data.json()).then(data => {
@@ -240,7 +242,7 @@ function AnimePage() {
             }, 500);
 
         }else if(currentAnime.IdHW != undefined){
-
+            setCurrVidId("https://www.hentaiworld.me/ajax/episode/serverPlayer?id="+prop+"&amp;a.url=https://www.hentaiworld.me/assets/acode/aplayer.html?random=2065099624&amp;a.close=1&amp;ui=rAxi56rr6%40IDmImGdLl0xuFSuPSVV%2FvGplG9Jt2x&amp;autostart=true")
             const req = await fetch('/api/findAnimeVideoHENTAI/'+currentAnime.IdHW+'/'+prop);
             const newData = await req.json();
         
@@ -445,7 +447,7 @@ function AnimePage() {
 
     useEffect(() => {
 
-            let result = currentAnimeButton.filter(el => el.title.indexOf(queryEp) != -1);
+            let result = currentAnimeButton.filter(el => el.title.indexOf(String(queryEp)) != -1);
             setResultEp(result)
 
     }, [queryEp]);
@@ -480,7 +482,7 @@ function AnimePage() {
 
             <br></br>
 
-            {isLoading == true ?
+            {isLoading != true ?
                 <Loading/>
             : 
                 <>
@@ -534,58 +536,62 @@ function AnimePage() {
                             <h1 style={{fontFamily: 'Work Sans, sans-serif', textTransform: 'uppercase', fontWeight: 'extrabold'}}><strong>{currentAnime.Nome}&nbsp;{favorite? <FavoriteRoundedIcon/> : null}</strong></h1>
                             
                             {isLog ?
-                                <> 
-                                    <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={"success"} ria-controls={open ? 'basic-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={handleClick}>
-                                        <strong>MODIFICA LA TUA CROWDLIST</strong> &nbsp; <ArrowDropDownRoundedIcon sx={{fontSize: '30px', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}/>
-                                    </Fab>
-                                    <Menu
-                                        id="basic-menu"
-                                        anchorEl={anchorEl}
-                                        open={open}
-                                        onClose={handleClose}
-                                        MenuListProps={{
-                                        'aria-labelledby': 'basic-button',
-                                        }}
-                                    >
-                                        {listState==null?
-                                            <>
-                                                <MenuItem onClick={()=>handleClose(0)}><BookmarkAddRoundedIcon/> &nbsp; Da guardare</MenuItem>
-                                                <MenuItem onClick={()=>handleClose(1)}><RemoveRedEyeIcon/> &nbsp; In corso</MenuItem>
-                                                <MenuItem onClick={()=>handleClose(2)}><CheckIcon/> &nbsp; Completato</MenuItem>
-                                                <MenuItem onClick={()=>handleClose(3)}><VisibilityOffIcon/> &nbsp; Droppato</MenuItem>
-                                            </>
-                                            : 
-                                            <MenuItem onClick={()=>handleClose(5)}><DeleteRoundedIcon/> &nbsp; Rimuovi dalla lista</MenuItem>
-                                        }
-                                        
+                                currentAnime.IdAW != undefined?
+                                    <> 
+                                        <Fab sx={{ml: 1, height: '40px'}} variant="extended" color={"success"} ria-controls={open ? 'basic-menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={handleClick}>
+                                            <strong>MODIFICA LA TUA CROWDLIST</strong> &nbsp; <ArrowDropDownRoundedIcon sx={{fontSize: '30px', textShadow: 'rgba(255, 255, 255, 0.8) 0px 0px 20px'}}/>
+                                        </Fab>
+                                        <Menu
+                                            id="basic-menu"
+                                            anchorEl={anchorEl}
+                                            open={open}
+                                            onClose={handleClose}
+                                            MenuListProps={{
+                                            'aria-labelledby': 'basic-button',
+                                            }}
+                                        >
+                                            {listState==null?
+                                                <>
+                                                    <MenuItem onClick={()=>handleClose(0)}><BookmarkAddRoundedIcon/> &nbsp; Da guardare</MenuItem>
+                                                    <MenuItem onClick={()=>handleClose(1)}><RemoveRedEyeIcon/> &nbsp; In corso</MenuItem>
+                                                    <MenuItem onClick={()=>handleClose(2)}><CheckIcon/> &nbsp; Completato</MenuItem>
+                                                    <MenuItem onClick={()=>handleClose(3)}><VisibilityOffIcon/> &nbsp; Droppato</MenuItem>
+                                                </>
+                                                : 
+                                                <MenuItem onClick={()=>handleClose(5)}><DeleteRoundedIcon/> &nbsp; Rimuovi dalla lista</MenuItem>
+                                            }
+                                            
 
-                                        <Divider />
+                                            <Divider />
 
-                                        {favorite?
-                                            <MenuItem onClick={()=>handleClose(6)}><HeartBrokenRoundedIcon/> &nbsp; Rimuovi dai preferiti</MenuItem>
-                                            : 
-                                            <MenuItem onClick={()=>handleClose(4)}><FavoriteRoundedIcon/> &nbsp; Aggiungi ai preferiti</MenuItem>
-                                        }
-                                        
-                                    </Menu>
-                                </>
-                                : 
-                                null
+                                            {favorite?
+                                                <MenuItem onClick={()=>handleClose(6)}><HeartBrokenRoundedIcon/> &nbsp; Rimuovi dai preferiti</MenuItem>
+                                                : 
+                                                <MenuItem onClick={()=>handleClose(4)}><FavoriteRoundedIcon/> &nbsp; Aggiungi ai preferiti</MenuItem>
+                                            }
+                                            
+                                        </Menu>
+                                    </>
+                                :null
+                            :null
 
                             }
                             
                             <h5>
-                                {
-                                    listState == 0 ? 
-                                        "Devi ancora guardare "+currentAnime.Nome : 
-                                    listState == 1 ? 
-                                        "Stai guardando "+currentAnime.Nome : 
-                                    listState == 2 ? 
-                                        "Complimenti! Hai finito "+currentAnime.Nome :
-                                    listState == 3 ? 
-                                        currentAnime.Nome + " è tra i tuoi droppati" :
-                                    listState == null ? 
-                                        currentAnime.Nome + " non si trova nella tua lista" : null
+                                {isLog ?
+                                    currentAnime.IdAW != undefined?
+                                        listState == 0 ? 
+                                            "Devi ancora guardare "+currentAnime.Nome : 
+                                        listState == 1 ? 
+                                            "Stai guardando "+currentAnime.Nome : 
+                                        listState == 2 ? 
+                                            "Complimenti! Hai finito "+currentAnime.Nome :
+                                        listState == 3 ? 
+                                            currentAnime.Nome + " è tra i tuoi droppati" :
+                                        listState == null ? 
+                                            currentAnime.Nome + " non si trova nella tua crowdlist" : null
+                                    :null
+                                :"Accedi per vedere e modificare la tua crowdlist"
                                 }
                             </h5>
 
@@ -634,15 +640,34 @@ function AnimePage() {
                         <br></br>
                         <br></br>
 
+                        {
+                            currentAnime.VM18 != 'si'?
+                            null
+                            :
+                            <>
+                                <Alert severity="error" style={{borderRadius: '15px'}}>
+                                    <AlertTitle>Attenzione +18!</AlertTitle>
+                                    Stai per vedere una serie <strong>vietata ad un publico minore</strong>
+                                </Alert>
+                                <br></br>
+                            </>
+                            
+                        }
+
                         <center style={{zIndex: '1'}} >
                             <h3 style={{opacity: '.5'}}>{currentAnimeButton.length} EPISODI</h3>
 
+                            {
+                                currentAnime.IdAW != undefined?
+                                    <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
+                                        <SearchRoundedIcon class="ICOW" sx={{ color: 'white', mr: 1, my: 0.5  }}/>
+                                        <TextField value={queryEp} className="queryEpInput" id="input-with-sx" label="CERCA EPISODIO" variant="standard" onChange={serchingEp} ref={queryEpInput}/>
+                                        <CancelRoundedIcon class="ICOW" sx={{ color: 'white', mr: 1, my: 0.5  }} onClick={()=> setQueryEp('')}/>
+                                    </Box>
+                                :null
+
+                            }
                             
-                            <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'center'}}>
-                                <SearchRoundedIcon class="ICOW" sx={{ color: 'white', mr: 1, my: 0.5  }}/>
-                                <TextField value={queryEp} className="queryEpInput" id="input-with-sx" label="CERCA EPISODIO" variant="standard" onChange={serchingEp} ref={queryEpInput}/>
-                                <CancelRoundedIcon class="ICOW" sx={{ color: 'white', mr: 1, my: 0.5  }} onClick={()=> setQueryEp('')}/>
-                            </Box>
 
                             <br></br>
                             <br></br>
@@ -687,7 +712,7 @@ function AnimePage() {
                                 }
                                 
                             </Box>
-                            
+
                             <div ref={animationParent} id="playersWrapper">
                                 <br></br>
                                 <br></br>
@@ -698,8 +723,14 @@ function AnimePage() {
                                         
                                             <h1 ref={animationParent} style={{opacity: '.5'}}>EPISODIO {TitleButt}</h1> 
                                             
-                                        
-                                        <video onEnded={videoEnd} poster={'/videoCover2.png'} id="myVideo" controls style={{width: '100%', height: '600px', zIndex: '2', marginTop: '30px'}} src={currentVideo}></video>
+                                        {currentAnime.IdHW && currVidId?
+                                            
+                                            
+                                            null
+                                            :
+                                            <video onEnded={videoEnd} poster={'/videoCover2.png'} id="myVideo" controls style={{width: '100%', height: '600px', zIndex: '2', marginTop: '30px'}} src={currentVideo}></video>
+
+                                        }
                                         
 
                                         <br></br>
@@ -719,7 +750,8 @@ function AnimePage() {
                                                     <SkipNextIcon/>
                                                 </Fab>
                                             }
-
+                                         {currentAnime.IdHW?
+                                            null:
                                             <FormControlLabel
                                                 ref={animationParent}
                                                 style={{float: 'right', paddingTop: '4px'}}
@@ -727,7 +759,7 @@ function AnimePage() {
                                                 label={"AUTOPLAY"}
                                                 labelPlacement="bottom"
                                                 
-                                            />
+                                            />}
                                         </div>
                                             
 

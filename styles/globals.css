@@ -208,4 +208,24 @@ a {
     border-radius: 15px;
     background-color: transparent;
     background-image: none!important;
+    -webkit-backdrop-filter: blur(50px)!important;
+    backdrop-filter: blur(50px);
   }
+
+  .MuiSlider-markLabel{
+    color: grey;
+  }
+  .MuiSlider-markLabelActive{
+    color: black;
+    font-weight: bolder;
+  }
+
+  
+
+
+  
+
+
+
+
+	

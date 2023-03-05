@@ -16,6 +16,16 @@ function generateSiteMap(posts) {
             <lastmod>${`${currentDate}`}</lastmod>
             <changefreq>always</changefreq>
         </url>
+        <url>
+            <loc>https://www.animecrowd.it/legal/privacy</loc>
+            <lastmod>${`${currentDate}`}</lastmod>
+            <changefreq>always</changefreq>
+        </url>
+        <url>
+            <loc>https://www.animecrowd.it/legal/terms</loc>
+            <lastmod>${`${currentDate}`}</lastmod>
+            <changefreq>always</changefreq>
+        </url>
         ${posts
             .map(({ _id }) => {
                 return `

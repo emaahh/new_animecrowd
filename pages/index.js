@@ -113,7 +113,7 @@ export default function Home() {
 
   
   return (
-    <div ref={animationParent} style={{height: '1px'}}>
+    <div ref={animationParent}>
       <Head>
         <title>AnimeCrowd</title>
         
@@ -134,7 +134,7 @@ export default function Home() {
         <meta name="Trafficstars" content="38584"></meta>
       </Head>
 
-      {isLoading == true ?
+      {isLoading != true ?
         <Loading/>
       : 
   

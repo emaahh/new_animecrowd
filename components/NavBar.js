@@ -22,6 +22,7 @@ import Fab from '@mui/material/Fab';
 import Container from '@mui/material/Container';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -61,8 +62,6 @@ export default function NavBar() {
 
     const [currentPic, setCurrentPic] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(false);
-
-    const [ricercaHentai, setRicercaHentai] = useState(false);
 
     function changePic(e){
         setCurrentPic(e.target.files[0])
@@ -286,6 +285,27 @@ export default function NavBar() {
         }
     },[value.impProfilo])
 
+    //slider anime/hentai/utenti
+    const marks = [
+        {
+          value: 0,
+          label: 'ANIME',
+        },
+        {
+          value: 1,
+          label: 'UTENTI',
+        }
+      ];
+    function valuetext(value) {
+        return `${value}°C`;
+    }
+    const [searchFilter, setSearchFilter] = useState('ANIME');
+    function valueLabelFormat(value) {
+        var e = marks.findIndex((mark) => mark.value === value)
+        setSearchFilter(marks[e].label)
+    }
+    
+
     return (
         <span id="navbar" ref={animationParent} style={{zIndex: '999999999999999999', position: 'fixed', width: '100%'}}>
             <Container maxWidth="xxl">
@@ -376,7 +396,8 @@ export default function NavBar() {
                                     
                                     searchResult.map((_, index) => (
                                         _.NomeUtente==undefined ?
-                                            _.IdAW?
+                                            _.IdAW && searchFilter=='ANIME'?
+                                                /* ANIME */
                                                 <Link href={'/anime/'+ _._id} passHref onClick={openSearch} key={_.id}>
                                                     <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
                                                         <CardMedia
@@ -393,7 +414,8 @@ export default function NavBar() {
                                                     </div>
                                                 </Link>
                                                 :
-                                                    _.IdHW && ricercaHentai==true?
+                                                    /* HENTAI */
+                                                    _.IdHW && searchFilter=='HENTAI'?
                                                         <Link href={'/anime/'+ _._id} passHref onClick={openSearch} key={_.id}>
                                                             <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
                                                                 <CardMedia
@@ -410,31 +432,45 @@ export default function NavBar() {
                                                             </div>
                                                         </Link>
                                                     :null
-
-                                            
                                             :
-
-                                            <Link href={'/utente/'+ _._id} passHref onClick={openSearch} key={_.id}>
-                                                <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
-                                                    <CardMedia
-                                                        component="img"
-                                                        sx={{ width: 'auto', borderRadius: '50px', }}
-                                                        style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
-                                                        image={_.Avatar!=undefined ?'https://i.imgur.com/'+_.Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg':null}
-                                                        alt={'Foto profilo di ' + _.NomeUtente}
-                                                    />
-                                                    <div>
-                                                        <h4 style={{marginBottom: '0px'}}>{_.NomeUtente}</h4>
-                                                        <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>FOLLOWING:</strong> {JSON.stringify(_.Amici.length-1)} <strong>FOLLOWER:</strong> {_.MiSeguono!=undefined ? JSON.stringify(_.MiSeguono.length-1): '0'}</p>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        
-                                        
+                                            /* UTENTI */
+                                                searchFilter=='UTENTI'?
+                                                    <Link href={'/utente/'+ _._id} passHref onClick={openSearch} key={_.id}>
+                                                        <div style={{backgroundColor: 'rgba(0,0,0)', padding: '15px', margin: '10px', borderRadius: '15px', display: 'flex', alignItems: 'center'}}>
+                                                            <CardMedia
+                                                                component="img"
+                                                                sx={{ width: 'auto', borderRadius: '50px', }}
+                                                                style={{objectFit: 'cover', height: '70px', marginRight: '10px'}}
+                                                                image={_.Avatar!=undefined ?'https://i.imgur.com/'+_.Avatar.replace('https://i.imgur.com/','').replace('.jpg','')+'b.jpg':null}
+                                                                alt={'Foto profilo di ' + _.NomeUtente}
+                                                            />
+                                                            <div>
+                                                                <h4 style={{marginBottom: '0px'}}>{_.NomeUtente}</h4>
+                                                                <p style={{fontSize: '9px', color: 'rgba(255,255,255,0.5)'}}><strong>FOLLOWING:</strong> {JSON.stringify(_.Amici.length-1)} <strong>FOLLOWER:</strong> {_.MiSeguono!=undefined ? JSON.stringify(_.MiSeguono.length-1): '0'}</p>
+                                                            </div>
+                                                        </div>
+                                                    </Link> 
+                                                :null
                                     ))
                                 
                                 }
-                                
+                                <center style={{color:'grey'}}>
+                                    <h1></h1>
+                                    <div style={{marginLeft: '10%', marginRight:'10%'}}>
+                                        <Slider
+                                                track={false}
+                                                aria-label="Restricted values"
+                                                defaultValue={0}
+                                                min={0}
+                                                max={1}
+                                                step={null}
+                                                getAriaValueText={valuetext}
+                                                valueLabelFormat={valueLabelFormat}
+                                                marks={marks}
+                                                sx={{color: 'black'}}
+                                            />
+                                    </div>
+                                </center>
 
                             </div>
 

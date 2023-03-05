@@ -5,7 +5,9 @@ import { Analytics } from '@vercel/analytics/react';
 
 import Head from 'next/head'
 import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
 import '../styles/globals.css'
+
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -76,7 +78,8 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps}/> 
 
           {/*<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="animecrowd" data-description="Support me on Buy me a coffee!" data-message="Grazie di utilizzare AnimeCrowd ❤️, se credi nel progetto puoi aiutarci con il suo mantenimento mensile, basta veramente poco." data-color="#BD5FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>*/}
-        
+
+          <Footer />
         </div>
         
         <Analytics />
