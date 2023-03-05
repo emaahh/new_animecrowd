@@ -593,7 +593,7 @@ export default function NavBar() {
 
 
                             <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
-                                <img className="imagebann" alt={'Banner di '+ accountData[0].NomeUtente} src={currentBanner ? URL.createObjectURL(currentBanner) : accountData[0].Sfondo == '' || accountData[0].Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+accountData[0].Sfondo+'.jpg'} style={{opacity: .8, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                                <Image className="imagebann" alt={'Banner di '+ accountData[0].NomeUtente} src={currentBanner ? URL.createObjectURL(currentBanner) : accountData[0].Sfondo == '' || accountData[0].Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+accountData[0].Sfondo+'.jpg'} style={{opacity: .8, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
                                 <div variant="contained" className="videoHome"></div>
                                 <style>
                                     {`

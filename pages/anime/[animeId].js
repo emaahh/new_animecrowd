@@ -492,7 +492,7 @@ function AnimePage() {
                     <div style={{position: 'fixed', height: '100vh', width: '100vw', backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(50px)', zIndex: '-1'}}></div>
 
                     <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
-                        <img className="imagebann" alt={'Copertina di '+ currentAnime.Nome} src={currentAnime.Banner == '' ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : currentAnime.Banner} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                        <Image className="imagebann" alt={'Copertina di '+ currentAnime.Nome} src={currentAnime.Banner == '' ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : currentAnime.Banner} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
                         <div variant="contained" className="videoHome"></div>
                         <style>
                             {`

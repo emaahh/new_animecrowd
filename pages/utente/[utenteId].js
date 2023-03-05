@@ -332,7 +332,7 @@ function UtentePage() {
                         
                         
                     <div style={{backgroundClip: 'content-box', padding: '1px', width: '100%', position: 'relative', marginTop: '-20px', zIndex: '-1'}}>
-                        <img className="imagebann" alt={'Banner di '+ currentProfile.NomeUtente} src={currentProfile.Sfondo == '' || currentProfile.Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+currentProfile.Sfondo+'.jpg'} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
+                        <Image className="imagebann" alt={'Banner di '+ currentProfile.NomeUtente} src={currentProfile.Sfondo == '' || currentProfile.Sfondo == undefined ? 'https://www.ammotor.it/wp-content/uploads/2017/12/default_image_01-1024x1024-570x321.png' : 'https://i.imgur.com/'+currentProfile.Sfondo+'.jpg'} style={{opacity: .5, objectFit: 'cover', width: '100%', height: '50vh', position: 'relative', zIndex: '100'}}/> 
                         <div variant="contained" className="videoHome"></div>
                                     <style>
                                         {`
@@ -461,7 +461,7 @@ function UtentePage() {
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].dev?
                                             <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
-                                                <img height={100} src="/badge/DEVbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].dev})}/>
+                                                <Image height={100} src="/badge/DEVbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].dev})}/>
                                             </button>
                                         :
                                             null
@@ -469,7 +469,7 @@ function UtentePage() {
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].first?
                                             <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
-                                                <img height={100} src="/badge/FIRSTbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].first})}/>
+                                                <Image height={100} src="/badge/FIRSTbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].first})}/>
                                             </button>
                                             :
                                             null
@@ -477,7 +477,7 @@ function UtentePage() {
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].second?
                                             <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
-                                                <img height={100} src="/badge/SECONDbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].second})}/>
+                                                <Image height={100} src="/badge/SECONDbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].second})}/>
                                             </button>
                                         :
                                             null
@@ -485,7 +485,7 @@ function UtentePage() {
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].third?
                                             <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
-                                                <img height={100} src="/badge/THIRDbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].third})}/>
+                                                <Image height={100} src="/badge/THIRDbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].third})}/>
                                             </button>
                                         :
                                             null
@@ -493,7 +493,7 @@ function UtentePage() {
                                     {
                                         currentProfile.Badge&&currentProfile.Badge[0].kofi?
                                             <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
-                                                <img height={100} src="/badge/KOFIbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].kofi})}/>
+                                                <Image height={100} src="/badge/KOFIbadge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:currentProfile.Badge[0].kofi})}/>
                                             </button>
                                         :
                                             null
@@ -501,7 +501,7 @@ function UtentePage() {
                                     {
                                         currentProfile.DataAccount.split('-')[0] == '2022' && currentProfile.DataAccount.split('-')[1] < 12?
                                             <button onClick={handleClickOpen} style={{padding: 0, backgroundColor: 'transparent', border: 'none'}}>
-                                                <img height={100} src="/badge/V1badge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:'Questo utente si è registrato ad AnimeCrowd durante la versione 1.0'})}/>
+                                                <Image height={100} src="/badge/V1badge.png" style={{zIndex: '-1'}} onClick={()=>handleClickOpen({Desc:'Questo utente si è registrato ad AnimeCrowd durante la versione 1.0'})}/>
                                             </button>
                                         :
                                             null

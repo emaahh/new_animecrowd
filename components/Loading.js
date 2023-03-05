@@ -6,7 +6,7 @@ function Loading(props) {
         <>
         
             <div style={{width: '-webkit-fill-available', flexDirection: 'column', position: 'absolute', top: '0px', left: '0', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black', height: '100vh', zIndex: '9999', display: 'flex', flexWrap: 'nowrap'}}>
-                <img className="heartbeat" src="/loadingGIF.gif" style={{width: '100px', height: 'auto', borderRadius: '30px'}}/> 
+                <Image className="heartbeat" src="/loadingGIF.gif" style={{width: '100px', height: 'auto', borderRadius: '30px'}}/> 
 
 
                {/* 
