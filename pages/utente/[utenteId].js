@@ -3,7 +3,7 @@ import Script from 'next/script'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import Image from 'next/image'
 import ScrollContainer from 'react-indiana-drag-scroll'
 
 import Loading from '/components/Loading'

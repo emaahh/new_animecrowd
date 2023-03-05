@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import { RecipeJsonLd } from 'next-seo';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import Image from 'next/image'
 import Loading from '/components/Loading'
 
 import {useAutoAnimate} from '@formkit/auto-animate/react'

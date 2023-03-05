@@ -3,7 +3,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { setCookie, getCookie, hasCookie, deleteCookie } from 'cookies-next';
-
+import Image from 'next/image'
 
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';

@@ -1,5 +1,5 @@
 import { Fireworks } from '@fireworks-js/react' //DA TOGLIERE
- 
+import Image from 'next/image'
 
 function Loading(props) {
     return (
